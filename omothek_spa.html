@@ -1,0 +1,1752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMOTHEK ENTERPRISES | Smart Technology. Better Living.</title>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modern SVG Favicon (Recommended for crispness and dark mode support) -->
+    <link rel="icon" href="/866571.png" type="image/svg+xml">
+
+    <!-- Standard PNG Favicon (Good fallback, standard 32x32 size) -->
+    <link rel="icon" href="/866571.png" type="image/png" sizes="32x32">
+
+    <link rel="apple-touch-icon" href="866571.png" sizes="180x180">
+
+    
+    <!-- Tailwind Custom Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f4f7fb',
+                            100: '#e7eef7',
+                            200: '#c3d5eb',
+                            300: '#90b4dc',
+                            400: '#588eca',
+                            500: '#3472b5',
+                            600: '#235997',
+                            700: '#1d487d',
+                            800: '#102a56',
+                            900: '#001A4D', // Primary Deep Navy Blue
+                            950: '#000f2e',
+                        },
+                        accent: {
+                            300: '#e9cb74',
+                            400: '#d4af37',
+                            500: '#C59A3F', // Primary Metallic Gold / Amber
+                            600: '#a87f2a',
+                            700: '#89641d',
+                        },
+                        trifone: {
+                            500: '#16a34a', // Trifone Emerald Green accent
+                            600: '#15803d',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+        
+        /* Page Transition Animation */
+        .fade-in {
+            animation: fadeInPage 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes fadeInPage {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Artistic About Us Animation Keyframes */
+        @keyframes spinSlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes spinFast {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes floatOrb1 {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            50% { transform: translateY(-10px) translateX(4px); }
+        }
+        @keyframes floatOrb2 {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            50% { transform: translateY(8px) translateX(-5px); }
+        }
+        @keyframes floatOrb3 {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
+        @keyframes energyFlow {
+            to { stroke-dashoffset: -40; }
+        }
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.45; transform: scale(0.98); }
+            50% { opacity: 0.95; transform: scale(1.06); }
+        }
+        @keyframes heatWave {
+            0% { transform: translateY(4px); opacity: 0.2; }
+            50% { opacity: 0.9; }
+            100% { transform: translateY(-10px); opacity: 0; }
+        }
+        @keyframes vortexWave {
+            0%, 100% { transform: scaleX(1) translateY(0); }
+            50% { transform: scaleX(0.82) translateY(-3px); }
+        }
+
+        .anim-spin-fan {
+            transform-origin: center;
+            animation: spinSlow 2.6s linear infinite;
+        }
+        .anim-spin-fan.turbo {
+            animation-duration: 0.8s;
+        }
+        .anim-spin-blender {
+            transform-origin: center;
+            animation: spinFast 0.6s linear infinite;
+        }
+        .anim-energy-line {
+            stroke-dasharray: 6 6;
+            animation: energyFlow 1.2s linear infinite;
+        }
+        .anim-energy-line.turbo {
+            animation-duration: 0.45s;
+        }
+        .anim-float-1 { animation: floatOrb1 4s ease-in-out infinite; }
+        .anim-float-2 { animation: floatOrb2 5s ease-in-out infinite; }
+        .anim-float-3 { animation: floatOrb3 4.5s ease-in-out infinite; }
+        .anim-pulse-ring {
+            transform-origin: center;
+            animation: pulseGlow 2.2s ease-in-out infinite;
+        }
+        .anim-heat-1 { animation: heatWave 1.8s ease-out infinite; }
+        .anim-heat-2 { animation: heatWave 1.8s ease-out 0.6s infinite; }
+        .anim-heat-3 { animation: heatWave 1.8s ease-out 1.2s infinite; }
+        .anim-vortex {
+            transform-origin: center;
+            animation: vortexWave 0.9s ease-in-out infinite;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #001A4D; }
+        ::-webkit-scrollbar-thumb { background: #C59A3F; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #d4af37; }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-brand-50 flex flex-col min-h-screen selection:bg-accent-500 selection:text-brand-900">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-brand-950 text-slate-300 text-xs py-2 px-4 border-b border-brand-800">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center space-x-4">
+                <span class="flex items-center gap-1.5">
+                    <i class="fas fa-handshake text-accent-500"></i>
+                    <span>Official Distribution Partner: <strong class="text-white">TRIFONE Electronics</strong> &amp; <strong class="text-white">ORIFLAME Sweden</strong></span>
+                </span>
+            </div>
+            <div class="hidden sm:flex items-center space-x-6">
+                <button onclick="navigateTo('products')" class="hover:text-accent-400 transition flex items-center gap-1">
+                    <i class="fas fa-box-open text-accent-500"></i> Wholesale &amp; Retail Supply
+                </button>
+                <button onclick="navigateTo('contact')" class="text-accent-400 font-semibold hover:underline flex items-center gap-1">
+                    <i class="fas fa-store"></i> Become a Dealer
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="bg-brand-900 text-white shadow-2xl sticky top-0 z-50 border-b-4 border-accent-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-24">
+                <div class="flex items-center cursor-pointer group" onclick="navigateTo('home')">
+                    <div class="bg-white rounded-xl p-1.5 shadow-lg flex items-center gap-3 border-2 border-accent-500/60 group-hover:border-accent-400 transition">
+                        <img 
+                            src="866571.jpg" 
+                            alt="OMOTHEK ENTERPRISES Logo" 
+                            class="h-14 w-auto object-contain rounded-lg"
+                            onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.nextElementSibling.classList.add('flex');"
+                        >
+                        <!-- Styled Fallback Badge if 866571_4.jpg is not in local preview -->
+                        <div class="hidden items-center gap-2.5 px-2 py-0.5">
+                            <div class="w-11 h-11 rounded-lg bg-gradient-to-br from-brand-900 to-brand-700 flex items-center justify-center shadow-inner border border-accent-500">
+                                <span class="text-lg font-extrabold tracking-tighter text-white">O<span class="text-accent-500">E</span></span>
+                            </div>
+                            <div class="leading-none pr-1">
+                                <span class="block text-base font-extrabold text-brand-900 tracking-wider">OMOTHEK</span>
+                                <span class="block text-[10px] font-bold text-accent-600 tracking-[0.22em] uppercase mt-0.5">ENTERPRISES</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Desktop Navigation Links -->
+                <div class="hidden md:flex items-center space-x-7">
+                    <button onclick="navigateTo('home')" data-page="home" class="nav-link text-accent-500 border-b-2 border-accent-500 text-sm font-semibold uppercase tracking-wider transition-all duration-200 py-2">Home</button>
+                    <button onclick="navigateTo('about')" data-page="about" class="nav-link text-slate-200 hover:text-accent-400 text-sm font-semibold uppercase tracking-wider transition-all duration-200 py-2 border-b-2 border-transparent">About Us</button>
+                    <button onclick="navigateTo('services')" data-page="services" class="nav-link text-slate-200 hover:text-accent-400 text-sm font-semibold uppercase tracking-wider transition-all duration-200 py-2 border-b-2 border-transparent">Services</button>
+                    <button onclick="navigateTo('products')" data-page="products" class="nav-link text-slate-200 hover:text-accent-400 text-sm font-semibold uppercase tracking-wider transition-all duration-200 py-2 border-b-2 border-transparent">Products</button>
+                    <button onclick="navigateTo('contact')" data-page="contact" class="nav-link text-slate-200 hover:text-accent-400 text-sm font-semibold uppercase tracking-wider transition-all duration-200 py-2 border-b-2 border-transparent">Contact</button>
+                    
+                    <button onclick="navigateTo('contact')" class="bg-gradient-to-r from-accent-500 to-accent-400 text-brand-900 px-6 py-2.5 rounded-full font-bold text-sm hover:brightness-110 transition-all shadow-lg flex items-center gap-2 ml-2">
+                        <span>Dealer Inquiry</span>
+                        <i class="fas fa-arrow-right text-xs"></i>
+                    </button>
+                </div>
+                
+                <!-- Mobile Hamburger Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" aria-label="Toggle Menu" class="text-slate-200 hover:text-accent-500 focus:outline-none text-2xl p-2 rounded-lg border border-brand-700">
+                        <i id="menu-icon" class="fas fa-bars"></i>
+                        <i id="close-icon" class="fas fa-times hidden"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-950 pb-5 border-t border-brand-800 shadow-2xl">
+            <div class="px-4 pt-4 pb-2 space-y-2">
+                <button onclick="navigateMobile('home')" data-mobile-page="home" class="mobile-nav-link block w-full text-left px-4 py-3 rounded-lg text-base font-semibold text-white bg-brand-900 border-l-4 border-accent-500">Home</button>
+                <button onclick="navigateMobile('about')" data-mobile-page="about" class="mobile-nav-link block w-full text-left px-4 py-3 rounded-lg text-base font-medium text-slate-300 hover:bg-brand-800 hover:text-white">About Us</button>
+                <button onclick="navigateMobile('services')" data-mobile-page="services" class="mobile-nav-link block w-full text-left px-4 py-3 rounded-lg text-base font-medium text-slate-300 hover:bg-brand-800 hover:text-white">Services Rendered</button>
+                <button onclick="navigateMobile('products')" data-mobile-page="products" class="mobile-nav-link block w-full text-left px-4 py-3 rounded-lg text-base font-medium text-slate-300 hover:bg-brand-800 hover:text-white">Products Catalog</button>
+                <button onclick="navigateMobile('contact')" data-mobile-page="contact" class="mobile-nav-link block w-full text-left px-4 py-3 rounded-lg text-base font-medium text-slate-300 hover:bg-brand-800 hover:text-white">Contact Us</button>
+                <div class="pt-2">
+                    <button onclick="navigateMobile('contact')" class="w-full bg-accent-500 text-brand-900 font-bold py-3 rounded-lg shadow-md text-center">
+                        Request Wholesale Quote
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main SPA Content Container -->
+    <main class="flex-grow">
+        
+        <!-- ================================================================= -->
+        <!-- 1. HOME PAGE SECTION                                              -->
+        <!-- ================================================================= -->
+        <section id="home" class="page-section block fade-in">
+            
+            <!-- Hero Banner -->
+            <div class="relative bg-brand-900 text-white overflow-hidden border-b border-brand-800">
+                <!-- Ambient Decorative Background -->
+                <div class="absolute inset-0 opacity-20 pointer-events-none">
+                    <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-accent-500 blur-3xl"></div>
+                    <div class="absolute top-1/2 right-0 w-[28rem] h-[28rem] rounded-full bg-brand-400 blur-3xl"></div>
+                </div>
+                
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20 lg:py-28">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                        <!-- Hero Text Column -->
+                        <div class="lg:col-span-7 text-center lg:text-left">
+                            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent-500/15 border border-accent-500/40 text-accent-400 text-xs sm:text-sm font-bold tracking-widest uppercase mb-6">
+                                <span class="w-2 h-2 rounded-full bg-accent-500 animate-ping"></span>
+                                <span>OMOTHEK ENTERPRISES &bull; TRIFONE PARTNER</span>
+                            </div>
+                            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+                                Smart Technology. <br/>
+                                <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-300 via-accent-500 to-accent-300">Better Living.</span>
+                            </h1>
+                            <p class="text-lg sm:text-xl text-slate-200 font-light leading-relaxed mb-8 max-w-2xl mx-auto lg:mx-0">
+                                Connecting manufacturers, importers, and suppliers with dealers, retailers, and modern households. Experience high-performance kitchen appliances, solar cooling solutions, and everyday electronics built to last.
+                            </p>
+                            <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+                                <button onclick="navigateTo('products')" class="bg-accent-500 text-brand-900 px-8 py-4 rounded-full font-extrabold text-base hover:bg-accent-400 transition shadow-[0_0_25px_rgba(197,154,63,0.45)] flex items-center justify-center gap-3">
+                                    <span>Explore Products</span>
+                                    <i class="fas fa-th-large"></i>
+                                </button>
+                                <button onclick="navigateTo('services')" class="bg-white/10 backdrop-blur-sm border-2 border-accent-500/70 text-white px-8 py-4 rounded-full font-bold text-base hover:bg-accent-500 hover:text-brand-900 hover:border-accent-500 transition flex items-center justify-center gap-3">
+                                    <span>Our Dealer Services</span>
+                                    <i class="fas fa-handshake"></i>
+                                </button>
+                            </div>
+
+                            <!-- Trust Metrics -->
+                            <div class="grid grid-cols-3 gap-4 mt-12 pt-8 border-t border-brand-700/80 text-center lg:text-left">
+                                <div>
+                                    <p class="text-2xl sm:text-3xl font-extrabold text-accent-500">100%</p>
+                                    <p class="text-xs sm:text-sm text-slate-300">Genuine Products</p>
+                                </div>
+                                <div>
+                                    <p class="text-2xl sm:text-3xl font-extrabold text-accent-500">B2B &amp; B2C</p>
+                                    <p class="text-xs sm:text-sm text-slate-300">Dealer Network Supply</p>
+                                </div>
+                                <div>
+                                    <p class="text-2xl sm:text-3xl font-extrabold text-accent-500">2+ Global</p>
+                                    <p class="text-xs sm:text-sm text-slate-300">Brand Partnerships</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hero Visual Showcase Card -->
+                        <div class="lg:col-span-5">
+                            <div class="relative mx-auto max-w-md bg-gradient-to-b from-brand-800 to-brand-950 p-6 rounded-3xl border border-accent-500/40 shadow-2xl">
+                                <div class="flex items-center justify-between mb-4 pb-3 border-b border-brand-700">
+                                    <div class="flex items-center gap-2">
+                                        <span class="w-3 h-3 rounded-full bg-red-400"></span>
+                                        <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                                        <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+                                    </div>
+                                    <span class="text-xs font-bold uppercase tracking-widest text-accent-400">Flagship Lineup</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div onclick="navigateTo('products')" class="cursor-pointer bg-white rounded-2xl p-3 text-center shadow-md hover:scale-105 transition-transform">
+                                        <div class="h-28 flex items-center justify-center overflow-hidden">
+                                            <img src="866555.jpg" alt="10L Air Fryer" class="max-h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                                            <div class="hidden text-brand-900 py-4"><i class="fas fa-temperature-high text-4xl text-accent-500"></i></div>
+                                        </div>
+                                        <p class="text-xs font-bold text-brand-900 mt-2 line-clamp-1">10L Digital Air Fryer</p>
+                                        <span class="text-[10px] text-emerald-700 font-semibold">TRIFONE MH60-AR</span>
+                                    </div>
+                                    <div onclick="navigateTo('products')" class="cursor-pointer bg-white rounded-2xl p-3 text-center shadow-md hover:scale-105 transition-transform">
+                                        <div class="h-28 flex items-center justify-center overflow-hidden">
+                                            <img src="866560.jpg" alt="Solar Standing Fan" class="max-h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                                            <div class="hidden text-brand-900 py-4"><i class="fas fa-fan text-4xl text-brand-600"></i></div>
+                                        </div>
+                                        <p class="text-xs font-bold text-brand-900 mt-2 line-clamp-1">16" Solar Standing Fan</p>
+                                        <span class="text-[10px] text-emerald-700 font-semibold">TRIFONE TF-16A</span>
+                                    </div>
+                                    <div onclick="navigateTo('products')" class="cursor-pointer bg-white rounded-2xl p-3 text-center shadow-md hover:scale-105 transition-transform">
+                                        <div class="h-28 flex items-center justify-center overflow-hidden">
+                                            <img src="866553.jpg" alt="Electric Furnace" class="max-h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                                            <div class="hidden text-brand-900 py-4"><i class="fas fa-fire-burner text-4xl text-orange-500"></i></div>
+                                        </div>
+                                        <p class="text-xs font-bold text-brand-900 mt-2 line-clamp-1">3500W Dual Furnace</p>
+                                        <span class="text-[10px] text-emerald-700 font-semibold">TRIFONE Infrared</span>
+                                    </div>
+                                    <div onclick="navigateTo('products')" class="cursor-pointer bg-white rounded-2xl p-3 text-center shadow-md hover:scale-105 transition-transform">
+                                        <div class="h-28 flex items-center justify-center overflow-hidden">
+                                            <img src="866554.jpg" alt="1500W Food Mixer" class="max-h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                                            <div class="hidden text-brand-900 py-4"><i class="fas fa-blender text-4xl text-pink-500"></i></div>
+                                        </div>
+                                        <p class="text-xs font-bold text-brand-900 mt-2 line-clamp-1">1500W Food Mixer</p>
+                                        <span class="text-[10px] text-emerald-700 font-semibold">TRIFONE TB-15E</span>
+                                    </div>
+                                </div>
+                                <div class="mt-4 pt-3 border-t border-brand-700 flex items-center justify-between text-xs text-slate-300">
+                                    <span><i class="fas fa-check-circle text-accent-500 mr-1"></i> Ready for Bulk &amp; Retail</span>
+                                    <button onclick="navigateTo('products')" class="text-accent-400 font-bold hover:underline">View All 10 Items &rarr;</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Creative Portrait Video Showcase Section (866567_2.mp4) -->
+            <div class="py-20 bg-slate-100 border-b border-slate-200">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                        
+                        <!-- Left Column: Product Spotlight Details -->
+                        <div class="lg:col-span-7 space-y-6">
+                            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-900 text-accent-400 font-bold text-xs tracking-widest uppercase shadow-sm">
+                                <i class="fas fa-video"></i>
+                                <span>Live Product Action Showcase</span>
+                            </div>
+                            <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-900 leading-tight">
+                                Experience the <span class="text-accent-600">TRIFONE</span> Smart Rechargeable Standing Fan
+                            </h2>
+                            <p class="text-slate-600 text-lg leading-relaxed">
+                                Engineered for uninterrupted comfort whether grid power is available or not. Watch our portrait showcase demonstrating its whisper-quiet oscillation, ultra-bright emergency LED illumination, and multi-speed tactile controls.
+                            </p>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200/80 flex items-start gap-4">
+                                    <div class="w-12 h-12 rounded-xl bg-brand-900 text-accent-500 flex items-center justify-center shrink-0 text-xl shadow-md">
+                                        <i class="fas fa-lightbulb"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-brand-900">Built-In Emergency LED</h4>
+                                        <p class="text-slate-600 text-xs mt-1 leading-relaxed">High-lumen integrated night light illuminates your room during power outages.</p>
+                                    </div>
+                                </div>
+
+                                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200/80 flex items-start gap-4">
+                                    <div class="w-12 h-12 rounded-xl bg-brand-900 text-accent-500 flex items-center justify-center shrink-0 text-xl shadow-md">
+                                        <i class="fas fa-sliders-h"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-brand-900">5-Button Speed Control</h4>
+                                        <p class="text-slate-600 text-xs mt-1 leading-relaxed">Precision airflow settings from gentle sleep breeze to high-velocity cooling.</p>
+                                    </div>
+                                </div>
+
+                                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200/80 flex items-start gap-4">
+                                    <div class="w-12 h-12 rounded-xl bg-brand-900 text-accent-500 flex items-center justify-center shrink-0 text-xl shadow-md">
+                                        <i class="fab fa-usb"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-brand-900">5V USB Power Bank Port</h4>
+                                        <p class="text-slate-600 text-xs mt-1 leading-relaxed">Charge smartphones and tablets directly from the fan's built-in battery.</p>
+                                    </div>
+                                </div>
+
+                                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200/80 flex items-start gap-4">
+                                    <div class="w-12 h-12 rounded-xl bg-brand-900 text-accent-500 flex items-center justify-center shrink-0 text-xl shadow-md">
+                                        <i class="fas fa-solar-panel"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-brand-900">AC/DC &amp; Solar Compatible</h4>
+                                        <p class="text-slate-600 text-xs mt-1 leading-relaxed">Long-lasting rechargeable battery with solar panel charging support.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pt-4 flex flex-wrap gap-4">
+                                <button onclick="inquireProduct('TRIFONE Smart Rechargeable Standing Fan')" class="bg-brand-900 text-white px-8 py-3.5 rounded-full font-bold hover:bg-brand-800 transition shadow-lg flex items-center gap-3">
+                                    <span>Order / Dealer Inquiry</span>
+                                    <i class="fas fa-arrow-right text-accent-500"></i>
+                                </button>
+                                <button onclick="navigateTo('products')" class="bg-white text-brand-900 border border-slate-300 px-6 py-3.5 rounded-full font-semibold hover:bg-slate-50 transition">
+                                    See Full Catalog
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Right Column: Portrait Video Frame (aspect-[9/16] max-w-sm mx-auto) -->
+                        <div class="lg:col-span-5 flex justify-center">
+                            <div class="relative w-full max-w-sm mx-auto group">
+                                <!-- Ambient Glow Backdrop -->
+                                <div class="absolute -inset-3 bg-gradient-to-tr from-brand-900 via-accent-500 to-brand-600 rounded-[2.5rem] opacity-30 group-hover:opacity-50 blur-xl transition duration-500"></div>
+                                
+                                <!-- Smartphone Portrait Bezel Frame -->
+                                <div class="relative bg-brand-950 p-3 rounded-[2.25rem] shadow-2xl border-4 border-brand-800">
+                                    <!-- Top Speaker Notch -->
+                                    <div class="w-24 h-1.5 bg-brand-800 rounded-full mx-auto mb-2.5"></div>
+                                    
+                                    <!-- Portrait 9:16 Video Container -->
+                                    <div class="relative w-full aspect-[9/16] rounded-2xl overflow-hidden bg-gradient-to-b from-brand-900 to-brand-950">
+                                        <video 
+                                            id="showcaseVideo"
+                                            src="866567_2.mp4" 
+                                            controls
+                                            autoplay 
+                                            loop 
+                                            muted 
+                                            playsinline 
+                                            class="relative z-10 w-full h-full object-cover"
+                                            onerror="document.getElementById('videoFallbackOverlay').classList.remove('hidden');"
+                                        ></video>
+
+                                        <!-- Interactive Animated Fallback Preview (Shows if 866567_2.mp4 isn't in browser sandbox) -->
+                                        <div id="videoFallbackOverlay" class="hidden absolute inset-0 z-20 bg-gradient-to-b from-brand-900 via-brand-800 to-brand-950 flex flex-col items-center justify-between p-6 text-center text-white">
+                                            <div class="w-full flex justify-between items-center text-xs text-accent-400 font-semibold">
+                                                <span><i class="fas fa-circle text-[8px] text-emerald-400 mr-1 animate-pulse"></i> TRIFONE LIVE DEMO</span>
+                                                <span>9:16 PORTRAIT</span>
+                                            </div>
+
+                                            <!-- Animated SVG Fan Illustration for Preview -->
+                                            <div class="my-auto flex flex-col items-center">
+                                                <div class="relative w-44 h-44 rounded-full border-4 border-white/80 flex items-center justify-center bg-brand-900/50 shadow-[0_0_30px_rgba(197,154,63,0.3)]">
+                                                    <svg class="w-36 h-36 anim-spin-fan" viewBox="0 0 100 100">
+                                                        <g fill="#e2e8f0" opacity="0.9">
+                                                            <path d="M50 50 C40 20, 60 20, 50 50" transform="rotate(0 50 50)" />
+                                                            <ellipse cx="50" cy="22" rx="10" ry="22" transform="rotate(0 50 50)" />
+                                                            <ellipse cx="50" cy="22" rx="10" ry="22" transform="rotate(72 50 50)" />
+                                                            <ellipse cx="50" cy="22" rx="10" ry="22" transform="rotate(144 50 50)" />
+                                                            <ellipse cx="50" cy="22" rx="10" ry="22" transform="rotate(216 50 50)" />
+                                                            <ellipse cx="50" cy="22" rx="10" ry="22" transform="rotate(288 50 50)" />
+                                                        </g>
+                                                    </svg>
+                                                    <div class="absolute w-12 h-12 rounded-full bg-white text-brand-900 flex flex-col items-center justify-center font-extrabold text-[8px] shadow-md">
+                                                        <span class="text-brand-700 text-xs">▲</span>
+                                                        <span>TRIFONE</span>
+                                                    </div>
+                                                </div>
+                                                <!-- Fan Stand & LED -->
+                                                <div class="w-12 bg-white rounded-b-xl pt-3 pb-4 px-2 shadow-lg -mt-1 flex flex-col items-center">
+                                                    <div class="w-6 h-6 rounded-full bg-sky-300 shadow-[0_0_15px_#38bdf8] animate-pulse mb-2"></div>
+                                                    <div class="space-y-1 w-full px-1">
+                                                        <div class="h-1.5 bg-slate-300 rounded"></div>
+                                                        <div class="h-1.5 bg-slate-300 rounded"></div>
+                                                        <div class="h-1.5 bg-slate-300 rounded"></div>
+                                                    </div>
+                                                </div>
+                                                <p class="mt-4 text-sm font-bold text-accent-400">TRIFONE Rechargeable Fan</p>
+                                                <p class="text-xs text-slate-300 mt-1 max-w-[200px]">Video (<code class="text-white">866567_2.mp4</code>) auto-plays here in portrait mode on your cPanel server.</p>
+                                            </div>
+
+                                            <div class="w-full bg-white/10 backdrop-blur-md rounded-xl p-2.5 text-[11px] text-slate-200 border border-white/15">
+                                                <i class="fas fa-film text-accent-400 mr-1"></i> Portrait Video Container Ready
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Categories / Products Preview -->
+            <div class="py-20 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex flex-col md:flex-row md:items-end justify-between mb-14">
+                        <div>
+                            <span class="text-accent-600 font-bold uppercase tracking-widest text-xs">Top-Selling Appliances</span>
+                            <h2 class="text-3xl font-extrabold text-brand-900 mt-1">Featured Product Categories</h2>
+                        </div>
+                        <button onclick="navigateTo('products')" class="mt-4 md:mt-0 text-brand-900 font-bold hover:text-accent-600 transition flex items-center gap-2">
+                            <span>Browse All 10 Products</span>
+                            <i class="fas fa-long-arrow-alt-right"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <!-- Card 1 -->
+                        <div onclick="navigateTo('products')" class="cursor-pointer bg-brand-50 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 flex flex-col group overflow-hidden">
+                            <div class="h-56 w-full bg-white p-4 flex items-center justify-center border-b border-slate-100 relative">
+                                <span class="absolute top-3 left-3 bg-brand-900 text-accent-400 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">3500W Power</span>
+                                <img src="866553.jpg" alt="Electric Pottery Furnace" class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                                <div class="hidden text-center"><i class="fas fa-fire-burner text-5xl text-accent-500"></i></div>
+                            </div>
+                            <div class="p-6 flex-grow flex flex-col justify-between">
+                                <div>
+                                    <h3 class="text-lg font-bold text-brand-900 mb-1">Electric Pottery Furnaces</h3>
+                                    <p class="text-slate-600 text-xs leading-relaxed">Single and double burner 3500W infrared cookers with sleek wood-grain finish.</p>
+                                </div>
+                                <span class="mt-4 inline-flex items-center text-xs font-bold text-accent-600 group-hover:translate-x-1 transition-transform">Explore Models &rarr;</span>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div onclick="navigateTo('products')" class="cursor-pointer bg-brand-50 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 flex flex-col group overflow-hidden">
+                            <div class="h-56 w-full bg-white p-4 flex items-center justify-center border-b border-slate-100 relative">
+                                <span class="absolute top-3 left-3 bg-brand-900 text-accent-400 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">1500W Heavy Duty</span>
+                                <img src="866554.jpg" alt="Blenders & Mixers" class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                                <div class="hidden text-center"><i class="fas fa-blender text-5xl text-accent-500"></i></div>
+                            </div>
+                            <div class="p-6 flex-grow flex flex-col justify-between">
+                                <div>
+                                    <h3 class="text-lg font-bold text-brand-900 mb-1">Blenders &amp; Food Processors</h3>
+                                    <p class="text-slate-600 text-xs leading-relaxed">Multifunctional food mixers, commercial cooking blenders, and steel choppers.</p>
+                                </div>
+                                <span class="mt-4 inline-flex items-center text-xs font-bold text-accent-600 group-hover:translate-x-1 transition-transform">Explore Models &rarr;</span>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div onclick="navigateTo('products')" class="cursor-pointer bg-brand-50 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 flex flex-col group overflow-hidden">
+                            <div class="h-56 w-full bg-white p-4 flex items-center justify-center border-b border-slate-100 relative">
+                                <span class="absolute top-3 left-3 bg-brand-900 text-accent-400 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">8L &amp; 10L Capacity</span>
+                                <img src="866555.jpg" alt="Extra Large Air Fryers" class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                                <div class="hidden text-center"><i class="fas fa-utensils text-5xl text-accent-500"></i></div>
+                            </div>
+                            <div class="p-6 flex-grow flex flex-col justify-between">
+                                <div>
+                                    <h3 class="text-lg font-bold text-brand-900 mb-1">Extra Large Air Fryers</h3>
+                                    <p class="text-slate-600 text-xs leading-relaxed">Healthy oil-free cooking with viewing windows, digital touch, and dual-dial models.</p>
+                                </div>
+                                <span class="mt-4 inline-flex items-center text-xs font-bold text-accent-600 group-hover:translate-x-1 transition-transform">Explore Models &rarr;</span>
+                            </div>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div onclick="navigateTo('products')" class="cursor-pointer bg-brand-50 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 flex flex-col group overflow-hidden">
+                            <div class="h-56 w-full bg-white p-4 flex items-center justify-center border-b border-slate-100 relative">
+                                <span class="absolute top-3 left-3 bg-emerald-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Solar Powered</span>
+                                <img src="866560.jpg" alt="Solar Fans & Cookware" class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                                <div class="hidden text-center"><i class="fas fa-solar-panel text-5xl text-accent-500"></i></div>
+                            </div>
+                            <div class="p-6 flex-grow flex flex-col justify-between">
+                                <div>
+                                    <h3 class="text-lg font-bold text-brand-900 mb-1">Solar Fans &amp; Cookware</h3>
+                                    <p class="text-slate-600 text-xs leading-relaxed">16" solar rechargeable standing fans with panel plus heavy-duty 5-piece aluminum pots.</p>
+                                </div>
+                                <span class="mt-4 inline-flex items-center text-xs font-bold text-accent-600 group-hover:translate-x-1 transition-transform">Explore Models &rarr;</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Why Partner With OMOTHEK Section -->
+            <div class="py-16 bg-brand-900 text-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-3xl mx-auto mb-12">
+                        <span class="text-accent-500 font-bold uppercase tracking-widest text-xs">B2B &amp; Retail Excellence</span>
+                        <h2 class="text-3xl font-extrabold mt-2">Why Dealers &amp; Families Trust Us</h2>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="bg-brand-800/70 p-8 rounded-2xl border border-brand-700">
+                            <i class="fas fa-award text-3xl text-accent-500 mb-4"></i>
+                            <h3 class="text-xl font-bold mb-2">Direct Brand Representation</h3>
+                            <p class="text-slate-300 text-sm leading-relaxed">Proudly partnering with TRIFONE Electronics and Oriflame Sweden to guarantee authentic, factory-backed products at competitive dealer prices.</p>
+                        </div>
+                        <div class="bg-brand-800/70 p-8 rounded-2xl border border-brand-700">
+                            <i class="fas fa-truck-loading text-3xl text-accent-500 mb-4"></i>
+                            <h3 class="text-xl font-bold mb-2">Consistent Stock &amp; Supply</h3>
+                            <p class="text-slate-300 text-sm leading-relaxed">We support wholesalers and retailers with dependable inventory availability, rapid order coordination, and dedicated after-sales follow-up.</p>
+                        </div>
+                        <div class="bg-brand-800/70 p-8 rounded-2xl border border-brand-700">
+                            <i class="fas fa-bolt text-3xl text-accent-500 mb-4"></i>
+                            <h3 class="text-xl font-bold mb-2">Built for Modern Homes</h3>
+                            <p class="text-slate-300 text-sm leading-relaxed">Energy-saving solar fans, high-wattage blenders, and low-oil air fryers tailored for families, schools, and businesses.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- 2. ABOUT US SECTION (WITH ARTISTIC CUSTOM INTERACTIVE ANIMATION)  -->
+        <!-- ================================================================= -->
+        <section id="about" class="page-section hidden fade-in bg-white pb-24">
+            <!-- Header Banner -->
+            <div class="bg-brand-900 py-16 text-white border-b-4 border-accent-500 relative overflow-hidden">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                    <span class="text-accent-400 font-bold uppercase tracking-widest text-xs">Who We Are</span>
+                    <h1 class="text-4xl md:text-5xl font-extrabold mt-2">About Us</h1>
+                    <div class="w-24 h-1 bg-accent-500 mx-auto mt-4 rounded"></div>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
+                    
+                    <!-- Left Column: Verbatim About Us Content -->
+                    <div class="lg:col-span-6 bg-white p-8 sm:p-10 rounded-3xl shadow-xl border border-slate-100 border-t-8 border-t-brand-900 flex flex-col justify-between relative overflow-hidden">
+                        <div class="absolute top-0 right-0 -mt-12 -mr-12 w-44 h-44 bg-accent-500 opacity-10 rounded-full blur-3xl pointer-events-none"></div>
+                        
+                        <div>
+                            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-50 border border-brand-200 text-brand-900 text-xs font-bold uppercase tracking-wider mb-4">
+                                <i class="fas fa-bolt text-accent-500"></i> Official Brand Story
+                            </div>
+                            <h2 class="text-3xl font-extrabold text-brand-900 tracking-tight">OMOTHEK ENTERPRISES</h2>
+                            <p class="text-accent-600 font-bold mb-6 uppercase tracking-widest text-sm">Smart Technology. Better Living.</p>
+                            
+                            <div class="space-y-5 text-base sm:text-lg text-slate-700 leading-relaxed">
+                                <p>
+                                    At OMOTHEK Enterprises, we are committed to bringing quality, innovative, and reliable electronics and home appliances closer to you. Our products are designed to make everyday living easier, more comfortable, and more convenient.
+                                </p>
+                                
+                                <div class="p-6 bg-brand-50 border-l-4 border-accent-500 rounded-r-2xl my-6 shadow-sm">
+                                    <p class="font-medium text-brand-900 text-base leading-relaxed">
+                                        From powerful blenders, Air fryers, ovens, hot plates, juice extractors, solar fans, aluminium pots, and other kitchen appliances to tablets, power banks, and everyday electronic accessories, OMOTHEK Enterprises offers practical technology for modern homes, businesses, schools, and families.
+                                    </p>
+                                </div>
+
+                                <p>
+                                    We believe that quality should be affordable and technology should work for everyone. That is why we focus on products that combine performance, durability, modern design, and value for money.
+                                </p>
+                                
+                                <p>
+                                    Whether you are upgrading your kitchen, powering your devices, or looking for reliable electronics for everyday use, OMOTHEK Enterprises is your trusted choice for smart living.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 pt-6 border-t border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                            <p class="font-extrabold text-brand-900 text-lg">
+                                OMOTHEK Enterprises — Innovation You Can Trust.
+                            </p>
+                            <button onclick="navigateTo('products')" class="bg-brand-900 text-accent-400 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-brand-800 transition shrink-0">
+                                View Products &rarr;
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Artistic Custom Multi-Layered Interactive Animation (Replaces Video) -->
+                    <div class="lg:col-span-6 flex flex-col">
+                        <div id="ecosystemCard" class="relative flex-grow min-h-[560px] rounded-3xl overflow-hidden shadow-2xl border-b-8 border-accent-500 bg-gradient-to-br from-brand-950 via-brand-900 to-[#092c54] p-6 sm:p-8 flex flex-col justify-between text-white transition-colors duration-700">
+                            
+                            <!-- Top Interactive Control Header -->
+                            <div class="relative z-20 flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-white/10">
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+                                        <span class="text-xs font-bold uppercase tracking-widest text-accent-400">Interactive Ecosystem</span>
+                                    </div>
+                                    <h3 class="text-lg sm:text-xl font-extrabold text-white mt-0.5">Smart Living &amp; Solar Hub</h3>
+                                </div>
+
+                                <!-- Interactive Mode Toggle Button -->
+                                <div class="flex items-center gap-2">
+                                    <button 
+                                        id="ecoModeBtn" 
+                                        onclick="toggleEcosystemMode()" 
+                                        class="bg-white/10 hover:bg-accent-500 hover:text-brand-900 text-accent-300 border border-accent-500/50 px-3.5 py-1.5 rounded-full text-xs font-bold transition flex items-center gap-2 shadow-md"
+                                    >
+                                        <i id="ecoModeIcon" class="fas fa-bolt"></i>
+                                        <span id="ecoModeLabel">Turbo Energy: OFF</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Floating 3D Orbital Value Badges -->
+                            <div class="relative z-20 grid grid-cols-2 sm:grid-cols-4 gap-2 my-3">
+                                <div onclick="highlightAppliance('solar')" class="cursor-pointer anim-float-1 bg-white/10 backdrop-blur-md border border-emerald-400/40 rounded-xl px-3 py-2 text-center hover:bg-white/20 transition">
+                                    <i class="fas fa-solar-panel text-emerald-400 text-sm"></i>
+                                    <p class="text-[11px] font-bold mt-0.5">Solar Powered</p>
+                                </div>
+                                <div onclick="highlightAppliance('blender')" class="cursor-pointer anim-float-2 bg-white/10 backdrop-blur-md border border-accent-400/40 rounded-xl px-3 py-2 text-center hover:bg-white/20 transition">
+                                    <i class="fas fa-microchip text-accent-400 text-sm"></i>
+                                    <p class="text-[11px] font-bold mt-0.5">Smart Tech</p>
+                                </div>
+                                <div onclick="highlightAppliance('furnace')" class="cursor-pointer anim-float-3 bg-white/10 backdrop-blur-md border border-orange-400/40 rounded-xl px-3 py-2 text-center hover:bg-white/20 transition">
+                                    <i class="fas fa-shield-alt text-orange-400 text-sm"></i>
+                                    <p class="text-[11px] font-bold mt-0.5">High Durability</p>
+                                </div>
+                                <div onclick="highlightAppliance('airfryer')" class="cursor-pointer anim-float-1 bg-white/10 backdrop-blur-md border border-sky-400/40 rounded-xl px-3 py-2 text-center hover:bg-white/20 transition">
+                                    <i class="fas fa-heart text-rose-400 text-sm"></i>
+                                    <p class="text-[11px] font-bold mt-0.5">Better Living</p>
+                                </div>
+                            </div>
+
+                            <!-- Center Artistic SVG Smart Home & Appliance Animation Canvas -->
+                            <div class="relative z-10 my-auto py-2 flex items-center justify-center">
+                                <svg class="w-full max-w-lg h-auto drop-shadow-2xl" viewBox="0 0 500 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <!-- Gradients -->
+                                        <radialGradient id="hubGlow" cx="50%" cy="50%" r="50%">
+                                            <stop offset="0%" stop-color="#C59A3F" stop-opacity="0.45"/>
+                                            <stop offset="60%" stop-color="#16a34a" stop-opacity="0.15"/>
+                                            <stop offset="100%" stop-color="#001A4D" stop-opacity="0"/>
+                                        </radialGradient>
+                                        <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="#f3d27a"/>
+                                            <stop offset="50%" stop-color="#C59A3F"/>
+                                            <stop offset="100%" stop-color="#89641d"/>
+                                        </linearGradient>
+                                        <linearGradient id="navyCard" x1="0%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" stop-color="#1d487d"/>
+                                            <stop offset="100%" stop-color="#001A4D"/>
+                                        </linearGradient>
+                                        <linearGradient id="trifoneGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="#4ade80"/>
+                                            <stop offset="100%" stop-color="#15803d"/>
+                                        </linearGradient>
+                                    </defs>
+
+                                    <!-- Background Ambient Energy Aura -->
+                                    <circle cx="250" cy="170" r="155" fill="url(#hubGlow)" class="anim-pulse-ring"/>
+                                    <circle cx="250" cy="170" r="120" stroke="#C59A3F" stroke-opacity="0.2" stroke-width="1.5" stroke-dasharray="4 8"/>
+                                    <circle cx="250" cy="170" r="85" stroke="#4ade80" stroke-opacity="0.2" stroke-width="1"/>
+
+                                    <!-- Animated Golden Energy Power Lines Connecting Central Hub to Appliances -->
+                                    <!-- Hub to Top-Left (Solar Panel & Fan) -->
+                                    <path id="energyLine1" d="M250 170 L110 85" stroke="url(#goldGrad)" stroke-width="3" class="anim-energy-line"/>
+                                    <!-- Hub to Top-Right (1500W Blender) -->
+                                    <path id="energyLine2" d="M250 170 L390 85" stroke="url(#goldGrad)" stroke-width="3" class="anim-energy-line"/>
+                                    <!-- Hub to Bottom-Left (10L Air Fryer) -->
+                                    <path id="energyLine3" d="M250 170 L110 260" stroke="url(#goldGrad)" stroke-width="3" class="anim-energy-line"/>
+                                    <!-- Hub to Bottom-Right (3500W Infrared Furnace) -->
+                                    <path id="energyLine4" d="M250 170 L390 260" stroke="url(#goldGrad)" stroke-width="3" class="anim-energy-line"/>
+
+                                    <!-- ================= NODE 1: TOP-LEFT (SOLAR PANEL & SMART FAN) ================= -->
+                                    <g class="cursor-pointer" onclick="highlightAppliance('solar')">
+                                        <rect x="35" y="25" width="145" height="110" rx="16" fill="url(#navyCard)" stroke="#4ade80" stroke-width="2"/>
+                                        <!-- Mini Solar Grid -->
+                                        <rect x="48" y="42" width="48" height="36" rx="4" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+                                        <line x1="64" y1="42" x2="64" y2="78" stroke="#38bdf8" stroke-width="0.8"/>
+                                        <line x1="80" y1="42" x2="80" y2="78" stroke="#38bdf8" stroke-width="0.8"/>
+                                        <line x1="48" y1="54" x2="96" y2="54" stroke="#38bdf8" stroke-width="0.8"/>
+                                        <line x1="48" y1="66" x2="96" y2="66" stroke="#38bdf8" stroke-width="0.8"/>
+                                        <!-- Sun rays -->
+                                        <circle cx="56" cy="35" r="4" fill="#facc15" class="anim-pulse-ring"/>
+
+                                        <!-- Rotating Solar Fan Head -->
+                                        <circle cx="136" cy="68" r="28" fill="#001A4D" stroke="#e2e8f0" stroke-width="2"/>
+                                        <g id="svgFanBlades" class="anim-spin-fan" style="transform-origin: 136px 68px;">
+                                            <ellipse cx="136" cy="50" rx="5" ry="14" fill="#38bdf8"/>
+                                            <ellipse cx="136" cy="50" rx="5" ry="14" fill="#38bdf8" transform="rotate(72 136 68)"/>
+                                            <ellipse cx="136" cy="50" rx="5" ry="14" fill="#38bdf8" transform="rotate(144 136 68)"/>
+                                            <ellipse cx="136" cy="50" rx="5" ry="14" fill="#38bdf8" transform="rotate(216 136 68)"/>
+                                            <ellipse cx="136" cy="50" rx="5" ry="14" fill="#38bdf8" transform="rotate(288 136 68)"/>
+                                            <circle cx="136" cy="68" r="6" fill="#C59A3F"/>
+                                        </g>
+                                        <text x="50" y="118" fill="#ffffff" font-size="11" font-weight="700">SOLAR FAN TF-16A</text>
+                                    </g>
+
+                                    <!-- ================= NODE 2: TOP-RIGHT (1500W HIGH-SPEED BLENDER) ================= -->
+                                    <g class="cursor-pointer" onclick="highlightAppliance('blender')">
+                                        <rect x="320" y="25" width="145" height="110" rx="16" fill="url(#navyCard)" stroke="#C59A3F" stroke-width="2"/>
+                                        <!-- Blender Pitcher -->
+                                        <path d="M368 40 L412 40 L406 82 L374 82 Z" fill="#1e293b" stroke="#e2e8f0" stroke-width="2"/>
+                                        <!-- Lid -->
+                                        <rect x="365" y="34" width="50" height="6" rx="3" fill="#C59A3F"/>
+                                        <!-- Animated Vortex Smoothie Waves inside Pitcher -->
+                                        <g class="anim-vortex" style="transform-origin: 390px 65px;">
+                                            <path d="M373 56 Q390 64 407 56 L405 79 L375 79 Z" fill="#f43f5e" fill-opacity="0.85"/>
+                                            <path d="M375 63 Q390 55 405 63" stroke="#fda4af" stroke-width="2" fill="none"/>
+                                        </g>
+                                        <!-- Blender Base -->
+                                        <path d="M372 82 L408 82 L414 102 L366 102 Z" fill="#f472b6" stroke="#ffffff" stroke-width="1.5"/>
+                                        <!-- Spinning Dial -->
+                                        <circle cx="390" cy="92" r="5" fill="#001A4D" stroke="#C59A3F" stroke-width="1.5"/>
+                                        <text x="336" y="118" fill="#ffffff" font-size="11" font-weight="700">1500W MIXER TB-15E</text>
+                                    </g>
+
+                                    <!-- ================= NODE 3: BOTTOM-LEFT (10L DIGITAL AIR FRYER) ================= -->
+                                    <g class="cursor-pointer" onclick="highlightAppliance('airfryer')">
+                                        <rect x="35" y="205" width="145" height="110" rx="16" fill="url(#navyCard)" stroke="#C59A3F" stroke-width="2"/>
+                                        <!-- Air Fryer Body -->
+                                        <rect x="78" y="218" width="58" height="68" rx="12" fill="#f8fafc" stroke="#C59A3F" stroke-width="2"/>
+                                        <!-- Digital Touch Screen -->
+                                        <rect x="86" y="225" width="42" height="16" rx="4" fill="#0f172a"/>
+                                        <text x="94" y="236" fill="#4ade80" font-size="9" font-family="monospace" font-weight="700">200°C</text>
+                                        <!-- Viewing Window with Animated Heat Waves -->
+                                        <rect x="86" y="247" width="42" height="28" rx="5" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
+                                        <path d="M94 268 Q98 260 94 254" stroke="#f97316" stroke-width="2" stroke-linecap="round" class="anim-heat-1"/>
+                                        <path d="M107 268 Q111 260 107 254" stroke="#facc15" stroke-width="2" stroke-linecap="round" class="anim-heat-2"/>
+                                        <path d="M120 268 Q124 260 120 254" stroke="#f97316" stroke-width="2" stroke-linecap="round" class="anim-heat-3"/>
+                                        <text x="48" y="302" fill="#ffffff" font-size="11" font-weight="700">10L AIR FRYER MH60</text>
+                                    </g>
+
+                                    <!-- ================= NODE 4: BOTTOM-RIGHT (3500W INFRARED FURNACE) ================= -->
+                                    <g class="cursor-pointer" onclick="highlightAppliance('furnace')">
+                                        <rect x="320" y="205" width="145" height="110" rx="16" fill="url(#navyCard)" stroke="#f97316" stroke-width="2"/>
+                                        <!-- Dual Burner Ceramic Plate -->
+                                        <rect x="338" y="226" width="108" height="54" rx="8" fill="#292524" stroke="#C59A3F" stroke-width="2.5"/>
+                                        <!-- Left Glowing Infrared Ring -->
+                                        <circle cx="366" cy="250" r="17" fill="#450a0a" stroke="#ef4444" stroke-width="2"/>
+                                        <circle cx="366" cy="250" r="11" fill="#dc2626" class="anim-pulse-ring"/>
+                                        <circle cx="366" cy="250" r="5" fill="#fef08a"/>
+                                        <!-- Right Glowing Infrared Ring -->
+                                        <circle cx="418" cy="250" r="17" fill="#450a0a" stroke="#ef4444" stroke-width="2"/>
+                                        <circle cx="418" cy="250" r="11" fill="#dc2626" class="anim-pulse-ring"/>
+                                        <circle cx="418" cy="250" r="5" fill="#fef08a"/>
+                                        <text x="336" y="302" fill="#ffffff" font-size="11" font-weight="700">3500W FURNACE</text>
+                                    </g>
+
+                                    <!-- ================= CENTRAL SMART LIVING CORE HUB ================= -->
+                                    <g class="cursor-pointer" onclick="toggleEcosystemMode()">
+                                        <circle cx="250" cy="170" r="52" fill="#001A4D" stroke="url(#goldGrad)" stroke-width="4"/>
+                                        <circle cx="250" cy="170" r="43" fill="#000f2e" stroke="#C59A3F" stroke-width="1.5" stroke-dasharray="5 3"/>
+                                        <!-- Omothek Enterprises Emblem Inside Core -->
+                                        <text x="250" y="164" text-anchor="middle" fill="url(#goldGrad)" font-size="22" font-weight="900" letter-spacing="1">OE</text>
+                                        <text x="250" y="185" text-anchor="middle" fill="#ffffff" font-size="9.5" font-weight="800" letter-spacing="1.2">OMOTHEK</text>
+                                        <text x="250" y="198" text-anchor="middle" fill="#C59A3F" font-size="7" font-weight="700" letter-spacing="1">ENTERPRISES</text>
+                                    </g>
+                                </svg>
+                            </div>
+
+                            <!-- Bottom Interactive Appliance Inspector Bar -->
+                            <div class="relative z-20 bg-brand-950/90 backdrop-blur-md p-4 rounded-2xl border border-accent-500/40 flex flex-col sm:flex-row items-center justify-between gap-3">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-accent-500 text-brand-900 flex items-center justify-center font-extrabold text-lg shrink-0">
+                                        <i id="inspectorIcon" class="fas fa-bolt"></i>
+                                    </div>
+                                    <div>
+                                        <h4 id="inspectorTitle" class="text-xs sm:text-sm font-bold text-white">Smart Living Ecosystem Active</h4>
+                                        <p id="inspectorDesc" class="text-[11px] text-slate-300">Click any appliance node above or toggle Turbo Energy to inspect live specs.</p>
+                                    </div>
+                                </div>
+                                <button onclick="navigateTo('products')" class="text-xs font-bold text-accent-400 hover:text-accent-300 whitespace-nowrap underline">
+                                    Explore Catalog &rarr;
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- ================= OUR OFFICIAL PARTNERS SECTION ================= -->
+                <div class="mt-24 border-t border-slate-200 pt-16">
+                    <div class="text-center max-w-2xl mx-auto mb-12">
+                        <span class="text-accent-600 font-bold uppercase tracking-widest text-xs">Global Brand Alliances</span>
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-brand-900 uppercase tracking-wide mt-1">Our Official Partners</h3>
+                        <div class="w-16 h-1 bg-accent-500 mx-auto mt-3 rounded"></div>
+                        <p class="text-slate-600 text-sm mt-3">
+                            OMOTHEK Enterprises is a proud distribution and sales partner with industry-leading brands, delivering genuine quality straight to dealers and families.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                        <!-- Partner 1: TRIFONE (866575.jpg) -->
+                        <div onclick="navigateTo('products')" class="cursor-pointer bg-white p-8 rounded-3xl shadow-lg border border-slate-200/80 hover:border-emerald-500 hover:shadow-2xl transition-all duration-300 flex flex-col items-center text-center group">
+                            <div class="h-32 flex items-center justify-center mb-4 p-2">
+                                <img 
+                                    src="866575.jpg" 
+                                    alt="TRIFONE Electronics Logo" 
+                                    class="max-h-28 w-auto object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
+                                    onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
+                                >
+                                <!-- Styled Fallback if 866575.jpg isn't in sandbox preview -->
+                                <div class="hidden flex-col items-center">
+                                    <div class="w-16 h-16 flex items-center justify-center">
+                                        <svg viewBox="0 0 100 90" class="w-16 h-16">
+                                            <polygon points="50,8 10,80 90,80" fill="none" stroke="#16a34a" stroke-width="12" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                    <span class="text-2xl font-black tracking-widest text-emerald-600 mt-1">TRIFONE</span>
+                                </div>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold uppercase tracking-wider mb-2">Primary Appliance Partner</span>
+                            <h4 class="text-xl font-bold text-brand-900">TRIFONE Electronics</h4>
+                            <p class="text-slate-600 text-sm mt-2">High-performance blenders, 10L air fryers, 3500W infrared furnaces, solar standing fans, and kitchen innovations.</p>
+                        </div>
+
+                        <!-- Partner 2: ORIFLAME SWEDEN (image0.png) -->
+                        <div onclick="navigateTo('contact')" class="cursor-pointer bg-white p-8 rounded-3xl shadow-lg border border-slate-200/80 hover:border-accent-500 hover:shadow-2xl transition-all duration-300 flex flex-col items-center text-center group">
+                            <div class="h-32 flex items-center justify-center mb-4 p-2">
+                                <img 
+                                    src="image0.png" 
+                                    alt="ORIFLAME Sweden Logo" 
+                                    class="max-h-24 w-auto object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
+                                    onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
+                                >
+                                <!-- Styled Fallback if image0.png isn't in sandbox preview -->
+                                <div class="hidden flex-col items-center justify-center h-full">
+                                    <span class="text-3xl font-extrabold tracking-[0.2em] text-slate-900">ORIFLAME</span>
+                                    <span class="text-xs font-semibold tracking-[0.45em] text-slate-500 mt-1 border-t border-slate-300 pt-1 px-4">SWEDEN</span>
+                                </div>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-amber-50 text-accent-700 text-xs font-bold uppercase tracking-wider mb-2">Official Brand Partner</span>
+                            <h4 class="text-xl font-bold text-brand-900">ORIFLAME Sweden</h4>
+                            <p class="text-slate-600 text-sm mt-2">World-renowned Swedish wellness, beauty, and lifestyle partner empowering entrepreneurs and modern households.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- 3. SERVICES SECTION                                               -->
+        <!-- ================================================================= -->
+        <section id="services" class="page-section hidden fade-in bg-slate-50 pb-24">
+            <!-- Hero Header with Distribution Backdrop -->
+            <div class="relative bg-brand-900 py-20 text-white text-center border-b-4 border-accent-500 overflow-hidden shadow-xl">
+                <img src="https://images.unsplash.com/photo-1586528116311-ad8ed7c663be?auto=format&fit=crop&q=80&w=1400" alt="Distribution & Supply Warehouse" class="absolute inset-0 w-full h-full object-cover z-0 opacity-25">
+                <div class="absolute inset-0 bg-gradient-to-b from-brand-950/80 via-brand-900/90 to-brand-900 z-10"></div>
+                <div class="relative z-20 max-w-4xl mx-auto px-4">
+                    <span class="inline-block px-4 py-1 rounded-full bg-accent-500/20 border border-accent-500/40 text-accent-400 text-xs font-bold uppercase tracking-widest mb-4">
+                        Sales Representation &amp; B2B Distribution
+                    </span>
+                    <h1 class="text-4xl md:text-5xl font-extrabold uppercase tracking-wide">SERVICES RENDERED</h1>
+                    <div class="w-24 h-1 bg-accent-500 mx-auto mt-5 rounded"></div>
+                    <p class="mt-6 text-lg md:text-xl text-slate-200 font-light leading-relaxed">
+                        We provide professional sales representation and distribution services for kitchen items and household appliances. As a sales representative, we connect manufacturers, importers, and suppliers with dealers and retailers, ensuring that quality kitchen products are effectively marketed and supplied to businesses.
+                    </p>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
+                <div class="text-center mb-12">
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-900">Our services include:</h2>
+                    <p class="text-slate-600 text-sm mt-2">Comprehensive end-to-end distribution and dealer support across the region</p>
+                </div>
+
+                <!-- 9-Card Services Grid (Verbatim Bullet Points) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Service 1 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-md border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 bg-brand-50 text-brand-900 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-900 group-hover:text-accent-500 transition-colors shadow-sm">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                            <span class="text-xs font-bold text-accent-600 uppercase tracking-wider">01 &bull; Direct Supply</span>
+                            <p class="text-slate-800 font-medium text-base leading-relaxed mt-2">Supplying kitchen items and household appliances to dealers and retailers.</p>
+                        </div>
+                        <div class="w-10 h-1 bg-accent-500/40 group-hover:w-full group-hover:bg-accent-500 transition-all duration-300 mt-6 rounded"></div>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-md border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 bg-brand-50 text-brand-900 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-900 group-hover:text-accent-500 transition-colors shadow-sm">
+                                <i class="fas fa-bullhorn"></i>
+                            </div>
+                            <span class="text-xs font-bold text-accent-600 uppercase tracking-wider">02 &bull; Brand Promotion</span>
+                            <p class="text-slate-800 font-medium text-base leading-relaxed mt-2">Marketing and promoting kitchen products to prospective customers and businesses.</p>
+                        </div>
+                        <div class="w-10 h-1 bg-accent-500/40 group-hover:w-full group-hover:bg-accent-500 transition-all duration-300 mt-6 rounded"></div>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-md border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 bg-brand-50 text-brand-900 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-900 group-hover:text-accent-500 transition-colors shadow-sm">
+                                <i class="fas fa-boxes-packing"></i>
+                            </div>
+                            <span class="text-xs font-bold text-accent-600 uppercase tracking-wider">03 &bull; Custom Sourcing</span>
+                            <p class="text-slate-800 font-medium text-base leading-relaxed mt-2">Sourcing and distributing products based on dealers’ requirements.</p>
+                        </div>
+                        <div class="w-10 h-1 bg-accent-500/40 group-hover:w-full group-hover:bg-accent-500 transition-all duration-300 mt-6 rounded"></div>
+                    </div>
+
+                    <!-- Service 4 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-md border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 bg-brand-50 text-brand-900 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-900 group-hover:text-accent-500 transition-colors shadow-sm">
+                                <i class="fas fa-clipboard-list"></i>
+                            </div>
+                            <span class="text-xs font-bold text-accent-600 uppercase tracking-wider">04 &bull; Order Management</span>
+                            <p class="text-slate-800 font-medium text-base leading-relaxed mt-2">Taking and coordinating orders from dealers.</p>
+                        </div>
+                        <div class="w-10 h-1 bg-accent-500/40 group-hover:w-full group-hover:bg-accent-500 transition-all duration-300 mt-6 rounded"></div>
+                    </div>
+
+                    <!-- Service 5 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-md border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 bg-brand-50 text-brand-900 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-900 group-hover:text-accent-500 transition-colors shadow-sm">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <span class="text-xs font-bold text-accent-600 uppercase tracking-wider">05 &bull; Partner Relations</span>
+                            <p class="text-slate-800 font-medium text-base leading-relaxed mt-2">Maintaining good business relationships with dealers and customers.</p>
+                        </div>
+                        <div class="w-10 h-1 bg-accent-500/40 group-hover:w-full group-hover:bg-accent-500 transition-all duration-300 mt-6 rounded"></div>
+                    </div>
+
+                    <!-- Service 6 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-md border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 bg-brand-50 text-brand-900 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-900 group-hover:text-accent-500 transition-colors shadow-sm">
+                                <i class="fas fa-tags"></i>
+                            </div>
+                            <span class="text-xs font-bold text-accent-600 uppercase tracking-wider">06 &bull; Advisory &amp; Pricing</span>
+                            <p class="text-slate-800 font-medium text-base leading-relaxed mt-2">Providing product information, pricing, and recommendations to dealers.</p>
+                        </div>
+                        <div class="w-10 h-1 bg-accent-500/40 group-hover:w-full group-hover:bg-accent-500 transition-all duration-300 mt-6 rounded"></div>
+                    </div>
+
+                    <!-- Service 7 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-md border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 bg-brand-50 text-brand-900 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-900 group-hover:text-accent-500 transition-colors shadow-sm">
+                                <i class="fas fa-warehouse"></i>
+                            </div>
+                            <span class="text-xs font-bold text-accent-600 uppercase tracking-wider">07 &bull; Stock Continuity</span>
+                            <p class="text-slate-800 font-medium text-base leading-relaxed mt-2">Supporting dealers with regular product availability and supply.</p>
+                        </div>
+                        <div class="w-10 h-1 bg-accent-500/40 group-hover:w-full group-hover:bg-accent-500 transition-all duration-300 mt-6 rounded"></div>
+                    </div>
+
+                    <!-- Service 8 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-md border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 bg-brand-50 text-brand-900 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-900 group-hover:text-accent-500 transition-colors shadow-sm">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <span class="text-xs font-bold text-accent-600 uppercase tracking-wider">08 &bull; After-Sales Care</span>
+                            <p class="text-slate-800 font-medium text-base leading-relaxed mt-2">Following up on sales, deliveries, and customer needs.</p>
+                        </div>
+                        <div class="w-10 h-1 bg-accent-500/40 group-hover:w-full group-hover:bg-accent-500 transition-all duration-300 mt-6 rounded"></div>
+                    </div>
+
+                    <!-- Service 9 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-md border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 bg-brand-50 text-brand-900 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-900 group-hover:text-accent-500 transition-colors shadow-sm">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <span class="text-xs font-bold text-accent-600 uppercase tracking-wider">09 &bull; Network Growth</span>
+                            <p class="text-slate-800 font-medium text-base leading-relaxed mt-2">Expanding product distribution and developing new dealer networks.</p>
+                        </div>
+                        <div class="w-10 h-1 bg-accent-500/40 group-hover:w-full group-hover:bg-accent-500 transition-all duration-300 mt-6 rounded"></div>
+                    </div>
+                </div>
+
+                <!-- Verbatim Goal Banner -->
+                <div class="mt-16 bg-gradient-to-r from-brand-900 via-brand-800 to-brand-900 rounded-3xl p-10 md:p-12 text-center text-white shadow-2xl border-2 border-accent-500/50 relative overflow-hidden">
+                    <div class="relative z-10 max-w-4xl mx-auto">
+                        <i class="fas fa-quote-left text-3xl text-accent-500 mb-4"></i>
+                        <p class="text-xl md:text-2xl font-medium leading-relaxed">
+                            Our goal is to provide reliable product supply, excellent customer service, and efficient sales support while helping dealers access quality kitchen items at competitive prices.
+                        </p>
+                        <div class="mt-8">
+                            <button onclick="navigateTo('contact')" class="bg-accent-500 text-brand-900 px-8 py-3.5 rounded-full font-extrabold hover:bg-accent-400 transition shadow-lg">
+                                Partner With Us Today
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- 4. PRODUCTS SECTION                                               -->
+        <!-- ================================================================= -->
+        <section id="products" class="page-section hidden fade-in bg-slate-50 pb-24">
+            <div class="bg-brand-900 py-16 text-white text-center border-b-4 border-accent-500">
+                <span class="text-accent-400 font-bold uppercase tracking-widest text-xs">Wholesale &amp; Retail Catalog</span>
+                <h1 class="text-4xl font-extrabold uppercase tracking-wide mt-2">Our Products</h1>
+                <div class="w-24 h-1 bg-accent-500 mx-auto mt-4 rounded"></div>
+                <p class="mt-4 text-lg text-slate-300 max-w-2xl mx-auto px-4">
+                    Explore our complete lineup of genuine TRIFONE, COSYNEST, and COOKTIME household and kitchen appliances.
+                </p>
+            </div>
+
+            <!-- Lifestyle Header Banner -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
+                <div class="relative rounded-3xl overflow-hidden h-60 md:h-80 shadow-xl group border border-slate-200 bg-brand-900">
+                    <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1400&q=80" alt="Modern Kitchen Lifestyle" class="w-full h-full object-cover opacity-55 group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-r from-brand-950 via-brand-900/70 to-transparent"></div>
+                    <div class="absolute inset-0 flex flex-col justify-center p-8 md:p-12 z-10 max-w-2xl">
+                        <div class="inline-block w-fit px-3.5 py-1 rounded-full bg-accent-500 text-brand-900 font-extrabold text-xs tracking-widest uppercase mb-3 shadow">
+                            Dealer &amp; Family Favorites
+                        </div>
+                        <h2 class="text-2xl sm:text-4xl font-extrabold text-white mb-2 leading-tight">Elevate Your Kitchen &amp; Home Experience</h2>
+                        <p class="text-slate-200 text-sm sm:text-base font-light">Built for performance, energy efficiency, and everyday durability.</p>
+                    </div>
+                </div>
+
+                <!-- Interactive Category Filter Pills -->
+                <div class="flex flex-wrap items-center justify-center gap-3 mt-10 mb-8">
+                    <button onclick="filterProducts('all')" data-filter="all" class="product-filter-btn bg-brand-900 text-accent-400 border border-brand-900 px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition shadow-md">
+                        All Products (10)
+                    </button>
+                    <button onclick="filterProducts('fryers')" data-filter="fryers" class="product-filter-btn bg-white text-slate-700 hover:bg-brand-50 border border-slate-200 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition">
+                        Air Fryers &amp; Ovens (3)
+                    </button>
+                    <button onclick="filterProducts('blenders')" data-filter="blenders" class="product-filter-btn bg-white text-slate-700 hover:bg-brand-50 border border-slate-200 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition">
+                        Blenders &amp; Processors (3)
+                    </button>
+                    <button onclick="filterProducts('cooking')" data-filter="cooking" class="product-filter-btn bg-white text-slate-700 hover:bg-brand-50 border border-slate-200 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition">
+                        Electric Furnaces (2)
+                    </button>
+                    <button onclick="filterProducts('solar-cookware')" data-filter="solar-cookware" class="product-filter-btn bg-white text-slate-700 hover:bg-brand-50 border border-slate-200 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition">
+                        Solar Fans &amp; Cookware (2)
+                    </button>
+                </div>
+
+                <!-- 10-Product Grid -->
+                <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-6">
+                    
+                    <!-- Product 1: 866553.jpg -->
+                    <div data-category="cooking" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200/80 overflow-hidden group flex flex-col">
+                        <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
+                            <span class="absolute top-3 left-3 z-10 bg-brand-900 text-accent-400 text-[10px] font-bold px-2.5 py-1 rounded-full">3500W Dual Zone</span>
+                            <img src="866553.jpg" alt="TRIFONE Double-Burner Electric Pottery Furnace" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                            <div class="hidden flex-col items-center text-center p-4">
+                                <i class="fas fa-fire-burner text-5xl text-orange-500 mb-2"></i>
+                                <span class="text-xs font-bold text-slate-500">TRIFONE 3500W Dual Furnace</span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <span class="text-[11px] font-bold text-emerald-700 uppercase tracking-wider">TRIFONE &bull; Cooking &amp; Heating</span>
+                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">TRIFONE Double-Burner Electric Pottery Furnace</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">High-efficiency 3500W dual-burner infrared electric furnace with touch controls, rotary knobs, and luxury wood-grain finish.</p>
+                            <button onclick="inquireProduct('TRIFONE Double-Burner Electric Pottery Furnace (3500W)')" class="w-full bg-brand-900 text-white hover:bg-accent-500 hover:text-brand-900 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                                <span>Inquire Now</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product 2: 866558.jpg -->
+                    <div data-category="cooking" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200/80 overflow-hidden group flex flex-col">
+                        <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
+                            <span class="absolute top-3 left-3 z-10 bg-brand-900 text-accent-400 text-[10px] font-bold px-2.5 py-1 rounded-full">Model TC-35A</span>
+                            <img src="866558.jpg" alt="TRIFONE Single-Burner Electric Pottery Furnace TC-35A" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                            <div class="hidden flex-col items-center text-center p-4">
+                                <i class="fas fa-compact-disc text-5xl text-orange-500 mb-2"></i>
+                                <span class="text-xs font-bold text-slate-500">TRIFONE TC-35A Single Furnace</span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <span class="text-[11px] font-bold text-emerald-700 uppercase tracking-wider">TRIFONE &bull; Cooking &amp; Heating</span>
+                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">TRIFONE Single-Burner Electric Pottery Furnace TC-35A</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Compact 3500W single-burner infrared cooker with side carry handles, digital display, and rapid heat transfer for all pot types.</p>
+                            <button onclick="inquireProduct('TRIFONE Single-Burner Electric Pottery Furnace TC-35A (3500W)')" class="w-full bg-brand-900 text-white hover:bg-accent-500 hover:text-brand-900 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                                <span>Inquire Now</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product 3: 866554.jpg -->
+                    <div data-category="blenders" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200/80 overflow-hidden group flex flex-col">
+                        <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
+                            <span class="absolute top-3 left-3 z-10 bg-brand-900 text-accent-400 text-[10px] font-bold px-2.5 py-1 rounded-full">1500W &bull; 1.5L</span>
+                            <img src="866554.jpg" alt="TRIFONE Multifunctional Food Mixer TB-15E" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                            <div class="hidden flex-col items-center text-center p-4">
+                                <i class="fas fa-blender text-5xl text-pink-500 mb-2"></i>
+                                <span class="text-xs font-bold text-slate-500">TRIFONE TB-15E 1500W Mixer</span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <span class="text-[11px] font-bold text-emerald-700 uppercase tracking-wider">TRIFONE &bull; Blenders &amp; Mixers</span>
+                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">TRIFONE Multifunctional Food Mixer TB-15E</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Powerful 1500W juicer, grinder, and smoothie machine with 1.5L unbreakable jar and dry mill attachment.</p>
+                            <button onclick="inquireProduct('TRIFONE Multifunctional Food Mixer TB-15E (1500W)')" class="w-full bg-brand-900 text-white hover:bg-accent-500 hover:text-brand-900 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                                <span>Inquire Now</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product 4: 866557.jpg -->
+                    <div data-category="blenders" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200/80 overflow-hidden group flex flex-col">
+                        <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
+                            <span class="absolute top-3 left-3 z-10 bg-brand-900 text-accent-400 text-[10px] font-bold px-2.5 py-1 rounded-full">Model TB-40-2</span>
+                            <img src="866557.jpg" alt="TRIFONE Commercial Cooking Blender TB-40-2" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                            <div class="hidden flex-col items-center text-center p-4">
+                                <i class="fas fa-blender-phone text-5xl text-slate-700 mb-2"></i>
+                                <span class="text-xs font-bold text-slate-500">TRIFONE TB-40-2 Cooking Blender</span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <span class="text-[11px] font-bold text-emerald-700 uppercase tracking-wider">TRIFONE &bull; Commercial Grade</span>
+                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">TRIFONE Commercial Cooking Blender TB-40-2</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Heavy-duty stainless-front commercial blender with pulse switch and variable speed control for greens, soy milk, soups, and spices.</p>
+                            <button onclick="inquireProduct('TRIFONE Commercial Cooking Blender TB-40-2')" class="w-full bg-brand-900 text-white hover:bg-accent-500 hover:text-brand-900 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                                <span>Inquire Now</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product 5: 866555.jpg -->
+                    <div data-category="fryers" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200/80 overflow-hidden group flex flex-col">
+                        <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
+                            <span class="absolute top-3 left-3 z-10 bg-brand-900 text-accent-400 text-[10px] font-bold px-2.5 py-1 rounded-full">10L Digital Touch</span>
+                            <img src="866555.jpg" alt="TRIFONE 10L Extra Large Air Fryer MH60-AR" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                            <div class="hidden flex-col items-center text-center p-4">
+                                <i class="fas fa-temperature-high text-5xl text-rose-500 mb-2"></i>
+                                <span class="text-xs font-bold text-slate-500">TRIFONE 10L Air Fryer MH60-AR</span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <span class="text-[11px] font-bold text-emerald-700 uppercase tracking-wider">TRIFONE &bull; Healthy Cooking</span>
+                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">TRIFONE 10L Extra Large Air Fryer MH60-AR (White)</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Extra-large 10L capacity air fryer in white &amp; rose gold with panoramic viewing window, intelligent timing, and 99% less fat cooking.</p>
+                            <button onclick="inquireProduct('TRIFONE 10L Extra Large Air Fryer MH60-AR (White)')" class="w-full bg-brand-900 text-white hover:bg-accent-500 hover:text-brand-900 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                                <span>Inquire Now</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product 6: 866559.jpg -->
+                    <div data-category="fryers" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200/80 overflow-hidden group flex flex-col">
+                        <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
+                            <span class="absolute top-3 left-3 z-10 bg-brand-900 text-accent-400 text-[10px] font-bold px-2.5 py-1 rounded-full">10L Dual Dial</span>
+                            <img src="866559.jpg" alt="TRIFONE 10L Extra Large Air Fryer MH60-A" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                            <div class="hidden flex-col items-center text-center p-4">
+                                <i class="fas fa-fire text-5xl text-amber-600 mb-2"></i>
+                                <span class="text-xs font-bold text-slate-500">TRIFONE 10L Air Fryer MH60-A</span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <span class="text-[11px] font-bold text-emerald-700 uppercase tracking-wider">TRIFONE &bull; Healthy Cooking</span>
+                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">TRIFONE 10L Extra Large Air Fryer MH60-A (Black &amp; Copper)</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Executive black and metallic copper 10L air fryer with precision dual rotary temperature/timer dials and clear basket window.</p>
+                            <button onclick="inquireProduct('TRIFONE 10L Extra Large Air Fryer MH60-A (Black & Copper)')" class="w-full bg-brand-900 text-white hover:bg-accent-500 hover:text-brand-900 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                                <span>Inquire Now</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product 7: 866561.jpg -->
+                    <div data-category="fryers" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200/80 overflow-hidden group flex flex-col">
+                        <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
+                            <span class="absolute top-3 left-3 z-10 bg-brand-900 text-accent-400 text-[10px] font-bold px-2.5 py-1 rounded-full">2400W &bull; 8L</span>
+                            <img src="866561.jpg" alt="COSYNEST 8L Digital Air Fryer Oven CO-MH80-AR" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                            <div class="hidden flex-col items-center text-center p-4">
+                                <i class="fas fa-tachometer-alt text-5xl text-amber-500 mb-2"></i>
+                                <span class="text-xs font-bold text-slate-500">COSYNEST 8L Digital Air Fryer</span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <span class="text-[11px] font-bold text-accent-700 uppercase tracking-wider">COSYNEST &bull; Smart Oven</span>
+                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">COSYNEST 8L Digital Air Fryer Oven CO-MH80-AR</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">2400W high-power 8L digital air fryer oven with 360° hot air circulation and one-touch presets for fries, fish, steak, and poultry.</p>
+                            <button onclick="inquireProduct('COSYNEST 8L Digital Air Fryer Oven CO-MH80-AR (2400W)')" class="w-full bg-brand-900 text-white hover:bg-accent-500 hover:text-brand-900 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                                <span>Inquire Now</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product 8: 866562.jpg -->
+                    <div data-category="blenders" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200/80 overflow-hidden group flex flex-col">
+                        <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
+                            <span class="absolute top-3 left-3 z-10 bg-brand-900 text-accent-400 text-[10px] font-bold px-2.5 py-1 rounded-full">Stainless Steel</span>
+                            <img src="866562.jpg" alt="TRIFONE Stainless Steel Heavy-Duty Food Processor & Grinder" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                            <div class="hidden flex-col items-center text-center p-4">
+                                <i class="fas fa-mortar-pestle text-5xl text-slate-600 mb-2"></i>
+                                <span class="text-xs font-bold text-slate-500">TRIFONE Steel Food Chopper</span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <span class="text-[11px] font-bold text-emerald-700 uppercase tracking-wider">TRIFONE &bull; Food Prep</span>
+                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">TRIFONE Stainless Steel Heavy-Duty Food Processor</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Brushed stainless steel electric meat grinder, yam pounder, and vegetable chopper with ergonomic top handle and high-torque motor.</p>
+                            <button onclick="inquireProduct('TRIFONE Stainless Steel Heavy-Duty Food Processor & Grinder')" class="w-full bg-brand-900 text-white hover:bg-accent-500 hover:text-brand-900 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                                <span>Inquire Now</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product 9: 866556.jpg -->
+                    <div data-category="solar-cookware" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200/80 overflow-hidden group flex flex-col">
+                        <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
+                            <span class="absolute top-3 left-3 z-10 bg-brand-900 text-accent-400 text-[10px] font-bold px-2.5 py-1 rounded-full">5-Piece Set</span>
+                            <img src="866556.jpg" alt="COOKTIME 5-Piece Aluminum Cookware Set" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                            <div class="hidden flex-col items-center text-center p-4">
+                                <i class="fas fa-utensil-spoon text-5xl text-slate-500 mb-2"></i>
+                                <span class="text-xs font-bold text-slate-500">COOKTIME 5-Piece Aluminum Pots</span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <span class="text-[11px] font-bold text-purple-700 uppercase tracking-wider">COOKTIME &bull; Cookware</span>
+                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">COOKTIME 5-Piece Aluminum Cookware Set (CT-2327)</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Heavy-gauge 5-piece nested aluminum cooking pots (20cm to 28cm) with riveted stainless handles and superior heat conductivity.</p>
+                            <button onclick="inquireProduct('COOKTIME 5-Piece Aluminum Cookware Set (20cm-28cm)')" class="w-full bg-brand-900 text-white hover:bg-accent-500 hover:text-brand-900 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                                <span>Inquire Now</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product 10: 866560.jpg -->
+                    <div data-category="solar-cookware" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200/80 overflow-hidden group flex flex-col">
+                        <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
+                            <span class="absolute top-3 left-3 z-10 bg-emerald-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">With Solar Panel</span>
+                            <img src="866560.jpg" alt="TRIFONE 16-Inch Solar Rechargeable Standing Fan TF-16A" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                            <div class="hidden flex-col items-center text-center p-4">
+                                <i class="fas fa-fan text-5xl text-emerald-600 mb-2"></i>
+                                <span class="text-xs font-bold text-slate-500">TRIFONE Solar Fan TF-16A</span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <span class="text-[11px] font-bold text-emerald-700 uppercase tracking-wider">TRIFONE &bull; Solar Cooling</span>
+                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">TRIFONE 16" Solar Rechargeable Standing Fan TF-16A</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Complete off-grid cooling kit with solar panel, remote control, LED night light, USB phone charger, and up to 8 hours battery backup.</p>
+                            <button onclick="inquireProduct('TRIFONE 16-Inch Solar Rechargeable Standing Fan TF-16A')" class="w-full bg-brand-900 text-white hover:bg-accent-500 hover:text-brand-900 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                                <span>Inquire Now</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- 5. CONTACT SECTION                                                -->
+        <!-- ================================================================= -->
+        <section id="contact" class="page-section hidden fade-in bg-white pb-24">
+            <div class="bg-brand-900 py-16 text-white text-center border-b-4 border-accent-500">
+                <span class="text-accent-400 font-bold uppercase tracking-widest text-xs">We're Ready To Assist</span>
+                <h1 class="text-4xl font-extrabold mt-2">Contact Us</h1>
+                <div class="w-24 h-1 bg-accent-500 mx-auto mt-4 rounded"></div>
+                <p class="mt-4 text-lg text-slate-300 max-w-2xl mx-auto px-4">
+                    Reach out for wholesale dealership pricing, product availability, bulk orders, or retail inquiries.
+                </p>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                    
+                    <!-- Left Column: Contact Info Cards -->
+                    <div class="lg:col-span-1 space-y-6">
+                        <div class="bg-brand-900 p-8 rounded-3xl text-white shadow-xl border-b-4 border-accent-500">
+                            <h3 class="text-2xl font-bold text-accent-500 mb-6">Get in Touch</h3>
+                            
+                            <div class="space-y-6">
+                                <div class="flex items-start gap-4">
+                                    <div class="w-10 h-10 rounded-xl bg-brand-800 text-accent-500 flex items-center justify-center shrink-0 text-lg">
+                                        <i class="fas fa-building"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white text-sm">Corporate Office</h4>
+                                        <p class="text-slate-300 mt-1 text-xs leading-relaxed">OMOTHEK ENTERPRISES<br/>Sales &amp; Distribution Hub</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start gap-4">
+                                    <div class="w-10 h-10 rounded-xl bg-brand-800 text-accent-500 flex items-center justify-center shrink-0 text-lg">
+                                        <i class="fas fa-phone-alt"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white text-sm">Sales &amp; Dealer Hotline</h4>
+                                        <p class="text-slate-300 mt-1 text-xs">Mon – Sat: 8:00 AM – 6:00 PM</p>
+                                        <p class="text-accent-400 font-semibold text-xs mt-0.5">Fast Order Coordination</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start gap-4">
+                                    <div class="w-10 h-10 rounded-xl bg-brand-800 text-accent-500 flex items-center justify-center shrink-0 text-lg">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white text-sm">Email Inquiries</h4>
+                                        <p class="text-slate-300 mt-1 text-xs">info@omothek.com</p>
+                                        <p class="text-slate-300 text-xs">sales@omothek.com</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-8 pt-6 border-t border-brand-800">
+                                <p class="text-xs text-slate-400 uppercase tracking-wider font-semibold mb-2">Official Brand Partners</p>
+                                <div class="flex items-center gap-3">
+                                    <span class="px-3 py-1 rounded-md bg-emerald-500/20 text-emerald-300 text-xs font-bold">TRIFONE</span>
+                                    <span class="px-3 py-1 rounded-md bg-accent-500/20 text-accent-300 text-xs font-bold">ORIFLAME</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Dealer & Customer Inquiry Form -->
+                    <div class="lg:col-span-2 bg-white p-8 md:p-10 rounded-3xl shadow-xl border border-slate-200/80">
+                        <h3 class="text-2xl font-extrabold text-brand-900 mb-2">Send Us an Inquiry</h3>
+                        <p class="text-slate-500 text-sm mb-6">Fill out the form below and our sales representation team will respond promptly.</p>
+                        
+                        <div id="formSuccess" class="hidden mb-6 p-4 bg-emerald-50 text-emerald-900 rounded-xl border border-emerald-300 flex items-center gap-3">
+                            <i class="fas fa-check-circle text-emerald-600 text-xl"></i>
+                            <span class="text-sm font-medium">Thank you! Your inquiry has been received by OMOTHEK ENTERPRISES. Our sales team will contact you shortly.</span>
+                        </div>
+
+                        <form id="contactForm" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="name" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Full Name / Business Name *</label>
+                                    <input type="text" id="name" required class="w-full px-4 py-3.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition bg-slate-50 text-sm" placeholder="e.g. Adewale Stores Ltd">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Email or Phone Number *</label>
+                                    <input type="text" id="email" required class="w-full px-4 py-3.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition bg-slate-50 text-sm" placeholder="name@example.com or +234...">
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="inquiryType" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Nature of Inquiry</label>
+                                    <select id="inquiryType" class="w-full px-4 py-3.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition bg-slate-50 text-sm">
+                                        <option value="dealer">Become a Registered Dealer / Retailer</option>
+                                        <option value="bulk">Wholesale / Bulk Order Supply</option>
+                                        <option value="product">Specific Product Pricing &amp; Info</option>
+                                        <option value="oriflame">Oriflame Partnership Inquiry</option>
+                                        <option value="other">General Support</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="selectedProduct" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Product of Interest (Optional)</label>
+                                    <input type="text" id="selectedProduct" class="w-full px-4 py-3.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition bg-slate-50 text-sm" placeholder="e.g. TRIFONE 10L Air Fryer / Solar Fan">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="message" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Your Message / Order Details *</label>
+                                <textarea id="message" rows="4" required class="w-full px-4 py-3.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition resize-none bg-slate-50 text-sm" placeholder="Tell us the items, quantities, or dealership support you need..."></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full bg-brand-900 text-white font-bold py-4 rounded-xl hover:bg-brand-800 transition shadow-lg text-base flex justify-center items-center gap-3">
+                                <span>Submit Inquiry</span>
+                                <i class="fas fa-paper-plane text-accent-500"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ================================================================= -->
+    <!-- FOOTER                                                            -->
+    <!-- ================================================================= -->
+    <footer class="bg-brand-950 text-slate-300 py-14 border-t-4 border-accent-500 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+            
+            <!-- Column 1: Logo & About -->
+            <div>
+                <div onclick="navigateTo('home')" class="cursor-pointer flex items-center mb-5 bg-white rounded-xl p-2 w-fit shadow-md border border-accent-500">
+                    <img 
+                        src="866571_4.jpg" 
+                        alt="Omothek Enterprises Logo" 
+                        class="h-12 w-auto object-contain"
+                        onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.nextElementSibling.classList.add('flex');"
+                    >
+                    <div class="hidden items-center gap-2 px-2">
+                        <span class="text-lg font-extrabold text-brand-900 tracking-wider">OMOTHEK</span>
+                        <span class="text-[10px] font-bold text-accent-600 uppercase">ENTERPRISES</span>
+                    </div>
+                </div>
+                <p class="text-sm leading-relaxed mb-5 text-slate-400">
+                    Smart Technology. Better Living. Your trusted sales representation and distribution partner for TRIFONE Electronics and Oriflame Sweden.
+                </p>
+                <div class="flex space-x-3">
+                    <a href="#contact" onclick="navigateTo('contact'); return false;" class="w-9 h-9 rounded-full bg-brand-900 border border-brand-700 flex items-center justify-center hover:bg-accent-500 hover:text-brand-900 transition"><i class="fab fa-facebook-f text-sm"></i></a>
+                    <a href="#contact" onclick="navigateTo('contact'); return false;" class="w-9 h-9 rounded-full bg-brand-900 border border-brand-700 flex items-center justify-center hover:bg-accent-500 hover:text-brand-900 transition"><i class="fab fa-instagram text-sm"></i></a>
+                    <a href="#contact" onclick="navigateTo('contact'); return false;" class="w-9 h-9 rounded-full bg-brand-900 border border-brand-700 flex items-center justify-center hover:bg-accent-500 hover:text-brand-900 transition"><i class="fab fa-whatsapp text-sm"></i></a>
+                </div>
+            </div>
+            
+            <!-- Column 2: Quick Links -->
+            <div>
+                <h3 class="text-accent-500 text-sm font-bold mb-4 uppercase tracking-widest">Quick Navigation</h3>
+                <ul class="space-y-2.5 text-sm">
+                    <li><button onclick="navigateTo('home')" class="hover:text-accent-400 transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-accent-500"></i> Home</button></li>
+                    <li><button onclick="navigateTo('about')" class="hover:text-accent-400 transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-accent-500"></i> About Us &amp; Partners</button></li>
+                    <li><button onclick="navigateTo('services')" class="hover:text-accent-400 transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-accent-500"></i> Services Rendered</button></li>
+                    <li><button onclick="navigateTo('products')" class="hover:text-accent-400 transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-accent-500"></i> Products Catalog</button></li>
+                    <li><button onclick="navigateTo('contact')" class="hover:text-accent-400 transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-accent-500"></i> Contact &amp; Dealership</button></li>
+                </ul>
+            </div>
+
+            <!-- Column 3: Solutions (All Linked to Products Page) -->
+            <div>
+                <h3 class="text-accent-500 text-sm font-bold mb-4 uppercase tracking-widest">Solutions</h3>
+                <ul class="space-y-2.5 text-sm">
+                    <li><a href="#products" onclick="navigateAndFilter('all'); return false;" class="hover:text-accent-400 transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-accent-500"></i> Kitchen Appliances</a></li>
+                    <li><a href="#products" onclick="navigateAndFilter('fryers'); return false;" class="hover:text-accent-400 transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-accent-500"></i> Air Fryers &amp; Ovens</a></li>
+                    <li><a href="#products" onclick="navigateAndFilter('blenders'); return false;" class="hover:text-accent-400 transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-accent-500"></i> Blenders &amp; Mixers</a></li>
+                    <li><a href="#products" onclick="navigateAndFilter('solar-cookware'); return false;" class="hover:text-accent-400 transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-accent-500"></i> Solar Standing Fans</a></li>
+                    <li><a href="#products" onclick="navigateAndFilter('cooking'); return false;" class="hover:text-accent-400 transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-accent-500"></i> Electric Pottery Furnaces</a></li>
+                    <li><a href="#products" onclick="navigateAndFilter('solar-cookware'); return false;" class="hover:text-accent-400 transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-accent-500"></i> Aluminum Cookware Sets</a></li>
+                </ul>
+            </div>
+            
+            <!-- Column 4: Dealer Newsletter -->
+            <div>
+                <h3 class="text-accent-500 text-sm font-bold mb-4 uppercase tracking-widest">Dealer Updates</h3>
+                <p class="text-xs text-slate-400 mb-4 leading-relaxed">Subscribe to receive new TRIFONE stock alerts and wholesale price lists.</p>
+                <form onsubmit="event.preventDefault(); document.getElementById('newsletterMsg').classList.remove('hidden'); this.reset();" class="space-y-2">
+                    <div class="flex">
+                        <input type="email" required placeholder="Enter your email" class="px-3.5 py-2.5 w-full rounded-l-xl focus:outline-none text-slate-900 text-xs bg-white">
+                        <button type="submit" class="bg-accent-500 hover:bg-accent-400 text-brand-900 font-bold px-4 py-2.5 rounded-r-xl text-xs transition">Join</button>
+                    </div>
+                    <p id="newsletterMsg" class="hidden text-emerald-400 text-xs font-medium pt-1"><i class="fas fa-check mr-1"></i> Subscribed to dealer alerts!</p>
+                </form>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-brand-900 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-400 gap-4">
+            <p>&copy; 2026 OMOTHEK ENTERPRISES. All rights reserved.</p>
+            <p>Official Partner: <span class="text-white font-semibold">TRIFONE Electronics</span> &amp; <span class="text-white font-semibold">ORIFLAME Sweden</span></p>
+        </div>
+    </footer>
+
+    <!-- ================================================================= -->
+    <!-- APPLICATION SCRIPTS                                               -->
+    <!-- ================================================================= -->
+    <script>
+        // 1. SPA Page Navigation
+        function navigateTo(pageId) {
+            // Hide all sections
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.add('hidden');
+                section.classList.remove('block');
+            });
+            
+            // Show requested section
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+                targetPage.classList.add('block');
+            }
+            
+            // Update Desktop Navbar Active Link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                const linkPage = link.getAttribute('data-page');
+                if (linkPage === pageId) {
+                    link.classList.remove('text-slate-200', 'border-transparent');
+                    link.classList.add('text-accent-500', 'border-accent-500');
+                } else {
+                    link.classList.remove('text-accent-500', 'border-accent-500');
+                    link.classList.add('text-slate-200', 'border-transparent');
+                }
+            });
+
+            // Update Mobile Navbar Active Link
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                const linkPage = link.getAttribute('data-mobile-page');
+                if (linkPage === pageId) {
+                    link.classList.add('bg-brand-900', 'text-white', 'border-l-4', 'border-accent-500');
+                    link.classList.remove('text-slate-300');
+                } else {
+                    link.classList.remove('bg-brand-900', 'text-white', 'border-l-4', 'border-accent-500');
+                    link.classList.add('text-slate-300');
+                }
+            });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 2. Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                menuIcon.classList.toggle('hidden');
+                closeIcon.classList.toggle('hidden');
+            });
+        }
+
+        function navigateMobile(pageId) {
+            navigateTo(pageId);
+            if (mobileMenu) {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            }
+        }
+
+        // 3. Product Category Filtering
+        function filterProducts(category) {
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.classList.remove('hidden');
+                    card.classList.add('flex');
+                } else {
+                    card.classList.add('hidden');
+                    card.classList.remove('flex');
+                }
+            });
+
+            // Update active pill styling
+            document.querySelectorAll('.product-filter-btn').forEach(btn => {
+                if (btn.getAttribute('data-filter') === category) {
+                    btn.className = 'product-filter-btn bg-brand-900 text-accent-400 border border-brand-900 px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition shadow-md';
+                } else {
+                    btn.className = 'product-filter-btn bg-white text-slate-700 hover:bg-brand-50 border border-slate-200 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition';
+                }
+            });
+        }
+
+        // Helper for Footer Solution links
+        function navigateAndFilter(category) {
+            navigateTo('products');
+            filterProducts(category);
+        }
+
+        // 4. Direct Product Inquiry (Pre-fills Contact Form)
+        function inquireProduct(productName) {
+            navigateTo('contact');
+            const productInput = document.getElementById('selectedProduct');
+            const inquirySelect = document.getElementById('inquiryType');
+            if (productInput) {
+                productInput.value = productName;
+                productInput.focus();
+            }
+            if (inquirySelect) {
+                inquirySelect.value = 'product';
+            }
+        }
+
+        // 5. About Us Interactive Animation Controls ("Smart Living Ecosystem")
+        let turboMode = false;
+        function toggleEcosystemMode() {
+            turboMode = !turboMode;
+            const fanBlades = document.getElementById('svgFanBlades');
+            const energyLines = document.querySelectorAll('.anim-energy-line');
+            const modeLabel = document.getElementById('ecoModeLabel');
+            const modeBtn = document.getElementById('ecoModeBtn');
+
+            if (turboMode) {
+                if (fanBlades) fanBlades.classList.add('turbo');
+                energyLines.forEach(line => line.classList.add('turbo'));
+                if (modeLabel) modeLabel.textContent = 'Turbo Energy: ON';
+                if (modeBtn) {
+                    modeBtn.classList.remove('bg-white/10', 'text-accent-300');
+                    modeBtn.classList.add('bg-accent-500', 'text-brand-900');
+                }
+                highlightAppliance('turbo');
+            } else {
+                if (fanBlades) fanBlades.classList.remove('turbo');
+                energyLines.forEach(line => line.classList.remove('turbo'));
+                if (modeLabel) modeLabel.textContent = 'Turbo Energy: OFF';
+                if (modeBtn) {
+                    modeBtn.classList.add('bg-white/10', 'text-accent-300');
+                    modeBtn.classList.remove('bg-accent-500', 'text-brand-900');
+                }
+                highlightAppliance('default');
+            }
+        }
+
+        function highlightAppliance(type) {
+            const titleEl = document.getElementById('inspectorTitle');
+            const descEl = document.getElementById('inspectorDesc');
+            const iconEl = document.getElementById('inspectorIcon');
+            if (!titleEl || !descEl || !iconEl) return;
+
+            const specs = {
+                solar: {
+                    icon: 'fa-solar-panel',
+                    title: 'TRIFONE 16" Solar Standing Fan (TF-16A)',
+                    desc: 'Off-grid solar charging panel, 5-speed airflow, built-in LED night light & USB port.'
+                },
+                blender: {
+                    icon: 'fa-blender',
+                    title: 'TRIFONE 1500W Multifunctional Mixer & Blender',
+                    desc: 'High-torque copper motor for smoothies, grinding spices, and heavy-duty food prep.'
+                },
+                airfryer: {
+                    icon: 'fa-temperature-high',
+                    title: 'TRIFONE 10L & COSYNEST 8L Digital Air Fryers',
+                    desc: '360° rapid hot air circulation cooks crispy meals with up to 99% less oil.'
+                },
+                furnace: {
+                    icon: 'fa-fire-burner',
+                    title: 'TRIFONE 3500W Infrared Electric Pottery Furnace',
+                    desc: 'Single & dual-zone ceramic heating rings compatible with all aluminum & steel cookware.'
+                },
+                turbo: {
+                    icon: 'fa-bolt',
+                    title: 'Turbo Solar & Smart Grid Flow Activated!',
+                    desc: 'Maximum energy efficiency delivering high performance across all OMOTHEK Enterprises appliances.'
+                },
+                default: {
+                    icon: 'fa-bolt',
+                    title: 'Smart Living Ecosystem Active',
+                    desc: 'Click any appliance node above or toggle Turbo Energy to inspect live specs.'
+                }
+            };
+
+            const selected = specs[type] || specs.default;
+            iconEl.className = 'fas ' + selected.icon;
+            titleEl.textContent = selected.title;
+            descEl.textContent = selected.desc;
+        }
+
+        // 6. Contact Form Submission Handler
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const successMsg = document.getElementById('formSuccess');
+                if (successMsg) {
+                    successMsg.classList.remove('hidden');
+                    this.reset();
+                    setTimeout(() => {
+                        successMsg.classList.add('hidden');
+                    }, 6000);
+                }
+            });
+        }
+
+        // Initialize Default Page
+        document.addEventListener('DOMContentLoaded', () => {
+            navigateTo('home');
+        });
+    </script>
+</body>
+</html>
