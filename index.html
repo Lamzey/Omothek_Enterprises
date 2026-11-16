@@ -15,15 +15,6 @@
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Modern SVG Favicon (Recommended for crispness and dark mode support) -->
-    <link rel="icon" href="/866571.png" type="image/svg+xml">
-
-    <!-- Standard PNG Favicon (Good fallback, standard 32x32 size) -->
-    <link rel="icon" href="/866571.png" type="image/png" sizes="32x32">
-
-    <link rel="apple-touch-icon" href="866571.png" sizes="180x180">
-
     
     <!-- Tailwind Custom Configuration -->
     <script>
@@ -43,15 +34,15 @@
                             500: '#3472b5',
                             600: '#235997',
                             700: '#1d487d',
-                            800: '#102a56',
-                            900: '#001A4D', // Primary Deep Navy Blue
-                            950: '#000f2e',
+                            800: '#112240', // Deep Navy Secondary
+                            900: '#0a192f', // Primary Deep Navy Blue
+                            950: '#050d1a',
                         },
                         accent: {
-                            300: '#e9cb74',
-                            400: '#d4af37',
-                            500: '#C59A3F', // Primary Metallic Gold / Amber
-                            600: '#a87f2a',
+                            300: '#fcd34d',
+                            400: '#f59e0b', // Metallic Amber
+                            500: '#d4af37', // Primary Metallic Gold
+                            600: '#b48a1e',
                             700: '#89641d',
                         },
                         trifone: {
@@ -62,6 +53,20 @@
                 }
             }
         }
+
+        // Smart fallback handler for Gift Items images (checks root and giftitems/ subfolder, then shows styled card fallback)
+        window.handleGiftImageError = function(imgEl, filename) {
+            if (!imgEl.dataset.triedSubfolder) {
+                imgEl.dataset.triedSubfolder = '1';
+                imgEl.src = 'giftitems/' + filename;
+            } else {
+                imgEl.style.display = 'none';
+                if (imgEl.nextElementSibling) {
+                    imgEl.nextElementSibling.classList.remove('hidden');
+                    imgEl.nextElementSibling.classList.add('flex');
+                }
+            }
+        };
     </script>
 
     <style>
@@ -159,19 +164,33 @@
     <!-- Top Announcement Bar -->
     <div class="bg-brand-950 text-slate-300 text-xs py-2 px-4 border-b border-brand-800">
         <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
-            <div class="flex items-center space-x-4">
+            <div class="flex flex-wrap items-center gap-4">
                 <span class="flex items-center gap-1.5">
                     <i class="fas fa-handshake text-accent-500"></i>
-                    <span>Official Distribution Partner: <strong class="text-white">TRIFONE Electronics</strong> &amp; <strong class="text-white">ORIFLAME Sweden</strong></span>
+                    <span>Official Partner: <strong class="text-white">TRIFONE</strong> &amp; <strong class="text-white">ORIFLAME</strong></span>
+                </span>
+                <span class="hidden lg:inline-flex items-center gap-1.5 text-slate-400">
+                    <i class="fas fa-map-marker-alt text-accent-500"></i>
+                    <span>15 Morenikeji Shobajo Street, Ikorodu</span>
                 </span>
             </div>
-            <div class="hidden sm:flex items-center space-x-6">
-                <button onclick="navigateTo('products')" class="hover:text-accent-400 transition flex items-center gap-1">
-                    <i class="fas fa-box-open text-accent-500"></i> Wholesale &amp; Retail Supply
-                </button>
-                <button onclick="navigateTo('contact')" class="text-accent-400 font-semibold hover:underline flex items-center gap-1">
-                    <i class="fas fa-store"></i> Become a Dealer
-                </button>
+            <div class="flex flex-wrap items-center gap-4 sm:gap-5">
+                <a href="https://wa.me/2348104559942?text=Hello%20OMOTHEK%20ENTERPRISES%2C%20I%20would%20like%20to%20make%20an%20inquiry." target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 transition flex items-center gap-1.5 font-semibold text-white">
+                    <i class="fab fa-whatsapp text-emerald-400 text-sm"></i>
+                    <span>08104559942</span>
+                </a>
+                <a href="tel:09073690825" class="hover:text-accent-400 transition flex items-center gap-1.5 font-semibold text-white">
+                    <i class="fas fa-phone-alt text-accent-500 text-xs"></i>
+                    <span>09073690825</span>
+                </a>
+                <a href="https://www.tiktok.com/@hickiesplaceelectronics" target="_blank" rel="noopener noreferrer" class="hidden md:inline-flex hover:text-accent-400 transition items-center gap-1">
+                    <i class="fab fa-tiktok text-accent-500"></i>
+                    <span>@hickiesplaceelectronics</span>
+                </a>
+                <a href="https://www.tiktok.com/@hickiesoriflamestore" target="_blank" rel="noopener noreferrer" class="hidden md:inline-flex hover:text-accent-400 transition items-center gap-1">
+                    <i class="fab fa-tiktok text-pink-400"></i>
+                    <span>@hickiesoriflamestore</span>
+                </a>
             </div>
         </div>
     </div>
@@ -180,15 +199,16 @@
     <nav class="bg-brand-900 text-white shadow-2xl sticky top-0 z-50 border-b-4 border-accent-500">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-24">
+                <!-- Company Logo (866571_3.jpg + Styled Fallback) -->
                 <div class="flex items-center cursor-pointer group" onclick="navigateTo('home')">
                     <div class="bg-white rounded-xl p-1.5 shadow-lg flex items-center gap-3 border-2 border-accent-500/60 group-hover:border-accent-400 transition">
                         <img 
-                            src="866571.jpg" 
+                            src="866571_3.jpg" 
                             alt="OMOTHEK ENTERPRISES Logo" 
                             class="h-14 w-auto object-contain rounded-lg"
-                            onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.nextElementSibling.classList.add('flex');"
+                            onerror="if(!this.dataset.triedAlt){this.dataset.triedAlt='1';this.src='866571_4.jpg';}else{this.style.display='none';this.nextElementSibling.classList.remove('hidden');this.nextElementSibling.classList.add('flex');}"
                         >
-                        <!-- Styled Fallback Badge if 866571_4.jpg is not in local preview -->
+                        <!-- Styled Fallback Badge if 866571_3.jpg is not in local preview -->
                         <div class="hidden items-center gap-2.5 px-2 py-0.5">
                             <div class="w-11 h-11 rounded-lg bg-gradient-to-br from-brand-900 to-brand-700 flex items-center justify-center shadow-inner border border-accent-500">
                                 <span class="text-lg font-extrabold tracking-tighter text-white">O<span class="text-accent-500">E</span></span>
@@ -347,8 +367,8 @@
                                     </div>
                                 </div>
                                 <div class="mt-4 pt-3 border-t border-brand-700 flex items-center justify-between text-xs text-slate-300">
-                                    <span><i class="fas fa-check-circle text-accent-500 mr-1"></i> Ready for Bulk &amp; Retail</span>
-                                    <button onclick="navigateTo('products')" class="text-accent-400 font-bold hover:underline">View All 10 Items &rarr;</button>
+                                    <span><i class="fas fa-check-circle text-accent-500 mr-1"></i> Appliances &amp; Gift Items</span>
+                                    <button onclick="navigateTo('products')" class="text-accent-400 font-bold hover:underline">View All 17 Items &rarr;</button>
                                 </div>
                             </div>
                         </div>
@@ -508,77 +528,93 @@
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex flex-col md:flex-row md:items-end justify-between mb-14">
                         <div>
-                            <span class="text-accent-600 font-bold uppercase tracking-widest text-xs">Top-Selling Appliances</span>
+                            <span class="text-accent-600 font-bold uppercase tracking-widest text-xs">Top-Selling Appliances &amp; Curated Packages</span>
                             <h2 class="text-3xl font-extrabold text-brand-900 mt-1">Featured Product Categories</h2>
                         </div>
                         <button onclick="navigateTo('products')" class="mt-4 md:mt-0 text-brand-900 font-bold hover:text-accent-600 transition flex items-center gap-2">
-                            <span>Browse All 10 Products</span>
+                            <span>Browse All 17 Products</span>
                             <i class="fas fa-long-arrow-alt-right"></i>
                         </button>
                     </div>
                     
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
                         <!-- Card 1 -->
-                        <div onclick="navigateTo('products')" class="cursor-pointer bg-brand-50 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 flex flex-col group overflow-hidden">
-                            <div class="h-56 w-full bg-white p-4 flex items-center justify-center border-b border-slate-100 relative">
+                        <div onclick="navigateAndFilter('cooking')" class="cursor-pointer bg-brand-50 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 flex flex-col group overflow-hidden">
+                            <div class="h-52 w-full bg-white p-4 flex items-center justify-center border-b border-slate-100 relative">
                                 <span class="absolute top-3 left-3 bg-brand-900 text-accent-400 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">3500W Power</span>
                                 <img src="866553.jpg" alt="Electric Pottery Furnace" class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
                                 <div class="hidden text-center"><i class="fas fa-fire-burner text-5xl text-accent-500"></i></div>
                             </div>
-                            <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div class="p-5 flex-grow flex flex-col justify-between">
                                 <div>
-                                    <h3 class="text-lg font-bold text-brand-900 mb-1">Electric Pottery Furnaces</h3>
-                                    <p class="text-slate-600 text-xs leading-relaxed">Single and double burner 3500W infrared cookers with sleek wood-grain finish.</p>
+                                    <h3 class="text-base font-bold text-brand-900 mb-1">Cooking &amp; Heating</h3>
+                                    <p class="text-slate-600 text-xs leading-relaxed">Single and double burner 3500W infrared electric pottery furnaces.</p>
                                 </div>
                                 <span class="mt-4 inline-flex items-center text-xs font-bold text-accent-600 group-hover:translate-x-1 transition-transform">Explore Models &rarr;</span>
                             </div>
                         </div>
 
                         <!-- Card 2 -->
-                        <div onclick="navigateTo('products')" class="cursor-pointer bg-brand-50 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 flex flex-col group overflow-hidden">
-                            <div class="h-56 w-full bg-white p-4 flex items-center justify-center border-b border-slate-100 relative">
+                        <div onclick="navigateAndFilter('blenders')" class="cursor-pointer bg-brand-50 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 flex flex-col group overflow-hidden">
+                            <div class="h-52 w-full bg-white p-4 flex items-center justify-center border-b border-slate-100 relative">
                                 <span class="absolute top-3 left-3 bg-brand-900 text-accent-400 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">1500W Heavy Duty</span>
                                 <img src="866554.jpg" alt="Blenders & Mixers" class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
                                 <div class="hidden text-center"><i class="fas fa-blender text-5xl text-accent-500"></i></div>
                             </div>
-                            <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div class="p-5 flex-grow flex flex-col justify-between">
                                 <div>
-                                    <h3 class="text-lg font-bold text-brand-900 mb-1">Blenders &amp; Food Processors</h3>
-                                    <p class="text-slate-600 text-xs leading-relaxed">Multifunctional food mixers, commercial cooking blenders, and steel choppers.</p>
+                                    <h3 class="text-base font-bold text-brand-900 mb-1">Blenders &amp; Mixers</h3>
+                                    <p class="text-slate-600 text-xs leading-relaxed">Multifunctional food mixers, commercial blenders, and steel processors.</p>
                                 </div>
                                 <span class="mt-4 inline-flex items-center text-xs font-bold text-accent-600 group-hover:translate-x-1 transition-transform">Explore Models &rarr;</span>
                             </div>
                         </div>
 
                         <!-- Card 3 -->
-                        <div onclick="navigateTo('products')" class="cursor-pointer bg-brand-50 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 flex flex-col group overflow-hidden">
-                            <div class="h-56 w-full bg-white p-4 flex items-center justify-center border-b border-slate-100 relative">
+                        <div onclick="navigateAndFilter('fryers')" class="cursor-pointer bg-brand-50 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 flex flex-col group overflow-hidden">
+                            <div class="h-52 w-full bg-white p-4 flex items-center justify-center border-b border-slate-100 relative">
                                 <span class="absolute top-3 left-3 bg-brand-900 text-accent-400 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">8L &amp; 10L Capacity</span>
                                 <img src="866555.jpg" alt="Extra Large Air Fryers" class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
                                 <div class="hidden text-center"><i class="fas fa-utensils text-5xl text-accent-500"></i></div>
                             </div>
-                            <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div class="p-5 flex-grow flex flex-col justify-between">
                                 <div>
-                                    <h3 class="text-lg font-bold text-brand-900 mb-1">Extra Large Air Fryers</h3>
-                                    <p class="text-slate-600 text-xs leading-relaxed">Healthy oil-free cooking with viewing windows, digital touch, and dual-dial models.</p>
+                                    <h3 class="text-base font-bold text-brand-900 mb-1">Extra Large Air Fryers</h3>
+                                    <p class="text-slate-600 text-xs leading-relaxed">Healthy oil-free cooking with viewing windows and digital touch controls.</p>
                                 </div>
                                 <span class="mt-4 inline-flex items-center text-xs font-bold text-accent-600 group-hover:translate-x-1 transition-transform">Explore Models &rarr;</span>
                             </div>
                         </div>
 
                         <!-- Card 4 -->
-                        <div onclick="navigateTo('products')" class="cursor-pointer bg-brand-50 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 flex flex-col group overflow-hidden">
-                            <div class="h-56 w-full bg-white p-4 flex items-center justify-center border-b border-slate-100 relative">
+                        <div onclick="navigateAndFilter('cooling')" class="cursor-pointer bg-brand-50 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 flex flex-col group overflow-hidden">
+                            <div class="h-52 w-full bg-white p-4 flex items-center justify-center border-b border-slate-100 relative">
                                 <span class="absolute top-3 left-3 bg-emerald-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Solar Powered</span>
                                 <img src="866560.jpg" alt="Solar Fans & Cookware" class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
                                 <div class="hidden text-center"><i class="fas fa-solar-panel text-5xl text-accent-500"></i></div>
                             </div>
-                            <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div class="p-5 flex-grow flex flex-col justify-between">
                                 <div>
-                                    <h3 class="text-lg font-bold text-brand-900 mb-1">Solar Fans &amp; Cookware</h3>
-                                    <p class="text-slate-600 text-xs leading-relaxed">16" solar rechargeable standing fans with panel plus heavy-duty 5-piece aluminum pots.</p>
+                                    <h3 class="text-base font-bold text-brand-900 mb-1">Cooling &amp; Cookware</h3>
+                                    <p class="text-slate-600 text-xs leading-relaxed">16" solar rechargeable standing fans and 5-piece aluminum cookware sets.</p>
                                 </div>
                                 <span class="mt-4 inline-flex items-center text-xs font-bold text-accent-600 group-hover:translate-x-1 transition-transform">Explore Models &rarr;</span>
+                            </div>
+                        </div>
+
+                        <!-- Card 5: Gift Items Highlight -->
+                        <div onclick="navigateAndFilter('gifts')" class="cursor-pointer bg-gradient-to-b from-brand-900 to-brand-800 text-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 border-2 border-accent-500 flex flex-col group overflow-hidden">
+                            <div class="h-52 w-full bg-white p-4 flex items-center justify-center border-b border-accent-500/30 relative">
+                                <span class="absolute top-3 left-3 bg-accent-500 text-brand-900 text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase shadow">New Collection</span>
+                                <img src="image0.jpeg" alt="Curated Gift Items" class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="handleGiftImageError(this, 'image0.jpeg')">
+                                <div class="hidden text-center"><i class="fas fa-gift text-5xl text-accent-500"></i></div>
+                            </div>
+                            <div class="p-5 flex-grow flex flex-col justify-between">
+                                <div>
+                                    <h3 class="text-base font-bold text-accent-400 mb-1">Curated Gift Items</h3>
+                                    <p class="text-slate-200 text-xs leading-relaxed">7 exclusive corporate, wedding, event, and household souvenir gift packages.</p>
+                                </div>
+                                <span class="mt-4 inline-flex items-center text-xs font-bold text-accent-400 group-hover:translate-x-1 transition-transform">View 7 Gift Items &rarr;</span>
                             </div>
                         </div>
                     </div>
@@ -880,8 +916,8 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                         <!-- Partner 1: TRIFONE (866575.jpg) -->
-                        <div onclick="navigateTo('products')" class="cursor-pointer bg-white p-8 rounded-3xl shadow-lg border border-slate-200/80 hover:border-emerald-500 hover:shadow-2xl transition-all duration-300 flex flex-col items-center text-center group">
-                            <div class="h-32 flex items-center justify-center mb-4 p-2">
+                        <div class="bg-white p-8 rounded-3xl shadow-lg border border-slate-200/80 hover:border-emerald-500 hover:shadow-2xl transition-all duration-300 flex flex-col items-center text-center group">
+                            <div onclick="navigateTo('products')" class="cursor-pointer h-32 flex items-center justify-center mb-4 p-2">
                                 <img 
                                     src="866575.jpg" 
                                     alt="TRIFONE Electronics Logo" 
@@ -900,12 +936,16 @@
                             </div>
                             <span class="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold uppercase tracking-wider mb-2">Primary Appliance Partner</span>
                             <h4 class="text-xl font-bold text-brand-900">TRIFONE Electronics</h4>
-                            <p class="text-slate-600 text-sm mt-2">High-performance blenders, 10L air fryers, 3500W infrared furnaces, solar standing fans, and kitchen innovations.</p>
+                            <p class="text-slate-600 text-sm mt-2 mb-5">High-performance blenders, 10L air fryers, 3500W infrared furnaces, solar standing fans, and kitchen innovations.</p>
+                            <a href="https://www.tiktok.com/@hickiesplaceelectronics" target="_blank" rel="noopener noreferrer" class="mt-auto inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand-900 text-white hover:bg-accent-500 hover:text-brand-900 text-xs font-bold transition shadow-sm">
+                                <i class="fab fa-tiktok"></i>
+                                <span>@hickiesplaceelectronics</span>
+                            </a>
                         </div>
 
                         <!-- Partner 2: ORIFLAME SWEDEN (image0.png) -->
-                        <div onclick="navigateTo('contact')" class="cursor-pointer bg-white p-8 rounded-3xl shadow-lg border border-slate-200/80 hover:border-accent-500 hover:shadow-2xl transition-all duration-300 flex flex-col items-center text-center group">
-                            <div class="h-32 flex items-center justify-center mb-4 p-2">
+                        <div class="bg-white p-8 rounded-3xl shadow-lg border border-slate-200/80 hover:border-accent-500 hover:shadow-2xl transition-all duration-300 flex flex-col items-center text-center group">
+                            <div onclick="navigateTo('contact')" class="cursor-pointer h-32 flex items-center justify-center mb-4 p-2">
                                 <img 
                                     src="image0.png" 
                                     alt="ORIFLAME Sweden Logo" 
@@ -920,7 +960,11 @@
                             </div>
                             <span class="px-3 py-1 rounded-full bg-amber-50 text-accent-700 text-xs font-bold uppercase tracking-wider mb-2">Official Brand Partner</span>
                             <h4 class="text-xl font-bold text-brand-900">ORIFLAME Sweden</h4>
-                            <p class="text-slate-600 text-sm mt-2">World-renowned Swedish wellness, beauty, and lifestyle partner empowering entrepreneurs and modern households.</p>
+                            <p class="text-slate-600 text-sm mt-2 mb-5">World-renowned Swedish wellness, beauty, and lifestyle partner empowering entrepreneurs and modern households.</p>
+                            <a href="https://www.tiktok.com/@hickiesoriflamestore" target="_blank" rel="noopener noreferrer" class="mt-auto inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand-900 text-white hover:bg-accent-500 hover:text-brand-900 text-xs font-bold transition shadow-sm">
+                                <i class="fab fa-tiktok"></i>
+                                <span>@hickiesoriflamestore</span>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -983,10 +1027,10 @@
                     <div class="bg-white p-8 rounded-2xl shadow-md border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-between">
                         <div>
                             <div class="w-14 h-14 bg-brand-50 text-brand-900 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-900 group-hover:text-accent-500 transition-colors shadow-sm">
-                                <i class="fas fa-boxes-packing"></i>
+                                <i class="fas fa-gift"></i>
                             </div>
-                            <span class="text-xs font-bold text-accent-600 uppercase tracking-wider">03 &bull; Custom Sourcing</span>
-                            <p class="text-slate-800 font-medium text-base leading-relaxed mt-2">Sourcing and distributing products based on dealers’ requirements.</p>
+                            <span class="text-xs font-bold text-accent-600 uppercase tracking-wider">03 &bull; Custom Sourcing &amp; Gift Items</span>
+                            <p class="text-slate-800 font-medium text-base leading-relaxed mt-2">Sourcing and distributing products, corporate souvenirs, and curated gift items based on dealers’ and event requirements.</p>
                         </div>
                         <div class="w-10 h-1 bg-accent-500/40 group-hover:w-full group-hover:bg-accent-500 transition-all duration-300 mt-6 rounded"></div>
                     </div>
@@ -1082,15 +1126,15 @@
         </section>
 
         <!-- ================================================================= -->
-        <!-- 4. PRODUCTS SECTION                                               -->
+        <!-- 4. PRODUCTS SECTION (17 ITEMS: 10 APPLIANCES + 7 GIFT ITEMS)      -->
         <!-- ================================================================= -->
         <section id="products" class="page-section hidden fade-in bg-slate-50 pb-24">
             <div class="bg-brand-900 py-16 text-white text-center border-b-4 border-accent-500">
-                <span class="text-accent-400 font-bold uppercase tracking-widest text-xs">Wholesale &amp; Retail Catalog</span>
-                <h1 class="text-4xl font-extrabold uppercase tracking-wide mt-2">Our Products</h1>
+                <span class="text-accent-400 font-bold uppercase tracking-widest text-xs">Wholesale, Retail &amp; Souvenir Catalog</span>
+                <h1 class="text-4xl font-extrabold uppercase tracking-wide mt-2">Our Products &amp; Gift Items</h1>
                 <div class="w-24 h-1 bg-accent-500 mx-auto mt-4 rounded"></div>
                 <p class="mt-4 text-lg text-slate-300 max-w-2xl mx-auto px-4">
-                    Explore our complete lineup of genuine TRIFONE, COSYNEST, and COOKTIME household and kitchen appliances.
+                    Explore our complete lineup of genuine TRIFONE, COSYNEST, and COOKTIME appliances alongside our curated Gift Items collection.
                 </p>
             </div>
 
@@ -1101,241 +1145,424 @@
                     <div class="absolute inset-0 bg-gradient-to-r from-brand-950 via-brand-900/70 to-transparent"></div>
                     <div class="absolute inset-0 flex flex-col justify-center p-8 md:p-12 z-10 max-w-2xl">
                         <div class="inline-block w-fit px-3.5 py-1 rounded-full bg-accent-500 text-brand-900 font-extrabold text-xs tracking-widest uppercase mb-3 shadow">
-                            Dealer &amp; Family Favorites
+                            17 Premium Products Available
                         </div>
-                        <h2 class="text-2xl sm:text-4xl font-extrabold text-white mb-2 leading-tight">Elevate Your Kitchen &amp; Home Experience</h2>
-                        <p class="text-slate-200 text-sm sm:text-base font-light">Built for performance, energy efficiency, and everyday durability.</p>
+                        <h2 class="text-2xl sm:text-4xl font-extrabold text-white mb-2 leading-tight">Elevate Your Home, Business &amp; Special Gifting</h2>
+                        <p class="text-slate-200 text-sm sm:text-base font-light">Built for performance, energy efficiency, everyday durability, and memorable corporate or event gifting.</p>
                     </div>
                 </div>
 
                 <!-- Interactive Category Filter Pills -->
-                <div class="flex flex-wrap items-center justify-center gap-3 mt-10 mb-8">
-                    <button onclick="filterProducts('all')" data-filter="all" class="product-filter-btn bg-brand-900 text-accent-400 border border-brand-900 px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition shadow-md">
-                        All Products (10)
+                <div class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mt-10 mb-8">
+                    <button onclick="filterProducts('all')" data-filter="all" class="product-filter-btn bg-brand-900 text-accent-400 border border-brand-900 px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition shadow-md flex items-center gap-1.5">
+                        <i class="fas fa-th-large text-accent-500"></i>
+                        <span>All (17)</span>
                     </button>
-                    <button onclick="filterProducts('fryers')" data-filter="fryers" class="product-filter-btn bg-white text-slate-700 hover:bg-brand-50 border border-slate-200 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition">
-                        Air Fryers &amp; Ovens (3)
+                    <button onclick="filterProducts('cooking')" data-filter="cooking" class="product-filter-btn bg-white text-slate-700 hover:bg-brand-50 border border-slate-200 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition flex items-center gap-1.5">
+                        <i class="fas fa-fire-burner text-orange-500"></i>
+                        <span>Cooking &amp; Heating (2)</span>
                     </button>
-                    <button onclick="filterProducts('blenders')" data-filter="blenders" class="product-filter-btn bg-white text-slate-700 hover:bg-brand-50 border border-slate-200 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition">
-                        Blenders &amp; Processors (3)
+                    <button onclick="filterProducts('blenders')" data-filter="blenders" class="product-filter-btn bg-white text-slate-700 hover:bg-brand-50 border border-slate-200 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition flex items-center gap-1.5">
+                        <i class="fas fa-blender text-pink-500"></i>
+                        <span>Blenders &amp; Mixers (3)</span>
                     </button>
-                    <button onclick="filterProducts('cooking')" data-filter="cooking" class="product-filter-btn bg-white text-slate-700 hover:bg-brand-50 border border-slate-200 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition">
-                        Electric Furnaces (2)
+                    <button onclick="filterProducts('fryers')" data-filter="fryers" class="product-filter-btn bg-white text-slate-700 hover:bg-brand-50 border border-slate-200 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition flex items-center gap-1.5">
+                        <i class="fas fa-temperature-high text-rose-500"></i>
+                        <span>Air Fryers (3)</span>
                     </button>
-                    <button onclick="filterProducts('solar-cookware')" data-filter="solar-cookware" class="product-filter-btn bg-white text-slate-700 hover:bg-brand-50 border border-slate-200 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition">
-                        Solar Fans &amp; Cookware (2)
+                    <button onclick="filterProducts('cookware')" data-filter="cookware" class="product-filter-btn bg-white text-slate-700 hover:bg-brand-50 border border-slate-200 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition flex items-center gap-1.5">
+                        <i class="fas fa-utensils text-purple-500"></i>
+                        <span>Cookware (1)</span>
+                    </button>
+                    <button onclick="filterProducts('cooling')" data-filter="cooling" class="product-filter-btn bg-white text-slate-700 hover:bg-brand-50 border border-slate-200 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition flex items-center gap-1.5">
+                        <i class="fas fa-fan text-emerald-500"></i>
+                        <span>Cooling &amp; Solar (1)</span>
+                    </button>
+                    <button onclick="filterProducts('gifts')" data-filter="gifts" class="product-filter-btn bg-white text-slate-700 hover:bg-brand-50 border border-accent-500/60 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition flex items-center gap-1.5">
+                        <i class="fas fa-gift text-accent-500"></i>
+                        <span>Gift Items (7)</span>
                     </button>
                 </div>
 
-                <!-- 10-Product Grid -->
+                <!-- 17-Product Grid (10 Appliances + 7 Gift Items) -->
                 <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-6">
                     
-                    <!-- Product 1: 866553.jpg -->
+                    <!-- 1. TRIFONE Dual Electric Pottery Furnace 3500W (866553.jpg) -->
                     <div data-category="cooking" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200/80 overflow-hidden group flex flex-col">
                         <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
-                            <span class="absolute top-3 left-3 z-10 bg-brand-900 text-accent-400 text-[10px] font-bold px-2.5 py-1 rounded-full">3500W Dual Zone</span>
-                            <img src="866553.jpg" alt="TRIFONE Double-Burner Electric Pottery Furnace" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                            <span class="absolute top-3 left-3 z-10 bg-brand-900 text-accent-400 text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1"><i class="fas fa-fire-burner"></i>Cooking &amp; Heating</span>
+                            <img src="866553.jpg" alt="TRIFONE Dual Electric Pottery Furnace 3500W" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.nextElementSibling.classList.add('flex');">
                             <div class="hidden flex-col items-center text-center p-4">
                                 <i class="fas fa-fire-burner text-5xl text-orange-500 mb-2"></i>
-                                <span class="text-xs font-bold text-slate-500">TRIFONE 3500W Dual Furnace</span>
+                                <span class="text-xs font-bold text-slate-500">TRIFONE Dual Electric Pottery Furnace 3500W</span>
                             </div>
                         </div>
                         <div class="p-6 flex-grow flex flex-col">
                             <span class="text-[11px] font-bold text-emerald-700 uppercase tracking-wider">TRIFONE &bull; Cooking &amp; Heating</span>
-                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">TRIFONE Double-Burner Electric Pottery Furnace</h3>
+                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">TRIFONE Dual Electric Pottery Furnace 3500W</h3>
                             <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">High-efficiency 3500W dual-burner infrared electric furnace with touch controls, rotary knobs, and luxury wood-grain finish.</p>
-                            <button onclick="inquireProduct('TRIFONE Double-Burner Electric Pottery Furnace (3500W)')" class="w-full bg-brand-900 text-white hover:bg-accent-500 hover:text-brand-900 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
-                                <span>Inquire Now</span>
-                                <i class="fas fa-paper-plane"></i>
+                            <button onclick="inquireProduct('TRIFONE Dual Electric Pottery Furnace 3500W')" class="w-full bg-brand-900 text-white hover:bg-emerald-600 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                                <i class="fab fa-whatsapp text-base"></i>
+                                <span>Inquire More</span>
                             </button>
                         </div>
                     </div>
 
-                    <!-- Product 2: 866558.jpg -->
-                    <div data-category="cooking" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200/80 overflow-hidden group flex flex-col">
-                        <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
-                            <span class="absolute top-3 left-3 z-10 bg-brand-900 text-accent-400 text-[10px] font-bold px-2.5 py-1 rounded-full">Model TC-35A</span>
-                            <img src="866558.jpg" alt="TRIFONE Single-Burner Electric Pottery Furnace TC-35A" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
-                            <div class="hidden flex-col items-center text-center p-4">
-                                <i class="fas fa-compact-disc text-5xl text-orange-500 mb-2"></i>
-                                <span class="text-xs font-bold text-slate-500">TRIFONE TC-35A Single Furnace</span>
-                            </div>
-                        </div>
-                        <div class="p-6 flex-grow flex flex-col">
-                            <span class="text-[11px] font-bold text-emerald-700 uppercase tracking-wider">TRIFONE &bull; Cooking &amp; Heating</span>
-                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">TRIFONE Single-Burner Electric Pottery Furnace TC-35A</h3>
-                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Compact 3500W single-burner infrared cooker with side carry handles, digital display, and rapid heat transfer for all pot types.</p>
-                            <button onclick="inquireProduct('TRIFONE Single-Burner Electric Pottery Furnace TC-35A (3500W)')" class="w-full bg-brand-900 text-white hover:bg-accent-500 hover:text-brand-900 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
-                                <span>Inquire Now</span>
-                                <i class="fas fa-paper-plane"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Product 3: 866554.jpg -->
+                    <!-- 2. TRIFONE Multifunctional Food Mixer TB-15E 1500W (866554.jpg) -->
                     <div data-category="blenders" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200/80 overflow-hidden group flex flex-col">
                         <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
-                            <span class="absolute top-3 left-3 z-10 bg-brand-900 text-accent-400 text-[10px] font-bold px-2.5 py-1 rounded-full">1500W &bull; 1.5L</span>
-                            <img src="866554.jpg" alt="TRIFONE Multifunctional Food Mixer TB-15E" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                            <span class="absolute top-3 left-3 z-10 bg-brand-900 text-accent-400 text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1"><i class="fas fa-blender"></i>Blenders &amp; Mixers</span>
+                            <img src="866554.jpg" alt="TRIFONE Multifunctional Food Mixer TB-15E 1500W" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.nextElementSibling.classList.add('flex');">
                             <div class="hidden flex-col items-center text-center p-4">
                                 <i class="fas fa-blender text-5xl text-pink-500 mb-2"></i>
-                                <span class="text-xs font-bold text-slate-500">TRIFONE TB-15E 1500W Mixer</span>
+                                <span class="text-xs font-bold text-slate-500">TRIFONE Multifunctional Food Mixer TB-15E 1500W</span>
                             </div>
                         </div>
                         <div class="p-6 flex-grow flex flex-col">
                             <span class="text-[11px] font-bold text-emerald-700 uppercase tracking-wider">TRIFONE &bull; Blenders &amp; Mixers</span>
-                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">TRIFONE Multifunctional Food Mixer TB-15E</h3>
+                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">TRIFONE Multifunctional Food Mixer TB-15E 1500W</h3>
                             <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Powerful 1500W juicer, grinder, and smoothie machine with 1.5L unbreakable jar and dry mill attachment.</p>
-                            <button onclick="inquireProduct('TRIFONE Multifunctional Food Mixer TB-15E (1500W)')" class="w-full bg-brand-900 text-white hover:bg-accent-500 hover:text-brand-900 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
-                                <span>Inquire Now</span>
-                                <i class="fas fa-paper-plane"></i>
+                            <button onclick="inquireProduct('TRIFONE Multifunctional Food Mixer TB-15E 1500W')" class="w-full bg-brand-900 text-white hover:bg-emerald-600 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                                <i class="fab fa-whatsapp text-base"></i>
+                                <span>Inquire More</span>
                             </button>
                         </div>
                     </div>
 
-                    <!-- Product 4: 866557.jpg -->
-                    <div data-category="blenders" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200/80 overflow-hidden group flex flex-col">
-                        <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
-                            <span class="absolute top-3 left-3 z-10 bg-brand-900 text-accent-400 text-[10px] font-bold px-2.5 py-1 rounded-full">Model TB-40-2</span>
-                            <img src="866557.jpg" alt="TRIFONE Commercial Cooking Blender TB-40-2" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
-                            <div class="hidden flex-col items-center text-center p-4">
-                                <i class="fas fa-blender-phone text-5xl text-slate-700 mb-2"></i>
-                                <span class="text-xs font-bold text-slate-500">TRIFONE TB-40-2 Cooking Blender</span>
-                            </div>
-                        </div>
-                        <div class="p-6 flex-grow flex flex-col">
-                            <span class="text-[11px] font-bold text-emerald-700 uppercase tracking-wider">TRIFONE &bull; Commercial Grade</span>
-                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">TRIFONE Commercial Cooking Blender TB-40-2</h3>
-                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Heavy-duty stainless-front commercial blender with pulse switch and variable speed control for greens, soy milk, soups, and spices.</p>
-                            <button onclick="inquireProduct('TRIFONE Commercial Cooking Blender TB-40-2')" class="w-full bg-brand-900 text-white hover:bg-accent-500 hover:text-brand-900 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
-                                <span>Inquire Now</span>
-                                <i class="fas fa-paper-plane"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Product 5: 866555.jpg -->
+                    <!-- 3. TRIFONE Extra Large 10L Air Fryer MH60-AR White (866555.jpg) -->
                     <div data-category="fryers" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200/80 overflow-hidden group flex flex-col">
                         <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
-                            <span class="absolute top-3 left-3 z-10 bg-brand-900 text-accent-400 text-[10px] font-bold px-2.5 py-1 rounded-full">10L Digital Touch</span>
-                            <img src="866555.jpg" alt="TRIFONE 10L Extra Large Air Fryer MH60-AR" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                            <span class="absolute top-3 left-3 z-10 bg-brand-900 text-accent-400 text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1"><i class="fas fa-temperature-high"></i>Air Fryers</span>
+                            <img src="866555.jpg" alt="TRIFONE Extra Large 10L Air Fryer MH60-AR White" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.nextElementSibling.classList.add('flex');">
                             <div class="hidden flex-col items-center text-center p-4">
                                 <i class="fas fa-temperature-high text-5xl text-rose-500 mb-2"></i>
-                                <span class="text-xs font-bold text-slate-500">TRIFONE 10L Air Fryer MH60-AR</span>
+                                <span class="text-xs font-bold text-slate-500">TRIFONE Extra Large 10L Air Fryer MH60-AR White</span>
                             </div>
                         </div>
                         <div class="p-6 flex-grow flex flex-col">
-                            <span class="text-[11px] font-bold text-emerald-700 uppercase tracking-wider">TRIFONE &bull; Healthy Cooking</span>
-                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">TRIFONE 10L Extra Large Air Fryer MH60-AR (White)</h3>
+                            <span class="text-[11px] font-bold text-emerald-700 uppercase tracking-wider">TRIFONE &bull; Air Fryers</span>
+                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">TRIFONE Extra Large 10L Air Fryer MH60-AR White</h3>
                             <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Extra-large 10L capacity air fryer in white &amp; rose gold with panoramic viewing window, intelligent timing, and 99% less fat cooking.</p>
-                            <button onclick="inquireProduct('TRIFONE 10L Extra Large Air Fryer MH60-AR (White)')" class="w-full bg-brand-900 text-white hover:bg-accent-500 hover:text-brand-900 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
-                                <span>Inquire Now</span>
-                                <i class="fas fa-paper-plane"></i>
+                            <button onclick="inquireProduct('TRIFONE Extra Large 10L Air Fryer MH60-AR White')" class="w-full bg-brand-900 text-white hover:bg-emerald-600 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                                <i class="fab fa-whatsapp text-base"></i>
+                                <span>Inquire More</span>
                             </button>
                         </div>
                     </div>
 
-                    <!-- Product 6: 866559.jpg -->
-                    <div data-category="fryers" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200/80 overflow-hidden group flex flex-col">
+                    <!-- 4. COOKTIME 5-Piece Aluminum Cookware Set (866556.jpg) -->
+                    <div data-category="cookware" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200/80 overflow-hidden group flex flex-col">
                         <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
-                            <span class="absolute top-3 left-3 z-10 bg-brand-900 text-accent-400 text-[10px] font-bold px-2.5 py-1 rounded-full">10L Dual Dial</span>
-                            <img src="866559.jpg" alt="TRIFONE 10L Extra Large Air Fryer MH60-A" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
-                            <div class="hidden flex-col items-center text-center p-4">
-                                <i class="fas fa-fire text-5xl text-amber-600 mb-2"></i>
-                                <span class="text-xs font-bold text-slate-500">TRIFONE 10L Air Fryer MH60-A</span>
-                            </div>
-                        </div>
-                        <div class="p-6 flex-grow flex flex-col">
-                            <span class="text-[11px] font-bold text-emerald-700 uppercase tracking-wider">TRIFONE &bull; Healthy Cooking</span>
-                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">TRIFONE 10L Extra Large Air Fryer MH60-A (Black &amp; Copper)</h3>
-                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Executive black and metallic copper 10L air fryer with precision dual rotary temperature/timer dials and clear basket window.</p>
-                            <button onclick="inquireProduct('TRIFONE 10L Extra Large Air Fryer MH60-A (Black & Copper)')" class="w-full bg-brand-900 text-white hover:bg-accent-500 hover:text-brand-900 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
-                                <span>Inquire Now</span>
-                                <i class="fas fa-paper-plane"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Product 7: 866561.jpg -->
-                    <div data-category="fryers" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200/80 overflow-hidden group flex flex-col">
-                        <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
-                            <span class="absolute top-3 left-3 z-10 bg-brand-900 text-accent-400 text-[10px] font-bold px-2.5 py-1 rounded-full">2400W &bull; 8L</span>
-                            <img src="866561.jpg" alt="COSYNEST 8L Digital Air Fryer Oven CO-MH80-AR" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
-                            <div class="hidden flex-col items-center text-center p-4">
-                                <i class="fas fa-tachometer-alt text-5xl text-amber-500 mb-2"></i>
-                                <span class="text-xs font-bold text-slate-500">COSYNEST 8L Digital Air Fryer</span>
-                            </div>
-                        </div>
-                        <div class="p-6 flex-grow flex flex-col">
-                            <span class="text-[11px] font-bold text-accent-700 uppercase tracking-wider">COSYNEST &bull; Smart Oven</span>
-                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">COSYNEST 8L Digital Air Fryer Oven CO-MH80-AR</h3>
-                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">2400W high-power 8L digital air fryer oven with 360° hot air circulation and one-touch presets for fries, fish, steak, and poultry.</p>
-                            <button onclick="inquireProduct('COSYNEST 8L Digital Air Fryer Oven CO-MH80-AR (2400W)')" class="w-full bg-brand-900 text-white hover:bg-accent-500 hover:text-brand-900 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
-                                <span>Inquire Now</span>
-                                <i class="fas fa-paper-plane"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Product 8: 866562.jpg -->
-                    <div data-category="blenders" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200/80 overflow-hidden group flex flex-col">
-                        <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
-                            <span class="absolute top-3 left-3 z-10 bg-brand-900 text-accent-400 text-[10px] font-bold px-2.5 py-1 rounded-full">Stainless Steel</span>
-                            <img src="866562.jpg" alt="TRIFONE Stainless Steel Heavy-Duty Food Processor & Grinder" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
-                            <div class="hidden flex-col items-center text-center p-4">
-                                <i class="fas fa-mortar-pestle text-5xl text-slate-600 mb-2"></i>
-                                <span class="text-xs font-bold text-slate-500">TRIFONE Steel Food Chopper</span>
-                            </div>
-                        </div>
-                        <div class="p-6 flex-grow flex flex-col">
-                            <span class="text-[11px] font-bold text-emerald-700 uppercase tracking-wider">TRIFONE &bull; Food Prep</span>
-                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">TRIFONE Stainless Steel Heavy-Duty Food Processor</h3>
-                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Brushed stainless steel electric meat grinder, yam pounder, and vegetable chopper with ergonomic top handle and high-torque motor.</p>
-                            <button onclick="inquireProduct('TRIFONE Stainless Steel Heavy-Duty Food Processor & Grinder')" class="w-full bg-brand-900 text-white hover:bg-accent-500 hover:text-brand-900 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
-                                <span>Inquire Now</span>
-                                <i class="fas fa-paper-plane"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Product 9: 866556.jpg -->
-                    <div data-category="solar-cookware" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200/80 overflow-hidden group flex flex-col">
-                        <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
-                            <span class="absolute top-3 left-3 z-10 bg-brand-900 text-accent-400 text-[10px] font-bold px-2.5 py-1 rounded-full">5-Piece Set</span>
-                            <img src="866556.jpg" alt="COOKTIME 5-Piece Aluminum Cookware Set" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                            <span class="absolute top-3 left-3 z-10 bg-brand-900 text-accent-400 text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1"><i class="fas fa-utensils"></i>Cookware</span>
+                            <img src="866556.jpg" alt="COOKTIME 5-Piece Aluminum Cookware Set" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.nextElementSibling.classList.add('flex');">
                             <div class="hidden flex-col items-center text-center p-4">
                                 <i class="fas fa-utensil-spoon text-5xl text-slate-500 mb-2"></i>
-                                <span class="text-xs font-bold text-slate-500">COOKTIME 5-Piece Aluminum Pots</span>
+                                <span class="text-xs font-bold text-slate-500">COOKTIME 5-Piece Aluminum Cookware Set</span>
                             </div>
                         </div>
                         <div class="p-6 flex-grow flex flex-col">
                             <span class="text-[11px] font-bold text-purple-700 uppercase tracking-wider">COOKTIME &bull; Cookware</span>
-                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">COOKTIME 5-Piece Aluminum Cookware Set (CT-2327)</h3>
+                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">COOKTIME 5-Piece Aluminum Cookware Set</h3>
                             <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Heavy-gauge 5-piece nested aluminum cooking pots (20cm to 28cm) with riveted stainless handles and superior heat conductivity.</p>
-                            <button onclick="inquireProduct('COOKTIME 5-Piece Aluminum Cookware Set (20cm-28cm)')" class="w-full bg-brand-900 text-white hover:bg-accent-500 hover:text-brand-900 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
-                                <span>Inquire Now</span>
-                                <i class="fas fa-paper-plane"></i>
+                            <button onclick="inquireProduct('COOKTIME 5-Piece Aluminum Cookware Set')" class="w-full bg-brand-900 text-white hover:bg-emerald-600 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                                <i class="fab fa-whatsapp text-base"></i>
+                                <span>Inquire More</span>
                             </button>
                         </div>
                     </div>
 
-                    <!-- Product 10: 866560.jpg -->
-                    <div data-category="solar-cookware" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200/80 overflow-hidden group flex flex-col">
+                    <!-- 5. TRIFONE Heavy-Duty Cooking Blender TB-40-2 (866557.jpg) -->
+                    <div data-category="blenders" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200/80 overflow-hidden group flex flex-col">
                         <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
-                            <span class="absolute top-3 left-3 z-10 bg-emerald-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">With Solar Panel</span>
-                            <img src="866560.jpg" alt="TRIFONE 16-Inch Solar Rechargeable Standing Fan TF-16A" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
+                            <span class="absolute top-3 left-3 z-10 bg-brand-900 text-accent-400 text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1"><i class="fas fa-blender"></i>Blenders &amp; Mixers</span>
+                            <img src="866557.jpg" alt="TRIFONE Heavy-Duty Cooking Blender TB-40-2" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.nextElementSibling.classList.add('flex');">
                             <div class="hidden flex-col items-center text-center p-4">
-                                <i class="fas fa-fan text-5xl text-emerald-600 mb-2"></i>
-                                <span class="text-xs font-bold text-slate-500">TRIFONE Solar Fan TF-16A</span>
+                                <i class="fas fa-blender-phone text-5xl text-slate-700 mb-2"></i>
+                                <span class="text-xs font-bold text-slate-500">TRIFONE Heavy-Duty Cooking Blender TB-40-2</span>
                             </div>
                         </div>
                         <div class="p-6 flex-grow flex flex-col">
-                            <span class="text-[11px] font-bold text-emerald-700 uppercase tracking-wider">TRIFONE &bull; Solar Cooling</span>
-                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">TRIFONE 16" Solar Rechargeable Standing Fan TF-16A</h3>
+                            <span class="text-[11px] font-bold text-emerald-700 uppercase tracking-wider">TRIFONE &bull; Blenders &amp; Mixers</span>
+                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">TRIFONE Heavy-Duty Cooking Blender TB-40-2</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Heavy-duty stainless-front commercial blender with pulse switch and variable speed control for greens, soy milk, soups, and spices.</p>
+                            <button onclick="inquireProduct('TRIFONE Heavy-Duty Cooking Blender TB-40-2')" class="w-full bg-brand-900 text-white hover:bg-emerald-600 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                                <i class="fab fa-whatsapp text-base"></i>
+                                <span>Inquire More</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 6. TRIFONE Single Electric Pottery Furnace TC-35A 3500W (866558.jpg) -->
+                    <div data-category="cooking" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200/80 overflow-hidden group flex flex-col">
+                        <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
+                            <span class="absolute top-3 left-3 z-10 bg-brand-900 text-accent-400 text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1"><i class="fas fa-fire-burner"></i>Cooking &amp; Heating</span>
+                            <img src="866558.jpg" alt="TRIFONE Single Electric Pottery Furnace TC-35A 3500W" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.nextElementSibling.classList.add('flex');">
+                            <div class="hidden flex-col items-center text-center p-4">
+                                <i class="fas fa-compact-disc text-5xl text-orange-500 mb-2"></i>
+                                <span class="text-xs font-bold text-slate-500">TRIFONE Single Electric Pottery Furnace TC-35A 3500W</span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <span class="text-[11px] font-bold text-emerald-700 uppercase tracking-wider">TRIFONE &bull; Cooking &amp; Heating</span>
+                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">TRIFONE Single Electric Pottery Furnace TC-35A 3500W</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Compact 3500W single-burner infrared cooker with side carry handles, digital display, and rapid heat transfer for all pot types.</p>
+                            <button onclick="inquireProduct('TRIFONE Single Electric Pottery Furnace TC-35A 3500W')" class="w-full bg-brand-900 text-white hover:bg-emerald-600 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                                <i class="fab fa-whatsapp text-base"></i>
+                                <span>Inquire More</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 7. TRIFONE 10L Extra Large Air Fryer MH60-A Black & Copper (866559.jpg) -->
+                    <div data-category="fryers" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200/80 overflow-hidden group flex flex-col">
+                        <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
+                            <span class="absolute top-3 left-3 z-10 bg-brand-900 text-accent-400 text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1"><i class="fas fa-temperature-high"></i>Air Fryers</span>
+                            <img src="866559.jpg" alt="TRIFONE 10L Extra Large Air Fryer MH60-A Black & Copper" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.nextElementSibling.classList.add('flex');">
+                            <div class="hidden flex-col items-center text-center p-4">
+                                <i class="fas fa-fire text-5xl text-amber-600 mb-2"></i>
+                                <span class="text-xs font-bold text-slate-500">TRIFONE 10L Air Fryer MH60-A Black &amp; Copper</span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <span class="text-[11px] font-bold text-emerald-700 uppercase tracking-wider">TRIFONE &bull; Air Fryers</span>
+                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">TRIFONE 10L Extra Large Air Fryer MH60-A Black &amp; Copper</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Executive black and metallic copper 10L air fryer with precision dual rotary temperature/timer dials and clear basket window.</p>
+                            <button onclick="inquireProduct('TRIFONE 10L Extra Large Air Fryer MH60-A Black & Copper')" class="w-full bg-brand-900 text-white hover:bg-emerald-600 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                                <i class="fab fa-whatsapp text-base"></i>
+                                <span>Inquire More</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 8. TRIFONE 16" Rechargeable Solar Pedestal Fan TF-16A (866560.jpg) -->
+                    <div data-category="cooling" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200/80 overflow-hidden group flex flex-col">
+                        <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
+                            <span class="absolute top-3 left-3 z-10 bg-emerald-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1"><i class="fas fa-fan"></i>Cooling &amp; Solar</span>
+                            <img src="866560.jpg" alt="TRIFONE 16-Inch Rechargeable Solar Pedestal Fan TF-16A" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.nextElementSibling.classList.add('flex');">
+                            <div class="hidden flex-col items-center text-center p-4">
+                                <i class="fas fa-fan text-5xl text-emerald-600 mb-2"></i>
+                                <span class="text-xs font-bold text-slate-500">TRIFONE 16" Solar Pedestal Fan TF-16A</span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <span class="text-[11px] font-bold text-emerald-700 uppercase tracking-wider">TRIFONE &bull; Cooling &amp; Solar</span>
+                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">TRIFONE 16" Rechargeable Solar Pedestal Fan TF-16A</h3>
                             <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Complete off-grid cooling kit with solar panel, remote control, LED night light, USB phone charger, and up to 8 hours battery backup.</p>
-                            <button onclick="inquireProduct('TRIFONE 16-Inch Solar Rechargeable Standing Fan TF-16A')" class="w-full bg-brand-900 text-white hover:bg-accent-500 hover:text-brand-900 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
-                                <span>Inquire Now</span>
-                                <i class="fas fa-paper-plane"></i>
+                            <button onclick="inquireProduct('TRIFONE 16-Inch Rechargeable Solar Pedestal Fan TF-16A')" class="w-full bg-brand-900 text-white hover:bg-emerald-600 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                                <i class="fab fa-whatsapp text-base"></i>
+                                <span>Inquire More</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 9. COSYNEST 8L Digital Air Fryer Oven 2400W CO-MH80-AR (866561.jpg) -->
+                    <div data-category="fryers" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200/80 overflow-hidden group flex flex-col">
+                        <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
+                            <span class="absolute top-3 left-3 z-10 bg-brand-900 text-accent-400 text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1"><i class="fas fa-temperature-high"></i>Air Fryers</span>
+                            <img src="866561.jpg" alt="COSYNEST 8L Digital Air Fryer Oven 2400W CO-MH80-AR" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.nextElementSibling.classList.add('flex');">
+                            <div class="hidden flex-col items-center text-center p-4">
+                                <i class="fas fa-tachometer-alt text-5xl text-amber-500 mb-2"></i>
+                                <span class="text-xs font-bold text-slate-500">COSYNEST 8L Digital Air Fryer Oven 2400W</span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <span class="text-[11px] font-bold text-accent-700 uppercase tracking-wider">COSYNEST &bull; Air Fryers</span>
+                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">COSYNEST 8L Digital Air Fryer Oven 2400W CO-MH80-AR</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">2400W high-power 8L digital air fryer oven with 360° hot air circulation and one-touch presets for fries, fish, steak, and poultry.</p>
+                            <button onclick="inquireProduct('COSYNEST 8L Digital Air Fryer Oven 2400W CO-MH80-AR')" class="w-full bg-brand-900 text-white hover:bg-emerald-600 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                                <i class="fab fa-whatsapp text-base"></i>
+                                <span>Inquire More</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 10. TRIFONE Stainless Steel Heavy-Duty Food Processor & Grinder (866562.jpg) -->
+                    <div data-category="blenders" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200/80 overflow-hidden group flex flex-col">
+                        <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
+                            <span class="absolute top-3 left-3 z-10 bg-brand-900 text-accent-400 text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1"><i class="fas fa-blender"></i>Blenders &amp; Mixers</span>
+                            <img src="866562.jpg" alt="TRIFONE Stainless Steel Heavy-Duty Food Processor & Grinder" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.nextElementSibling.classList.add('flex');">
+                            <div class="hidden flex-col items-center text-center p-4">
+                                <i class="fas fa-mortar-pestle text-5xl text-slate-600 mb-2"></i>
+                                <span class="text-xs font-bold text-slate-500">TRIFONE Steel Food Processor &amp; Grinder</span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <span class="text-[11px] font-bold text-emerald-700 uppercase tracking-wider">TRIFONE &bull; Blenders &amp; Mixers</span>
+                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">TRIFONE Stainless Steel Heavy-Duty Food Processor &amp; Grinder</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Brushed stainless steel electric meat grinder, yam pounder, and vegetable chopper with ergonomic top handle and high-torque motor.</p>
+                            <button onclick="inquireProduct('TRIFONE Stainless Steel Heavy-Duty Food Processor & Grinder')" class="w-full bg-brand-900 text-white hover:bg-emerald-600 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                                <i class="fab fa-whatsapp text-base"></i>
+                                <span>Inquire More</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- ================= 7 CURATED GIFT ITEMS FROM GIFTITEMS.ZIP ================= -->
+
+                    <!-- 11. Gift Item I (image0.jpeg) -->
+                    <div data-category="gifts" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border-2 border-accent-500/40 overflow-hidden group flex flex-col">
+                        <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
+                            <span class="absolute top-3 left-3 z-10 bg-accent-500 text-brand-900 text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase shadow-sm"><i class="fas fa-gift mr-1"></i>Gift Items</span>
+                            <img src="image0.jpeg" alt="Executive Corporate & Event Gift Item I" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="handleGiftImageError(this, 'image0.jpeg')">
+                            <div class="hidden flex-col items-center justify-center text-center p-6 bg-gradient-to-br from-brand-50 to-amber-50/50 rounded-xl w-full h-full">
+                                <div class="w-16 h-16 rounded-2xl bg-brand-900 text-accent-500 flex items-center justify-center text-3xl mb-3 shadow-md">
+                                    <i class="fas fa-gift"></i>
+                                </div>
+                                <span class="text-xs font-extrabold text-brand-900 uppercase tracking-wider">Gift Collection I</span>
+                                <span class="text-[10px] text-slate-500 mt-1">image0.jpeg</span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <span class="text-[11px] font-bold text-accent-600 uppercase tracking-wider">OMOTHEK &bull; Gift Items</span>
+                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">Executive Corporate &amp; Event Gift Item I</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Elegantly packaged household and lifestyle gift item tailored for corporate appreciation, special celebrations, and VIP event souvenirs.</p>
+                            <button onclick="inquireProduct('Executive Corporate & Event Gift Item I (image0.jpeg)')" class="w-full bg-brand-900 text-white hover:bg-emerald-600 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                                <i class="fab fa-whatsapp text-base"></i>
+                                <span>Inquire More</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 12. Gift Item II (image1.jpeg) -->
+                    <div data-category="gifts" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border-2 border-accent-500/40 overflow-hidden group flex flex-col">
+                        <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
+                            <span class="absolute top-3 left-3 z-10 bg-accent-500 text-brand-900 text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase shadow-sm"><i class="fas fa-gift mr-1"></i>Gift Items</span>
+                            <img src="image1.jpeg" alt="Premium Household & Souvenir Gift Item II" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="handleGiftImageError(this, 'image1.jpeg')">
+                            <div class="hidden flex-col items-center justify-center text-center p-6 bg-gradient-to-br from-brand-50 to-amber-50/50 rounded-xl w-full h-full">
+                                <div class="w-16 h-16 rounded-2xl bg-brand-900 text-accent-500 flex items-center justify-center text-3xl mb-3 shadow-md">
+                                    <i class="fas fa-box-open"></i>
+                                </div>
+                                <span class="text-xs font-extrabold text-brand-900 uppercase tracking-wider">Gift Collection II</span>
+                                <span class="text-[10px] text-slate-500 mt-1">image1.jpeg</span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <span class="text-[11px] font-bold text-accent-600 uppercase tracking-wider">OMOTHEK &bull; Gift Items</span>
+                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">Premium Household &amp; Souvenir Gift Item II</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">High-utility household gift selection ideal for weddings, anniversaries, housewarmings, and bulk dealer distribution.</p>
+                            <button onclick="inquireProduct('Premium Household & Souvenir Gift Item II (image1.jpeg)')" class="w-full bg-brand-900 text-white hover:bg-emerald-600 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                                <i class="fab fa-whatsapp text-base"></i>
+                                <span>Inquire More</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 13. Gift Item III (image2.jpeg) -->
+                    <div data-category="gifts" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border-2 border-accent-500/40 overflow-hidden group flex flex-col">
+                        <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
+                            <span class="absolute top-3 left-3 z-10 bg-accent-500 text-brand-900 text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase shadow-sm"><i class="fas fa-gift mr-1"></i>Gift Items</span>
+                            <img src="image2.jpeg" alt="Luxury Lifestyle & Utility Gift Item III" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="handleGiftImageError(this, 'image2.jpeg')">
+                            <div class="hidden flex-col items-center justify-center text-center p-6 bg-gradient-to-br from-brand-50 to-amber-50/50 rounded-xl w-full h-full">
+                                <div class="w-16 h-16 rounded-2xl bg-brand-900 text-accent-500 flex items-center justify-center text-3xl mb-3 shadow-md">
+                                    <i class="fas fa-award"></i>
+                                </div>
+                                <span class="text-xs font-extrabold text-brand-900 uppercase tracking-wider">Gift Collection III</span>
+                                <span class="text-[10px] text-slate-500 mt-1">image2.jpeg</span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <span class="text-[11px] font-bold text-accent-600 uppercase tracking-wider">OMOTHEK &bull; Gift Items</span>
+                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">Luxury Lifestyle &amp; Utility Gift Item III</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Thoughtfully curated modern home and kitchen gift piece combining aesthetic elegance with everyday convenience.</p>
+                            <button onclick="inquireProduct('Luxury Lifestyle & Utility Gift Item III (image2.jpeg)')" class="w-full bg-brand-900 text-white hover:bg-emerald-600 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                                <i class="fab fa-whatsapp text-base"></i>
+                                <span>Inquire More</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 14. Gift Item IV (image3.jpeg) -->
+                    <div data-category="gifts" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border-2 border-accent-500/40 overflow-hidden group flex flex-col">
+                        <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
+                            <span class="absolute top-3 left-3 z-10 bg-accent-500 text-brand-900 text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase shadow-sm"><i class="fas fa-gift mr-1"></i>Gift Items</span>
+                            <img src="image3.jpeg" alt="Signature Celebration & Corporate Gift Item IV" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="handleGiftImageError(this, 'image3.jpeg')">
+                            <div class="hidden flex-col items-center justify-center text-center p-6 bg-gradient-to-br from-brand-50 to-amber-50/50 rounded-xl w-full h-full">
+                                <div class="w-16 h-16 rounded-2xl bg-brand-900 text-accent-500 flex items-center justify-center text-3xl mb-3 shadow-md">
+                                    <i class="fas fa-gem"></i>
+                                </div>
+                                <span class="text-xs font-extrabold text-brand-900 uppercase tracking-wider">Gift Collection IV</span>
+                                <span class="text-[10px] text-slate-500 mt-1">image3.jpeg</span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <span class="text-[11px] font-bold text-accent-600 uppercase tracking-wider">OMOTHEK &bull; Gift Items</span>
+                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">Signature Celebration &amp; Corporate Gift Item IV</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Distinctive celebration gift package crafted for festive hampers, executive recognition, and retail gift shops.</p>
+                            <button onclick="inquireProduct('Signature Celebration & Corporate Gift Item IV (image3.jpeg)')" class="w-full bg-brand-900 text-white hover:bg-emerald-600 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                                <i class="fab fa-whatsapp text-base"></i>
+                                <span>Inquire More</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 15. Gift Item V (image4.jpeg) -->
+                    <div data-category="gifts" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border-2 border-accent-500/40 overflow-hidden group flex flex-col">
+                        <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
+                            <span class="absolute top-3 left-3 z-10 bg-accent-500 text-brand-900 text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase shadow-sm"><i class="fas fa-gift mr-1"></i>Gift Items</span>
+                            <img src="image4.jpeg" alt="Classic Home & Kitchen Curated Gift Item V" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="handleGiftImageError(this, 'image4.jpeg')">
+                            <div class="hidden flex-col items-center justify-center text-center p-6 bg-gradient-to-br from-brand-50 to-amber-50/50 rounded-xl w-full h-full">
+                                <div class="w-16 h-16 rounded-2xl bg-brand-900 text-accent-500 flex items-center justify-center text-3xl mb-3 shadow-md">
+                                    <i class="fas fa-ribbon"></i>
+                                </div>
+                                <span class="text-xs font-extrabold text-brand-900 uppercase tracking-wider">Gift Collection V</span>
+                                <span class="text-[10px] text-slate-500 mt-1">image4.jpeg</span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <span class="text-[11px] font-bold text-accent-600 uppercase tracking-wider">OMOTHEK &bull; Gift Items</span>
+                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">Classic Home &amp; Kitchen Curated Gift Item V</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Versatile home and kitchen gift item designed to delight families, guests, and valued business partners.</p>
+                            <button onclick="inquireProduct('Classic Home & Kitchen Curated Gift Item V (image4.jpeg)')" class="w-full bg-brand-900 text-white hover:bg-emerald-600 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                                <i class="fab fa-whatsapp text-base"></i>
+                                <span>Inquire More</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 16. Gift Item VI (image5.jpeg) -->
+                    <div data-category="gifts" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border-2 border-accent-500/40 overflow-hidden group flex flex-col">
+                        <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
+                            <span class="absolute top-3 left-3 z-10 bg-accent-500 text-brand-900 text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase shadow-sm"><i class="fas fa-gift mr-1"></i>Gift Items</span>
+                            <img src="image5.jpeg" alt="Deluxe Event & VIP Souvenir Gift Item VI" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="handleGiftImageError(this, 'image5.jpeg')">
+                            <div class="hidden flex-col items-center justify-center text-center p-6 bg-gradient-to-br from-brand-50 to-amber-50/50 rounded-xl w-full h-full">
+                                <div class="w-16 h-16 rounded-2xl bg-brand-900 text-accent-500 flex items-center justify-center text-3xl mb-3 shadow-md">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="text-xs font-extrabold text-brand-900 uppercase tracking-wider">Gift Collection VI</span>
+                                <span class="text-[10px] text-slate-500 mt-1">image5.jpeg</span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <span class="text-[11px] font-bold text-accent-600 uppercase tracking-wider">OMOTHEK &bull; Gift Items</span>
+                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">Deluxe Event &amp; VIP Souvenir Gift Item VI</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Premium souvenir and gift selection available in single retail units or bulk wholesale quantities for events.</p>
+                            <button onclick="inquireProduct('Deluxe Event & VIP Souvenir Gift Item VI (image5.jpeg)')" class="w-full bg-brand-900 text-white hover:bg-emerald-600 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                                <i class="fab fa-whatsapp text-base"></i>
+                                <span>Inquire More</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 17. Gift Item VII (image6.jpeg) -->
+                    <div data-category="gifts" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border-2 border-accent-500/40 overflow-hidden group flex flex-col">
+                        <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
+                            <span class="absolute top-3 left-3 z-10 bg-accent-500 text-brand-900 text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase shadow-sm"><i class="fas fa-gift mr-1"></i>Gift Items</span>
+                            <img src="image6.jpeg" alt="Exclusive Omothek Special Gift Item VII" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="handleGiftImageError(this, 'image6.jpeg')">
+                            <div class="hidden flex-col items-center justify-center text-center p-6 bg-gradient-to-br from-brand-50 to-amber-50/50 rounded-xl w-full h-full">
+                                <div class="w-16 h-16 rounded-2xl bg-brand-900 text-accent-500 flex items-center justify-center text-3xl mb-3 shadow-md">
+                                    <i class="fas fa-crown"></i>
+                                </div>
+                                <span class="text-xs font-extrabold text-brand-900 uppercase tracking-wider">Gift Collection VII</span>
+                                <span class="text-[10px] text-slate-500 mt-1">image6.jpeg</span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <span class="text-[11px] font-bold text-accent-600 uppercase tracking-wider">OMOTHEK &bull; Gift Items</span>
+                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">Exclusive Omothek Special Gift Item VII</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Signature curated gift item offering lasting quality, practical household value, and refined presentation.</p>
+                            <button onclick="inquireProduct('Exclusive Omothek Special Gift Item VII (image6.jpeg)')" class="w-full bg-brand-900 text-white hover:bg-emerald-600 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                                <i class="fab fa-whatsapp text-base"></i>
+                                <span>Inquire More</span>
                             </button>
                         </div>
                     </div>
@@ -1349,116 +1576,153 @@
         <!-- ================================================================= -->
         <section id="contact" class="page-section hidden fade-in bg-white pb-24">
             <div class="bg-brand-900 py-16 text-white text-center border-b-4 border-accent-500">
-                <span class="text-accent-400 font-bold uppercase tracking-widest text-xs">We're Ready To Assist</span>
-                <h1 class="text-4xl font-extrabold mt-2">Contact Us</h1>
+                <span class="text-accent-400 font-bold uppercase tracking-widest text-xs">We're Ready To Assist You</span>
+                <h1 class="text-4xl font-extrabold uppercase tracking-wide mt-2">Contact Us</h1>
                 <div class="w-24 h-1 bg-accent-500 mx-auto mt-4 rounded"></div>
                 <p class="mt-4 text-lg text-slate-300 max-w-2xl mx-auto px-4">
-                    Reach out for wholesale dealership pricing, product availability, bulk orders, or retail inquiries.
+                    Inquire about wholesale dealer pricing, retail orders, curated gift items, or partnership opportunities with OMOTHEK Enterprises.
                 </p>
             </div>
 
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
                     
-                    <!-- Left Column: Contact Info Cards -->
-                    <div class="lg:col-span-1 space-y-6">
-                        <div class="bg-brand-900 p-8 rounded-3xl text-white shadow-xl border-b-4 border-accent-500">
-                            <h3 class="text-2xl font-bold text-accent-500 mb-6">Get in Touch</h3>
-                            
+                    <!-- Contact Information Column -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <div class="bg-brand-900 text-white p-8 sm:p-10 rounded-3xl shadow-2xl border-b-8 border-accent-500 relative overflow-hidden">
+                            <h3 class="text-2xl font-extrabold text-accent-400 mb-6">Get In Touch</h3>
+                            <p class="text-slate-300 text-sm leading-relaxed mb-8">
+                                Connect with our sales representation team via WhatsApp, phone call, email, or visit our office in Ikorodu for bulk appliance orders, custom event gift packages, or retail inquiries.
+                            </p>
+
                             <div class="space-y-6">
+                                <!-- Address -->
                                 <div class="flex items-start gap-4">
-                                    <div class="w-10 h-10 rounded-xl bg-brand-800 text-accent-500 flex items-center justify-center shrink-0 text-lg">
-                                        <i class="fas fa-building"></i>
+                                    <div class="w-12 h-12 rounded-2xl bg-white/10 text-accent-400 flex items-center justify-center text-xl shrink-0">
+                                        <i class="fas fa-map-marker-alt"></i>
                                     </div>
                                     <div>
-                                        <h4 class="font-bold text-white text-sm">Corporate Office</h4>
-                                        <p class="text-slate-300 mt-1 text-xs leading-relaxed">OMOTHEK ENTERPRISES<br/>Sales &amp; Distribution Hub</p>
+                                        <h4 class="font-bold text-white">Office &amp; Showroom Address</h4>
+                                        <p class="text-slate-300 text-sm mt-1">15 Morenikeji Shobajo Street, Ikorodu</p>
+                                        <p class="text-xs text-accent-400 mt-0.5">OMOTHEK ENTERPRISES (Partner: TRIFONE &amp; ORIFLAME)</p>
                                     </div>
                                 </div>
-                                
-                                <div class="flex items-start gap-4">
-                                    <div class="w-10 h-10 rounded-xl bg-brand-800 text-accent-500 flex items-center justify-center shrink-0 text-lg">
-                                        <i class="fas fa-phone-alt"></i>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-bold text-white text-sm">Sales &amp; Dealer Hotline</h4>
-                                        <p class="text-slate-300 mt-1 text-xs">Mon – Sat: 8:00 AM – 6:00 PM</p>
-                                        <p class="text-accent-400 font-semibold text-xs mt-0.5">Fast Order Coordination</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="flex items-start gap-4">
-                                    <div class="w-10 h-10 rounded-xl bg-brand-800 text-accent-500 flex items-center justify-center shrink-0 text-lg">
-                                        <i class="fas fa-envelope"></i>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-bold text-white text-sm">Email Inquiries</h4>
-                                        <p class="text-slate-300 mt-1 text-xs">info@omothek.com</p>
-                                        <p class="text-slate-300 text-xs">sales@omothek.com</p>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="mt-8 pt-6 border-t border-brand-800">
-                                <p class="text-xs text-slate-400 uppercase tracking-wider font-semibold mb-2">Official Brand Partners</p>
-                                <div class="flex items-center gap-3">
-                                    <span class="px-3 py-1 rounded-md bg-emerald-500/20 text-emerald-300 text-xs font-bold">TRIFONE</span>
-                                    <span class="px-3 py-1 rounded-md bg-accent-500/20 text-accent-300 text-xs font-bold">ORIFLAME</span>
+                                <!-- WhatsApp & Call Numbers -->
+                                <div class="flex items-start gap-4">
+                                    <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl shrink-0">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white">WhatsApp &amp; Direct Call</h4>
+                                        <div class="mt-1 space-y-1 text-sm">
+                                            <p>
+                                                <a href="https://wa.me/2348104559942?text=Hello%20OMOTHEK%20ENTERPRISES%2C%20I%20would%20like%20to%20inquire%20more%20about%20your%20products." target="_blank" rel="noopener noreferrer" class="text-emerald-400 hover:underline font-semibold flex items-center gap-1.5">
+                                                    <span>WhatsApp: 08104559942</span>
+                                                    <i class="fas fa-external-link-alt text-[10px]"></i>
+                                                </a>
+                                            </p>
+                                            <p>
+                                                <a href="tel:09073690825" class="text-slate-200 hover:text-accent-400 transition font-semibold flex items-center gap-1.5">
+                                                    <i class="fas fa-phone-alt text-xs text-accent-400"></i>
+                                                    <span>Call: 09073690825</span>
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Email -->
+                                <div class="flex items-start gap-4">
+                                    <div class="w-12 h-12 rounded-2xl bg-white/10 text-accent-400 flex items-center justify-center text-xl shrink-0">
+                                        <i class="fas fa-envelope-open-text"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white">Email Inquiries</h4>
+                                        <a href="mailto:omothekenterprises@gmail.com" class="text-slate-300 hover:text-accent-400 transition text-sm mt-1 block break-all">
+                                            omothekenterprises@gmail.com
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <!-- Official TikTok Channels -->
+                                <div class="flex items-start gap-4 pt-2 border-t border-brand-800">
+                                    <div class="w-12 h-12 rounded-2xl bg-white/10 text-accent-400 flex items-center justify-center text-xl shrink-0">
+                                        <i class="fab fa-tiktok"></i>
+                                    </div>
+                                    <div class="w-full">
+                                        <h4 class="font-bold text-white mb-2">Official TikTok Stores</h4>
+                                        <div class="space-y-2">
+                                            <a href="https://www.tiktok.com/@hickiesplaceelectronics" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between bg-white/5 hover:bg-accent-500 hover:text-brand-900 border border-white/10 px-3.5 py-2 rounded-xl text-xs font-semibold transition">
+                                                <span class="truncate">www.tiktok.com/@hickiesplaceelectronics</span>
+                                                <i class="fas fa-external-link-alt ml-2 shrink-0"></i>
+                                            </a>
+                                            <a href="https://www.tiktok.com/@hickiesoriflamestore" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between bg-white/5 hover:bg-accent-500 hover:text-brand-900 border border-white/10 px-3.5 py-2 rounded-xl text-xs font-semibold transition">
+                                                <span class="truncate">www.tiktok.com/@hickiesoriflamestore</span>
+                                                <i class="fas fa-external-link-alt ml-2 shrink-0"></i>
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Right Column: Dealer & Customer Inquiry Form -->
-                    <div class="lg:col-span-2 bg-white p-8 md:p-10 rounded-3xl shadow-xl border border-slate-200/80">
-                        <h3 class="text-2xl font-extrabold text-brand-900 mb-2">Send Us an Inquiry</h3>
-                        <p class="text-slate-500 text-sm mb-6">Fill out the form below and our sales representation team will respond promptly.</p>
-                        
-                        <div id="formSuccess" class="hidden mb-6 p-4 bg-emerald-50 text-emerald-900 rounded-xl border border-emerald-300 flex items-center gap-3">
-                            <i class="fas fa-check-circle text-emerald-600 text-xl"></i>
-                            <span class="text-sm font-medium">Thank you! Your inquiry has been received by OMOTHEK ENTERPRISES. Our sales team will contact you shortly.</span>
-                        </div>
-
-                        <form id="contactForm" class="space-y-6">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="name" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Full Name / Business Name *</label>
-                                    <input type="text" id="name" required class="w-full px-4 py-3.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition bg-slate-50 text-sm" placeholder="e.g. Adewale Stores Ltd">
-                                </div>
-                                <div>
-                                    <label for="email" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Email or Phone Number *</label>
-                                    <input type="text" id="email" required class="w-full px-4 py-3.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition bg-slate-50 text-sm" placeholder="name@example.com or +234...">
-                                </div>
-                            </div>
-                            
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="inquiryType" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Nature of Inquiry</label>
-                                    <select id="inquiryType" class="w-full px-4 py-3.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition bg-slate-50 text-sm">
-                                        <option value="dealer">Become a Registered Dealer / Retailer</option>
-                                        <option value="bulk">Wholesale / Bulk Order Supply</option>
-                                        <option value="product">Specific Product Pricing &amp; Info</option>
-                                        <option value="oriflame">Oriflame Partnership Inquiry</option>
-                                        <option value="other">General Support</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label for="selectedProduct" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Product of Interest (Optional)</label>
-                                    <input type="text" id="selectedProduct" class="w-full px-4 py-3.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition bg-slate-50 text-sm" placeholder="e.g. TRIFONE 10L Air Fryer / Solar Fan">
-                                </div>
-                            </div>
-
+                    <!-- Interactive Map Column (Replaces Inquiry Form) -->
+                    <div class="lg:col-span-7 bg-white p-6 sm:p-8 rounded-3xl shadow-xl border border-slate-200 flex flex-col justify-between">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
                             <div>
-                                <label for="message" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Your Message / Order Details *</label>
-                                <textarea id="message" rows="4" required class="w-full px-4 py-3.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-600 focus:border-transparent outline-none transition resize-none bg-slate-50 text-sm" placeholder="Tell us the items, quantities, or dealership support you need..."></textarea>
+                                <span class="text-xs font-bold uppercase tracking-widest text-accent-600 flex items-center gap-1.5">
+                                    <i class="fas fa-location-dot text-accent-500"></i>
+                                    <span>Find Our Showroom</span>
+                                </span>
+                                <h3 class="text-2xl font-extrabold text-brand-900 mt-1">Our Location Map</h3>
+                                <p class="text-slate-600 text-sm mt-0.5">15 Morenikeji Shobajo Street, Ikorodu, Lagos</p>
                             </div>
+                            <a 
+                                href="https://www.google.com/maps/search/?api=1&query=15+Morenikeji+Shobajo+Street,+Ikorodu,+Lagos,+Nigeria" 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                class="inline-flex items-center justify-center gap-2 bg-brand-900 hover:bg-accent-500 text-white hover:text-brand-900 font-bold px-5 py-3 rounded-xl text-xs uppercase tracking-wider transition shadow-md shrink-0"
+                            >
+                                <i class="fas fa-directions text-sm"></i>
+                                <span>Get Directions</span>
+                            </a>
+                        </div>
 
-                            <button type="submit" class="w-full bg-brand-900 text-white font-bold py-4 rounded-xl hover:bg-brand-800 transition shadow-lg text-base flex justify-center items-center gap-3">
-                                <span>Submit Inquiry</span>
-                                <i class="fas fa-paper-plane text-accent-500"></i>
-                            </button>
-                        </form>
+                        <!-- Embedded Google Map for 15 Morenikeji Shobajo Street, Ikorodu -->
+                        <div class="relative w-full flex-grow min-h-[380px] sm:min-h-[430px] rounded-2xl overflow-hidden border-2 border-slate-200 shadow-inner bg-slate-100">
+                            <iframe 
+                                title="OMOTHEK ENTERPRISES Location - 15 Morenikeji Shobajo Street, Ikorodu"
+                                src="https://maps.google.com/maps?q=15%20Morenikeji%20Shobajo%20Street,%20Ikorodu,%20Lagos,%20Nigeria&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+                                class="w-full h-full border-0 absolute inset-0" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade"
+                            ></iframe>
+                        </div>
+
+                        <!-- Bottom Quick Connect Bar under Map -->
+                        <div class="mt-6 pt-5 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <div class="flex items-center gap-3 text-xs text-slate-600">
+                                <span class="w-9 h-9 rounded-xl bg-brand-50 text-brand-900 flex items-center justify-center shrink-0">
+                                    <i class="fas fa-store text-accent-600"></i>
+                                </span>
+                                <span>Visit us in Ikorodu or reach out directly on WhatsApp for rapid dispatch.</span>
+                            </div>
+                            <div class="flex items-center gap-3 w-full sm:w-auto">
+                                <a href="https://wa.me/2348104559942?text=Hello%20OMOTHEK%20ENTERPRISES%2C%20I%20would%20like%20directions%20or%20to%20make%20an%20inquiry." target="_blank" rel="noopener noreferrer" class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-2.5 rounded-xl text-xs transition shadow-sm">
+                                    <i class="fab fa-whatsapp text-sm"></i>
+                                    <span>WhatsApp Us</span>
+                                </a>
+                                <a href="tel:09073690825" class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 bg-slate-100 hover:bg-brand-900 text-brand-900 hover:text-white font-bold px-4 py-2.5 rounded-xl text-xs transition">
+                                    <i class="fas fa-phone-alt text-xs"></i>
+                                    <span>09073690825</span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </section>
@@ -1468,113 +1732,142 @@
     <!-- ================================================================= -->
     <!-- FOOTER                                                            -->
     <!-- ================================================================= -->
-    <footer class="bg-brand-950 text-slate-300 py-14 border-t-4 border-accent-500 mt-auto">
+    <footer class="bg-brand-950 text-slate-300 pt-16 pb-12 border-t-4 border-accent-500">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
             
-            <!-- Column 1: Logo & About -->
+            <!-- Brand Column -->
             <div>
-                <div onclick="navigateTo('home')" class="cursor-pointer flex items-center mb-5 bg-white rounded-xl p-2 w-fit shadow-md border border-accent-500">
+                <div class="inline-block bg-white rounded-xl p-2 mb-4 border-2 border-accent-500/60 cursor-pointer" onclick="navigateTo('home')">
                     <img 
-                        src="866571_4.jpg" 
-                        alt="Omothek Enterprises Logo" 
-                        class="h-12 w-auto object-contain"
-                        onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden'); this.nextElementSibling.classList.add('flex');"
+                        src="866571_3.jpg" 
+                        alt="OMOTHEK ENTERPRISES Logo" 
+                        class="h-12 w-auto object-contain rounded"
+                        onerror="if(!this.dataset.triedAlt){this.dataset.triedAlt='1';this.src='866571_4.jpg';}else{this.style.display='none';this.nextElementSibling.classList.remove('hidden');this.nextElementSibling.classList.add('flex');}"
                     >
-                    <div class="hidden items-center gap-2 px-2">
-                        <span class="text-lg font-extrabold text-brand-900 tracking-wider">OMOTHEK</span>
-                        <span class="text-[10px] font-bold text-accent-600 uppercase">ENTERPRISES</span>
+                    <div class="hidden items-center gap-2 px-2 py-0.5">
+                        <span class="text-base font-extrabold text-brand-900">OMOTHEK <span class="text-accent-600">ENTERPRISES</span></span>
                     </div>
                 </div>
-                <p class="text-sm leading-relaxed mb-5 text-slate-400">
-                    Smart Technology. Better Living. Your trusted sales representation and distribution partner for TRIFONE Electronics and Oriflame Sweden.
+                <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                    Smart Technology. Better Living. Official distribution and sales partner for TRIFONE Electronics, ORIFLAME Sweden, and curated corporate &amp; household Gift Items.
                 </p>
-                <div class="flex space-x-3">
-                    <a href="#contact" onclick="navigateTo('contact'); return false;" class="w-9 h-9 rounded-full bg-brand-900 border border-brand-700 flex items-center justify-center hover:bg-accent-500 hover:text-brand-900 transition"><i class="fab fa-facebook-f text-sm"></i></a>
-                    <a href="#contact" onclick="navigateTo('contact'); return false;" class="w-9 h-9 rounded-full bg-brand-900 border border-brand-700 flex items-center justify-center hover:bg-accent-500 hover:text-brand-900 transition"><i class="fab fa-instagram text-sm"></i></a>
-                    <a href="#contact" onclick="navigateTo('contact'); return false;" class="w-9 h-9 rounded-full bg-brand-900 border border-brand-700 flex items-center justify-center hover:bg-accent-500 hover:text-brand-900 transition"><i class="fab fa-whatsapp text-sm"></i></a>
+                <div class="space-y-1.5 text-xs text-slate-300">
+                    <p class="flex items-start gap-2">
+                        <i class="fas fa-map-marker-alt text-accent-500 mt-0.5"></i>
+                        <span>15 Morenikeji Shobajo Street, Ikorodu</span>
+                    </p>
+                    <p class="flex items-center gap-2">
+                        <i class="fab fa-whatsapp text-emerald-400"></i>
+                        <a href="https://wa.me/2348104559942" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 transition">WhatsApp: 08104559942</a>
+                    </p>
+                    <p class="flex items-center gap-2">
+                        <i class="fas fa-phone-alt text-accent-500"></i>
+                        <a href="tel:09073690825" class="hover:text-accent-400 transition">Call: 09073690825</a>
+                    </p>
+                    <p class="flex items-center gap-2">
+                        <i class="fas fa-envelope text-accent-500"></i>
+                        <a href="mailto:omothekenterprises@gmail.com" class="hover:text-accent-400 transition break-all">omothekenterprises@gmail.com</a>
+                    </p>
                 </div>
             </div>
-            
-            <!-- Column 2: Quick Links -->
+
+            <!-- Navigation Links -->
             <div>
-                <h3 class="text-accent-500 text-sm font-bold mb-4 uppercase tracking-widest">Quick Navigation</h3>
+                <h4 class="text-white font-bold uppercase tracking-wider text-sm mb-4 border-b border-brand-800 pb-2">Quick Navigation</h4>
                 <ul class="space-y-2.5 text-sm">
-                    <li><button onclick="navigateTo('home')" class="hover:text-accent-400 transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-accent-500"></i> Home</button></li>
-                    <li><button onclick="navigateTo('about')" class="hover:text-accent-400 transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-accent-500"></i> About Us &amp; Partners</button></li>
-                    <li><button onclick="navigateTo('services')" class="hover:text-accent-400 transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-accent-500"></i> Services Rendered</button></li>
-                    <li><button onclick="navigateTo('products')" class="hover:text-accent-400 transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-accent-500"></i> Products Catalog</button></li>
-                    <li><button onclick="navigateTo('contact')" class="hover:text-accent-400 transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-accent-500"></i> Contact &amp; Dealership</button></li>
+                    <li><button onclick="navigateTo('home')" class="hover:text-accent-400 transition">Home</button></li>
+                    <li><button onclick="navigateTo('about')" class="hover:text-accent-400 transition">About Us</button></li>
+                    <li><button onclick="navigateTo('services')" class="hover:text-accent-400 transition">Services Rendered</button></li>
+                    <li><button onclick="navigateTo('products')" class="hover:text-accent-400 transition">Products Catalogue</button></li>
+                    <li><button onclick="navigateTo('contact')" class="hover:text-accent-400 transition">Contact &amp; Dealer Inquiry</button></li>
                 </ul>
             </div>
 
-            <!-- Column 3: Solutions (All Linked to Products Page) -->
+            <!-- Solutions Links (Linked to Products Categories) -->
             <div>
-                <h3 class="text-accent-500 text-sm font-bold mb-4 uppercase tracking-widest">Solutions</h3>
+                <h4 class="text-white font-bold uppercase tracking-wider text-sm mb-4 border-b border-brand-800 pb-2">Solutions</h4>
                 <ul class="space-y-2.5 text-sm">
-                    <li><a href="#products" onclick="navigateAndFilter('all'); return false;" class="hover:text-accent-400 transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-accent-500"></i> Kitchen Appliances</a></li>
-                    <li><a href="#products" onclick="navigateAndFilter('fryers'); return false;" class="hover:text-accent-400 transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-accent-500"></i> Air Fryers &amp; Ovens</a></li>
-                    <li><a href="#products" onclick="navigateAndFilter('blenders'); return false;" class="hover:text-accent-400 transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-accent-500"></i> Blenders &amp; Mixers</a></li>
-                    <li><a href="#products" onclick="navigateAndFilter('solar-cookware'); return false;" class="hover:text-accent-400 transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-accent-500"></i> Solar Standing Fans</a></li>
-                    <li><a href="#products" onclick="navigateAndFilter('cooking'); return false;" class="hover:text-accent-400 transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-accent-500"></i> Electric Pottery Furnaces</a></li>
-                    <li><a href="#products" onclick="navigateAndFilter('solar-cookware'); return false;" class="hover:text-accent-400 transition flex items-center gap-2"><i class="fas fa-chevron-right text-[10px] text-accent-500"></i> Aluminum Cookware Sets</a></li>
+                    <li><button onclick="navigateAndFilter('cooking')" class="hover:text-accent-400 transition text-left flex items-center gap-2"><i class="fas fa-fire-burner text-accent-500 text-xs w-4"></i><span>Kitchen Appliances &amp; Furnaces</span></button></li>
+                    <li><button onclick="navigateAndFilter('fryers')" class="hover:text-accent-400 transition text-left flex items-center gap-2"><i class="fas fa-temperature-high text-accent-500 text-xs w-4"></i><span>8L &amp; 10L Digital Air Fryers</span></button></li>
+                    <li><button onclick="navigateAndFilter('blenders')" class="hover:text-accent-400 transition text-left flex items-center gap-2"><i class="fas fa-blender text-accent-500 text-xs w-4"></i><span>Heavy-Duty Blenders &amp; Mixers</span></button></li>
+                    <li><button onclick="navigateAndFilter('cooling')" class="hover:text-accent-400 transition text-left flex items-center gap-2"><i class="fas fa-fan text-accent-500 text-xs w-4"></i><span>Solar Rechargeable Standing Fans</span></button></li>
+                    <li><button onclick="navigateAndFilter('cookware')" class="hover:text-accent-400 transition text-left flex items-center gap-2"><i class="fas fa-utensils text-accent-500 text-xs w-4"></i><span>Aluminum Cookware Sets</span></button></li>
+                    <li><button onclick="navigateAndFilter('gifts')" class="text-accent-400 font-semibold hover:underline transition text-left flex items-center gap-2"><i class="fas fa-gift text-accent-500 text-xs w-4"></i><span>Curated Gift Items (7)</span></button></li>
                 </ul>
             </div>
-            
-            <!-- Column 4: Dealer Newsletter -->
+
+            <!-- Partner & TikTok Highlight -->
             <div>
-                <h3 class="text-accent-500 text-sm font-bold mb-4 uppercase tracking-widest">Dealer Updates</h3>
-                <p class="text-xs text-slate-400 mb-4 leading-relaxed">Subscribe to receive new TRIFONE stock alerts and wholesale price lists.</p>
-                <form onsubmit="event.preventDefault(); document.getElementById('newsletterMsg').classList.remove('hidden'); this.reset();" class="space-y-2">
-                    <div class="flex">
-                        <input type="email" required placeholder="Enter your email" class="px-3.5 py-2.5 w-full rounded-l-xl focus:outline-none text-slate-900 text-xs bg-white">
-                        <button type="submit" class="bg-accent-500 hover:bg-accent-400 text-brand-900 font-bold px-4 py-2.5 rounded-r-xl text-xs transition">Join</button>
-                    </div>
-                    <p id="newsletterMsg" class="hidden text-emerald-400 text-xs font-medium pt-1"><i class="fas fa-check mr-1"></i> Subscribed to dealer alerts!</p>
-                </form>
+                <h4 class="text-white font-bold uppercase tracking-wider text-sm mb-4 border-b border-brand-800 pb-2">Follow Us on TikTok</h4>
+                <div class="space-y-2.5 mb-5">
+                    <a href="https://www.tiktok.com/@hickiesplaceelectronics" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2.5 bg-brand-900 hover:bg-brand-800 border border-brand-800 px-3.5 py-2.5 rounded-xl text-xs text-white transition">
+                        <i class="fab fa-tiktok text-accent-400 text-sm"></i>
+                        <div class="overflow-hidden">
+                            <span class="block font-bold text-accent-400">Electronics Store</span>
+                            <span class="block text-[11px] text-slate-300 truncate">www.tiktok.com/@hickiesplaceelectronics</span>
+                        </div>
+                    </a>
+                    <a href="https://www.tiktok.com/@hickiesoriflamestore" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2.5 bg-brand-900 hover:bg-brand-800 border border-brand-800 px-3.5 py-2.5 rounded-xl text-xs text-white transition">
+                        <i class="fab fa-tiktok text-pink-400 text-sm"></i>
+                        <div class="overflow-hidden">
+                            <span class="block font-bold text-pink-300">Oriflame Store</span>
+                            <span class="block text-[11px] text-slate-300 truncate">www.tiktok.com/@hickiesoriflamestore</span>
+                        </div>
+                    </a>
+                </div>
+                <a href="https://wa.me/2348104559942?text=Hello%20OMOTHEK%20ENTERPRISES%2C%20I%20want%20to%20inquire%20about%20becoming%20a%20partner%20dealer." target="_blank" rel="noopener noreferrer" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-xl text-xs uppercase tracking-wider transition shadow-md flex items-center justify-center gap-2">
+                    <i class="fab fa-whatsapp text-base"></i>
+                    <span>Chat on WhatsApp</span>
+                </a>
             </div>
         </div>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-brand-900 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-400 gap-4">
-            <p>&copy; 2026 OMOTHEK ENTERPRISES. All rights reserved.</p>
-            <p>Official Partner: <span class="text-white font-semibold">TRIFONE Electronics</span> &amp; <span class="text-white font-semibold">ORIFLAME Sweden</span></p>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-brand-900 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-4">
+            <p>&copy; <span id="currentYear"></span> OMOTHEK ENTERPRISES. All rights reserved.</p>
+            <p>Smart Technology. Better Living.</p>
         </div>
     </footer>
 
     <!-- ================================================================= -->
-    <!-- APPLICATION SCRIPTS                                               -->
+    <!-- APPLICATION JAVASCRIPT                                            -->
     <!-- ================================================================= -->
     <script>
-        // 1. SPA Page Navigation
+        // Set copyright year
+        const yearEl = document.getElementById('currentYear');
+        if (yearEl) {
+            yearEl.textContent = new Date().getFullYear();
+        }
+
+        // SPA Page Navigation
         function navigateTo(pageId) {
-            // Hide all sections
-            document.querySelectorAll('.page-section').forEach(section => {
-                section.classList.add('hidden');
-                section.classList.remove('block');
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(sec => {
+                sec.classList.add('hidden');
+                sec.classList.remove('block');
             });
-            
-            // Show requested section
-            const targetPage = document.getElementById(pageId);
-            if (targetPage) {
-                targetPage.classList.remove('hidden');
-                targetPage.classList.add('block');
+
+            const target = document.getElementById(pageId);
+            if (target) {
+                target.classList.remove('hidden');
+                target.classList.add('block');
             }
-            
-            // Update Desktop Navbar Active Link
-            document.querySelectorAll('.nav-link').forEach(link => {
-                const linkPage = link.getAttribute('data-page');
-                if (linkPage === pageId) {
-                    link.classList.remove('text-slate-200', 'border-transparent');
+
+            // Update Desktop Nav active state
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                if (link.dataset.page === pageId) {
                     link.classList.add('text-accent-500', 'border-accent-500');
+                    link.classList.remove('text-slate-200', 'border-transparent');
                 } else {
                     link.classList.remove('text-accent-500', 'border-accent-500');
                     link.classList.add('text-slate-200', 'border-transparent');
                 }
             });
 
-            // Update Mobile Navbar Active Link
-            document.querySelectorAll('.mobile-nav-link').forEach(link => {
-                const linkPage = link.getAttribute('data-mobile-page');
-                if (linkPage === pageId) {
+            // Update Mobile Nav active state
+            const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+            mobileLinks.forEach(link => {
+                if (link.dataset.mobilePage === pageId) {
                     link.classList.add('bg-brand-900', 'text-white', 'border-l-4', 'border-accent-500');
                     link.classList.remove('text-slate-300');
                 } else {
@@ -1586,34 +1879,37 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // 2. Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const menuIcon = document.getElementById('menu-icon');
-        const closeIcon = document.getElementById('close-icon');
+        // Mobile Navigation Handler
+        function navigateMobile(pageId) {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const closeIcon = document.getElementById('close-icon');
+            if (mobileMenu) mobileMenu.classList.add('hidden');
+            if (menuIcon) menuIcon.classList.remove('hidden');
+            if (closeIcon) closeIcon.classList.add('hidden');
+            navigateTo(pageId);
+        }
 
-        if (mobileMenuBtn) {
-            mobileMenuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-                menuIcon.classList.toggle('hidden');
-                closeIcon.classList.toggle('hidden');
+        // Mobile Menu Toggle Button
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        if (mobileBtn) {
+            mobileBtn.addEventListener('click', function () {
+                const mobileMenu = document.getElementById('mobile-menu');
+                const menuIcon = document.getElementById('menu-icon');
+                const closeIcon = document.getElementById('close-icon');
+                if (mobileMenu) {
+                    mobileMenu.classList.toggle('hidden');
+                    menuIcon.classList.toggle('hidden');
+                    closeIcon.classList.toggle('hidden');
+                }
             });
         }
 
-        function navigateMobile(pageId) {
-            navigateTo(pageId);
-            if (mobileMenu) {
-                mobileMenu.classList.add('hidden');
-                menuIcon.classList.remove('hidden');
-                closeIcon.classList.add('hidden');
-            }
-        }
-
-        // 3. Product Category Filtering
+        // Filter Products by Category
         function filterProducts(category) {
-            const cards = document.querySelectorAll('.product-card');
+            const cards = document.querySelectorAll('#productsGrid .product-card');
             cards.forEach(card => {
-                if (category === 'all' || card.getAttribute('data-category') === category) {
+                if (category === 'all' || card.dataset.category === category) {
                     card.classList.remove('hidden');
                     card.classList.add('flex');
                 } else {
@@ -1622,131 +1918,138 @@
                 }
             });
 
-            // Update active pill styling
-            document.querySelectorAll('.product-filter-btn').forEach(btn => {
-                if (btn.getAttribute('data-filter') === category) {
-                    btn.className = 'product-filter-btn bg-brand-900 text-accent-400 border border-brand-900 px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition shadow-md';
+            const buttons = document.querySelectorAll('.product-filter-btn');
+            buttons.forEach(btn => {
+                if (btn.dataset.filter === category) {
+                    btn.classList.add('bg-brand-900', 'text-accent-400', 'border-brand-900', 'shadow-md');
+                    btn.classList.remove('bg-white', 'text-slate-700');
                 } else {
-                    btn.className = 'product-filter-btn bg-white text-slate-700 hover:bg-brand-50 border border-slate-200 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition';
+                    btn.classList.remove('bg-brand-900', 'text-accent-400', 'border-brand-900', 'shadow-md');
+                    btn.classList.add('bg-white', 'text-slate-700');
                 }
             });
         }
 
-        // Helper for Footer Solution links
+        // Navigate to Products Page and Filter Immediately
         function navigateAndFilter(category) {
             navigateTo('products');
             filterProducts(category);
         }
 
-        // 4. Direct Product Inquiry (Pre-fills Contact Form)
+        // Open WhatsApp Directly for Catalogue "Inquire More" Buttons (and pre-fill Contact Form)
         function inquireProduct(productName) {
-            navigateTo('contact');
-            const productInput = document.getElementById('selectedProduct');
-            const inquirySelect = document.getElementById('inquiryType');
-            if (productInput) {
-                productInput.value = productName;
-                productInput.focus();
+            const input = document.getElementById('selectedProductInput');
+            const inquiryType = document.getElementById('inquiryType');
+            if (input) {
+                input.value = productName;
             }
-            if (inquirySelect) {
-                inquirySelect.value = 'product';
+            if (inquiryType && productName.toLowerCase().includes('gift')) {
+                inquiryType.value = 'Corporate & Event Gift Items';
             }
+            const message = 'Hello OMOTHEK ENTERPRISES, I would like to inquire more about: ' + productName;
+            const whatsappUrl = 'https://wa.me/2348104559942?text=' + encodeURIComponent(message);
+            window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
         }
 
-        // 5. About Us Interactive Animation Controls ("Smart Living Ecosystem")
-        let turboMode = false;
-        function toggleEcosystemMode() {
-            turboMode = !turboMode;
-            const fanBlades = document.getElementById('svgFanBlades');
-            const energyLines = document.querySelectorAll('.anim-energy-line');
-            const modeLabel = document.getElementById('ecoModeLabel');
-            const modeBtn = document.getElementById('ecoModeBtn');
+        // Contact Form Submission Handler (Sends via WhatsApp + shows confirmation banner)
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            const fullName = document.getElementById('fullName')?.value || '';
+            const phone = document.getElementById('phone')?.value || '';
+            const emailAddr = document.getElementById('emailAddr')?.value || '';
+            const inquiryType = document.getElementById('inquiryType')?.value || '';
+            const selectedProduct = document.getElementById('selectedProductInput')?.value || 'General Inquiry';
+            const inquiryMessage = document.getElementById('inquiryMessage')?.value || '';
 
-            if (turboMode) {
-                if (fanBlades) fanBlades.classList.add('turbo');
-                energyLines.forEach(line => line.classList.add('turbo'));
-                if (modeLabel) modeLabel.textContent = 'Turbo Energy: ON';
-                if (modeBtn) {
-                    modeBtn.classList.remove('bg-white/10', 'text-accent-300');
-                    modeBtn.classList.add('bg-accent-500', 'text-brand-900');
+            const whatsappText =
+                'Hello OMOTHEK ENTERPRISES,\n' +
+                'Name: ' + fullName + '\n' +
+                'Phone: ' + phone + '\n' +
+                'Email: ' + emailAddr + '\n' +
+                'Category: ' + inquiryType + '\n' +
+                'Item: ' + selectedProduct + '\n' +
+                'Message: ' + inquiryMessage;
+
+            window.open('https://wa.me/2348104559942?text=' + encodeURIComponent(whatsappText), '_blank', 'noopener,noreferrer');
+
+            const banner = document.getElementById('contactSuccessBanner');
+            if (banner) {
+                banner.classList.remove('hidden');
+                banner.classList.add('flex');
+            }
+            e.target.reset();
+            setTimeout(() => {
+                if (banner) {
+                    banner.classList.add('hidden');
+                    banner.classList.remove('flex');
                 }
-                highlightAppliance('turbo');
-            } else {
-                if (fanBlades) fanBlades.classList.remove('turbo');
-                energyLines.forEach(line => line.classList.remove('turbo'));
-                if (modeLabel) modeLabel.textContent = 'Turbo Energy: OFF';
-                if (modeBtn) {
-                    modeBtn.classList.add('bg-white/10', 'text-accent-300');
-                    modeBtn.classList.remove('bg-accent-500', 'text-brand-900');
-                }
-                highlightAppliance('default');
+            }, 6000);
+        }
+
+        // About Us Interactive Ecosystem Controls
+        let isTurboMode = false;
+        function toggleEcosystemMode() {
+            isTurboMode = !isTurboMode;
+            const fanBlades = document.getElementById('svgFanBlades');
+            const lines = document.querySelectorAll('.anim-energy-line');
+            const label = document.getElementById('ecoModeLabel');
+            const title = document.getElementById('inspectorTitle');
+            const desc = document.getElementById('inspectorDesc');
+
+            if (fanBlades) {
+                fanBlades.classList.toggle('turbo', isTurboMode);
+            }
+            lines.forEach(l => l.classList.toggle('turbo', isTurboMode));
+
+            if (label) {
+                label.textContent = isTurboMode ? 'Turbo Energy: ON' : 'Turbo Energy: OFF';
+            }
+            if (title && desc) {
+                title.textContent = isTurboMode
+                    ? 'OMOTHEK High-Output Mode Engaged'
+                    : 'Smart Living Ecosystem Active';
+                desc.textContent = isTurboMode
+                    ? 'Delivering peak 3500W infrared heating, 1500W blending torque, and rapid solar charging.'
+                    : 'Click any appliance node above or toggle Turbo Energy to inspect live specs.';
             }
         }
 
         function highlightAppliance(type) {
-            const titleEl = document.getElementById('inspectorTitle');
-            const descEl = document.getElementById('inspectorDesc');
-            const iconEl = document.getElementById('inspectorIcon');
-            if (!titleEl || !descEl || !iconEl) return;
+            const title = document.getElementById('inspectorTitle');
+            const desc = document.getElementById('inspectorDesc');
+            const icon = document.getElementById('inspectorIcon');
+            if (!title || !desc || !icon) return;
 
             const specs = {
                 solar: {
                     icon: 'fa-solar-panel',
                     title: 'TRIFONE 16" Solar Standing Fan (TF-16A)',
-                    desc: 'Off-grid solar charging panel, 5-speed airflow, built-in LED night light & USB port.'
+                    desc: 'Off-grid solar panel charging, remote control, 5V USB power bank port, and bright emergency LED light.'
                 },
                 blender: {
                     icon: 'fa-blender',
-                    title: 'TRIFONE 1500W Multifunctional Mixer & Blender',
-                    desc: 'High-torque copper motor for smoothies, grinding spices, and heavy-duty food prep.'
+                    title: 'TRIFONE 1500W Food Mixer & Commercial Blenders',
+                    desc: 'High-torque copper motors engineered for smoothies, nuts, spices, and heavy-duty food preparation.'
                 },
                 airfryer: {
                     icon: 'fa-temperature-high',
-                    title: 'TRIFONE 10L & COSYNEST 8L Digital Air Fryers',
-                    desc: '360° rapid hot air circulation cooks crispy meals with up to 99% less oil.'
+                    title: '8L & 10L Extra Large Digital Air Fryers',
+                    desc: '360° rapid hot air circulation with panoramic viewing windows for healthy cooking with up to 99% less oil.'
                 },
                 furnace: {
                     icon: 'fa-fire-burner',
-                    title: 'TRIFONE 3500W Infrared Electric Pottery Furnace',
-                    desc: 'Single & dual-zone ceramic heating rings compatible with all aluminum & steel cookware.'
-                },
-                turbo: {
-                    icon: 'fa-bolt',
-                    title: 'Turbo Solar & Smart Grid Flow Activated!',
-                    desc: 'Maximum energy efficiency delivering high performance across all OMOTHEK Enterprises appliances.'
-                },
-                default: {
-                    icon: 'fa-bolt',
-                    title: 'Smart Living Ecosystem Active',
-                    desc: 'Click any appliance node above or toggle Turbo Energy to inspect live specs.'
+                    title: '3500W Single & Dual Electric Pottery Furnaces',
+                    desc: 'Rapid infrared heating compatible with all cookware types, featuring touch controls and rotary dials.'
                 }
             };
 
-            const selected = specs[type] || specs.default;
-            iconEl.className = 'fas ' + selected.icon;
-            titleEl.textContent = selected.title;
-            descEl.textContent = selected.desc;
+            const selected = specs[type];
+            if (selected) {
+                icon.className = 'fas ' + selected.icon;
+                title.textContent = selected.title;
+                desc.textContent = selected.desc;
+            }
         }
-
-        // 6. Contact Form Submission Handler
-        const contactForm = document.getElementById('contactForm');
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const successMsg = document.getElementById('formSuccess');
-                if (successMsg) {
-                    successMsg.classList.remove('hidden');
-                    this.reset();
-                    setTimeout(() => {
-                        successMsg.classList.add('hidden');
-                    }, 6000);
-                }
-            });
-        }
-
-        // Initialize Default Page
-        document.addEventListener('DOMContentLoaded', () => {
-            navigateTo('home');
-        });
     </script>
 </body>
 </html>
