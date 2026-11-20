@@ -54,11 +54,31 @@
             }
         }
 
-        // Smart fallback handler for Gift Items images (checks root and giftitems/ subfolder, then shows styled card fallback)
-        window.handleGiftImageError = function(imgEl, filename) {
-            if (!imgEl.dataset.triedSubfolder) {
-                imgEl.dataset.triedSubfolder = '1';
-                imgEl.src = 'giftitems/' + filename;
+        // Smart multi-path fallback handler for Gift Items images (checks renamed files, subfolders, original filenames, and .jpg/.jpeg variants)
+        window.handleGiftImageError = function(imgEl, renamedFilename, originalFilename) {
+            const swapExt = (name) => /\.jpeg$/i.test(name) ? name.replace(/\.jpeg$/i, '.jpg') : name.replace(/\.jpg$/i, '.jpeg');
+            const candidates = [
+                'giftitems/' + renamedFilename,
+                'GiftItems/' + renamedFilename,
+                'images/' + renamedFilename,
+                'assets/' + renamedFilename,
+                swapExt(renamedFilename),
+                'giftitems/' + swapExt(renamedFilename)
+            ];
+            if (originalFilename) {
+                candidates.push(
+                    originalFilename,
+                    'giftitems/' + originalFilename,
+                    'GiftItems/' + originalFilename,
+                    'images/' + originalFilename,
+                    swapExt(originalFilename),
+                    'giftitems/' + swapExt(originalFilename)
+                );
+            }
+            const step = parseInt(imgEl.dataset.fallbackStep || '0', 10);
+            if (step < candidates.length) {
+                imgEl.dataset.fallbackStep = String(step + 1);
+                imgEl.src = candidates[step];
             } else {
                 imgEl.style.display = 'none';
                 if (imgEl.nextElementSibling) {
@@ -606,13 +626,13 @@
                         <div onclick="navigateAndFilter('gifts')" class="cursor-pointer bg-gradient-to-b from-brand-900 to-brand-800 text-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 border-2 border-accent-500 flex flex-col group overflow-hidden">
                             <div class="h-52 w-full bg-white p-4 flex items-center justify-center border-b border-accent-500/30 relative">
                                 <span class="absolute top-3 left-3 bg-accent-500 text-brand-900 text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase shadow">New Collection</span>
-                                <img src="image0.jpeg" alt="Curated Gift Items" class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="handleGiftImageError(this, 'image0.jpeg')">
+                                <img src="pink-summer-gift-set-wa05.jpeg" alt="Pink Summer 3-in-1 Gift Box Set WA-05" class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="handleGiftImageError(this, 'pink-summer-gift-set-wa05.jpeg', 'image0.jpeg')">
                                 <div class="hidden text-center"><i class="fas fa-gift text-5xl text-accent-500"></i></div>
                             </div>
                             <div class="p-5 flex-grow flex flex-col justify-between">
                                 <div>
                                     <h3 class="text-base font-bold text-accent-400 mb-1">Curated Gift Items</h3>
-                                    <p class="text-slate-200 text-xs leading-relaxed">7 exclusive corporate, wedding, event, and household souvenir gift packages.</p>
+                                    <p class="text-slate-200 text-xs leading-relaxed">Smartwatch bundles, men's executive sets, jewelry boxes, and summer tumbler gift packs.</p>
                                 </div>
                                 <span class="mt-4 inline-flex items-center text-xs font-bold text-accent-400 group-hover:translate-x-1 transition-transform">View 7 Gift Items &rarr;</span>
                             </div>
@@ -1397,170 +1417,177 @@
                         </div>
                     </div>
 
-                    <!-- ================= 7 CURATED GIFT ITEMS FROM GIFTITEMS.ZIP ================= -->
+                    <!-- ================= 7 CURATED GIFT ITEMS (RENAMED & DETAILED) ================= -->
 
-                    <!-- 11. Gift Item I (image0.jpeg) -->
+                    <!-- 11. Pink Summer 3-in-1 Gift Box Set (WA-05) -> pink-summer-gift-set-wa05.jpeg -->
                     <div data-category="gifts" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border-2 border-accent-500/40 overflow-hidden group flex flex-col">
                         <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
                             <span class="absolute top-3 left-3 z-10 bg-accent-500 text-brand-900 text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase shadow-sm"><i class="fas fa-gift mr-1"></i>Gift Items</span>
-                            <img src="image0.jpeg" alt="Executive Corporate & Event Gift Item I" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="handleGiftImageError(this, 'image0.jpeg')">
-                            <div class="hidden flex-col items-center justify-center text-center p-6 bg-gradient-to-br from-brand-50 to-amber-50/50 rounded-xl w-full h-full">
-                                <div class="w-16 h-16 rounded-2xl bg-brand-900 text-accent-500 flex items-center justify-center text-3xl mb-3 shadow-md">
+                            <img src="pink-summer-gift-set-wa05.jpeg" alt="Pink Summer 3-in-1 Gift Box Set (WA-05)" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="handleGiftImageError(this, 'pink-summer-gift-set-wa05.jpeg', 'image0.jpeg')">
+                            <div class="hidden flex-col items-center justify-center text-center p-6 bg-gradient-to-br from-pink-900 via-rose-800 to-brand-950 rounded-xl w-full h-full text-white border border-pink-400/40">
+                                <span class="text-[10px] font-bold tracking-widest uppercase text-pink-200 mb-3">WA-05 SET</span>
+                                <div class="w-16 h-16 rounded-2xl bg-pink-400/20 border border-pink-300 text-pink-200 flex items-center justify-center text-3xl mb-3 shadow-lg">
                                     <i class="fas fa-gift"></i>
                                 </div>
-                                <span class="text-xs font-extrabold text-brand-900 uppercase tracking-wider">Gift Collection I</span>
-                                <span class="text-[10px] text-slate-500 mt-1">image0.jpeg</span>
+                                <span class="text-xs font-extrabold text-white uppercase tracking-wider">Pink Summer 3-in-1</span>
+                                <span class="text-[10px] text-pink-100 mt-1.5 bg-white/10 px-2.5 py-0.5 rounded-full">pink-summer-gift-set-wa05.jpeg</span>
                             </div>
                         </div>
                         <div class="p-6 flex-grow flex flex-col">
                             <span class="text-[11px] font-bold text-accent-600 uppercase tracking-wider">OMOTHEK &bull; Gift Items</span>
-                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">Executive Corporate &amp; Event Gift Item I</h3>
-                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Elegantly packaged household and lifestyle gift item tailored for corporate appreciation, special celebrations, and VIP event souvenirs.</p>
-                            <button onclick="inquireProduct('Executive Corporate & Event Gift Item I (image0.jpeg)')" class="w-full bg-brand-900 text-white hover:bg-emerald-600 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">Pink Summer 3-in-1 Gift Box Set (WA-05)</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Luxury pink marble gift box containing a leather-sleeve glass tumbler with straw, super-soft plush face towel, and cute crown handheld mini fan.</p>
+                            <button onclick="inquireProduct('Pink Summer 3-in-1 Gift Box Set (WA-05)')" class="w-full bg-brand-900 text-white hover:bg-emerald-600 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
                                 <i class="fab fa-whatsapp text-base"></i>
                                 <span>Inquire More</span>
                             </button>
                         </div>
                     </div>
 
-                    <!-- 12. Gift Item II (image1.jpeg) -->
+                    <!-- 12. Green Good Luck 2-in-1 Gift Box Set (FC-02) -> green-good-luck-gift-set-fc02.jpeg -->
                     <div data-category="gifts" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border-2 border-accent-500/40 overflow-hidden group flex flex-col">
                         <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
                             <span class="absolute top-3 left-3 z-10 bg-accent-500 text-brand-900 text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase shadow-sm"><i class="fas fa-gift mr-1"></i>Gift Items</span>
-                            <img src="image1.jpeg" alt="Premium Household & Souvenir Gift Item II" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="handleGiftImageError(this, 'image1.jpeg')">
-                            <div class="hidden flex-col items-center justify-center text-center p-6 bg-gradient-to-br from-brand-50 to-amber-50/50 rounded-xl w-full h-full">
-                                <div class="w-16 h-16 rounded-2xl bg-brand-900 text-accent-500 flex items-center justify-center text-3xl mb-3 shadow-md">
-                                    <i class="fas fa-box-open"></i>
+                            <img src="green-good-luck-gift-set-fc02.jpeg" alt="Green Good Luck 2-in-1 Gift Box Set (FC-02)" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="handleGiftImageError(this, 'green-good-luck-gift-set-fc02.jpeg', 'image1.jpeg')">
+                            <div class="hidden flex-col items-center justify-center text-center p-6 bg-gradient-to-br from-emerald-900 via-lime-900 to-brand-950 rounded-xl w-full h-full text-white border border-emerald-400/40">
+                                <span class="text-[10px] font-bold tracking-widest uppercase text-lime-200 mb-3">FC-02 SET</span>
+                                <div class="w-16 h-16 rounded-2xl bg-emerald-400/20 border border-emerald-300 text-lime-200 flex items-center justify-center text-3xl mb-3 shadow-lg">
+                                    <i class="fas fa-fan"></i>
                                 </div>
-                                <span class="text-xs font-extrabold text-brand-900 uppercase tracking-wider">Gift Collection II</span>
-                                <span class="text-[10px] text-slate-500 mt-1">image1.jpeg</span>
+                                <span class="text-xs font-extrabold text-white uppercase tracking-wider">Green Good Luck Set</span>
+                                <span class="text-[10px] text-emerald-100 mt-1.5 bg-white/10 px-2.5 py-0.5 rounded-full">green-good-luck-gift-set-fc02.jpeg</span>
                             </div>
                         </div>
                         <div class="p-6 flex-grow flex flex-col">
                             <span class="text-[11px] font-bold text-accent-600 uppercase tracking-wider">OMOTHEK &bull; Gift Items</span>
-                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">Premium Household &amp; Souvenir Gift Item II</h3>
-                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">High-utility household gift selection ideal for weddings, anniversaries, housewarmings, and bulk dealer distribution.</p>
-                            <button onclick="inquireProduct('Premium Household & Souvenir Gift Item II (image1.jpeg)')" class="w-full bg-brand-900 text-white hover:bg-emerald-600 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">Green "Good Luck" 2-in-1 Gift Box Set (FC-02)</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Stylish olive-green gift box with matching carry bag, amber glass straw tumbler with leather grip, and rechargeable bunny-ear handheld fan with stand.</p>
+                            <button onclick="inquireProduct('Green Good Luck 2-in-1 Gift Box Set (FC-02)')" class="w-full bg-brand-900 text-white hover:bg-emerald-600 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
                                 <i class="fab fa-whatsapp text-base"></i>
                                 <span>Inquire More</span>
                             </button>
                         </div>
                     </div>
 
-                    <!-- 13. Gift Item III (image2.jpeg) -->
+                    <!-- 13. Okpu A89 Plus Smartwatch & Emerald Jewelry Gift Set -> okpu-a89-plus-smartwatch-jewelry-set.jpeg -->
                     <div data-category="gifts" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border-2 border-accent-500/40 overflow-hidden group flex flex-col">
                         <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
                             <span class="absolute top-3 left-3 z-10 bg-accent-500 text-brand-900 text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase shadow-sm"><i class="fas fa-gift mr-1"></i>Gift Items</span>
-                            <img src="image2.jpeg" alt="Luxury Lifestyle & Utility Gift Item III" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="handleGiftImageError(this, 'image2.jpeg')">
-                            <div class="hidden flex-col items-center justify-center text-center p-6 bg-gradient-to-br from-brand-50 to-amber-50/50 rounded-xl w-full h-full">
-                                <div class="w-16 h-16 rounded-2xl bg-brand-900 text-accent-500 flex items-center justify-center text-3xl mb-3 shadow-md">
-                                    <i class="fas fa-award"></i>
-                                </div>
-                                <span class="text-xs font-extrabold text-brand-900 uppercase tracking-wider">Gift Collection III</span>
-                                <span class="text-[10px] text-slate-500 mt-1">image2.jpeg</span>
-                            </div>
-                        </div>
-                        <div class="p-6 flex-grow flex flex-col">
-                            <span class="text-[11px] font-bold text-accent-600 uppercase tracking-wider">OMOTHEK &bull; Gift Items</span>
-                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">Luxury Lifestyle &amp; Utility Gift Item III</h3>
-                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Thoughtfully curated modern home and kitchen gift piece combining aesthetic elegance with everyday convenience.</p>
-                            <button onclick="inquireProduct('Luxury Lifestyle & Utility Gift Item III (image2.jpeg)')" class="w-full bg-brand-900 text-white hover:bg-emerald-600 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
-                                <i class="fab fa-whatsapp text-base"></i>
-                                <span>Inquire More</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- 14. Gift Item IV (image3.jpeg) -->
-                    <div data-category="gifts" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border-2 border-accent-500/40 overflow-hidden group flex flex-col">
-                        <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
-                            <span class="absolute top-3 left-3 z-10 bg-accent-500 text-brand-900 text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase shadow-sm"><i class="fas fa-gift mr-1"></i>Gift Items</span>
-                            <img src="image3.jpeg" alt="Signature Celebration & Corporate Gift Item IV" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="handleGiftImageError(this, 'image3.jpeg')">
-                            <div class="hidden flex-col items-center justify-center text-center p-6 bg-gradient-to-br from-brand-50 to-amber-50/50 rounded-xl w-full h-full">
-                                <div class="w-16 h-16 rounded-2xl bg-brand-900 text-accent-500 flex items-center justify-center text-3xl mb-3 shadow-md">
+                            <img src="okpu-a89-plus-smartwatch-jewelry-set.jpeg" alt="Okpu A89 Plus Smartwatch and Emerald Jewelry Gift Set" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="handleGiftImageError(this, 'okpu-a89-plus-smartwatch-jewelry-set.jpeg', 'image2.jpeg')">
+                            <div class="hidden flex-col items-center justify-center text-center p-6 bg-gradient-to-br from-emerald-950 via-brand-900 to-purple-950 rounded-xl w-full h-full text-white border border-emerald-400/40">
+                                <span class="text-[10px] font-bold tracking-widest uppercase text-emerald-300 mb-3">OKPU A89 PLUS</span>
+                                <div class="w-16 h-16 rounded-2xl bg-emerald-400/20 border border-emerald-300 text-emerald-300 flex items-center justify-center text-3xl mb-3 shadow-lg">
                                     <i class="fas fa-gem"></i>
                                 </div>
-                                <span class="text-xs font-extrabold text-brand-900 uppercase tracking-wider">Gift Collection IV</span>
-                                <span class="text-[10px] text-slate-500 mt-1">image3.jpeg</span>
+                                <span class="text-xs font-extrabold text-white uppercase tracking-wider">Watch &amp; Jewelry Box</span>
+                                <span class="text-[10px] text-emerald-100 mt-1.5 bg-white/10 px-2.5 py-0.5 rounded-full">okpu-a89-plus-smartwatch-jewelry-set.jpeg</span>
                             </div>
                         </div>
                         <div class="p-6 flex-grow flex flex-col">
-                            <span class="text-[11px] font-bold text-accent-600 uppercase tracking-wider">OMOTHEK &bull; Gift Items</span>
-                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">Signature Celebration &amp; Corporate Gift Item IV</h3>
-                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Distinctive celebration gift package crafted for festive hampers, executive recognition, and retail gift shops.</p>
-                            <button onclick="inquireProduct('Signature Celebration & Corporate Gift Item IV (image3.jpeg)')" class="w-full bg-brand-900 text-white hover:bg-emerald-600 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                            <span class="text-[11px] font-bold text-accent-600 uppercase tracking-wider">OKPU &bull; Gift Items</span>
+                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">Okpu A89 Plus Smartwatch &amp; Emerald Jewelry Set</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Luxury ladies' gift box combining a 2.02" big-screen smartwatch, gold rhinestone emerald-dial analog watch, and matching necklace, bracelet, ring, and earrings.</p>
+                            <button onclick="inquireProduct('Okpu A89 Plus Smartwatch & Emerald Jewelry Gift Set')" class="w-full bg-brand-900 text-white hover:bg-emerald-600 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
                                 <i class="fab fa-whatsapp text-base"></i>
                                 <span>Inquire More</span>
                             </button>
                         </div>
                     </div>
 
-                    <!-- 15. Gift Item V (image4.jpeg) -->
+                    <!-- 14. Okpu D-P9 Series 10 Tech Gift Box -> okpu-dp9-series10-tech-combo-set.jpeg -->
                     <div data-category="gifts" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border-2 border-accent-500/40 overflow-hidden group flex flex-col">
                         <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
                             <span class="absolute top-3 left-3 z-10 bg-accent-500 text-brand-900 text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase shadow-sm"><i class="fas fa-gift mr-1"></i>Gift Items</span>
-                            <img src="image4.jpeg" alt="Classic Home & Kitchen Curated Gift Item V" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="handleGiftImageError(this, 'image4.jpeg')">
-                            <div class="hidden flex-col items-center justify-center text-center p-6 bg-gradient-to-br from-brand-50 to-amber-50/50 rounded-xl w-full h-full">
-                                <div class="w-16 h-16 rounded-2xl bg-brand-900 text-accent-500 flex items-center justify-center text-3xl mb-3 shadow-md">
-                                    <i class="fas fa-ribbon"></i>
+                            <img src="okpu-dp9-series10-tech-combo-set.jpeg" alt="Okpu D-P9 Series 10 Smartwatch and Headphones Combo Gift Set" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="handleGiftImageError(this, 'okpu-dp9-series10-tech-combo-set.jpeg', 'image3.jpeg')">
+                            <div class="hidden flex-col items-center justify-center text-center p-6 bg-gradient-to-br from-rose-900 via-pink-900 to-brand-950 rounded-xl w-full h-full text-white border border-rose-400/40">
+                                <span class="text-[10px] font-bold tracking-widest uppercase text-rose-200 mb-3">OKPU D-P9 SERIES 10</span>
+                                <div class="w-16 h-16 rounded-2xl bg-rose-400/20 border border-rose-300 text-rose-200 flex items-center justify-center text-3xl mb-3 shadow-lg">
+                                    <i class="fas fa-headphones-alt"></i>
                                 </div>
-                                <span class="text-xs font-extrabold text-brand-900 uppercase tracking-wider">Gift Collection V</span>
-                                <span class="text-[10px] text-slate-500 mt-1">image4.jpeg</span>
+                                <span class="text-xs font-extrabold text-white uppercase tracking-wider">Watch + Headphones</span>
+                                <span class="text-[10px] text-rose-100 mt-1.5 bg-white/10 px-2.5 py-0.5 rounded-full">okpu-dp9-series10-tech-combo-set.jpeg</span>
                             </div>
                         </div>
                         <div class="p-6 flex-grow flex flex-col">
-                            <span class="text-[11px] font-bold text-accent-600 uppercase tracking-wider">OMOTHEK &bull; Gift Items</span>
-                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">Classic Home &amp; Kitchen Curated Gift Item V</h3>
-                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Versatile home and kitchen gift item designed to delight families, guests, and valued business partners.</p>
-                            <button onclick="inquireProduct('Classic Home & Kitchen Curated Gift Item V (image4.jpeg)')" class="w-full bg-brand-900 text-white hover:bg-emerald-600 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                            <span class="text-[11px] font-bold text-accent-600 uppercase tracking-wider">OKPU &bull; Gift Items</span>
+                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">Okpu D-P9 Series 10 Watch &amp; Headphones Combo</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Ultimate gadget gift bundle with a Series 10 smartwatch, 7 colorful straps, wireless over-ear headphones, mini Bluetooth speaker, wireless charger, and 3-in-1 cable.</p>
+                            <button onclick="inquireProduct('Okpu D-P9 Series 10 Watch & Headphones Combo Gift Set')" class="w-full bg-brand-900 text-white hover:bg-emerald-600 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
                                 <i class="fab fa-whatsapp text-base"></i>
                                 <span>Inquire More</span>
                             </button>
                         </div>
                     </div>
 
-                    <!-- 16. Gift Item VI (image5.jpeg) -->
+                    <!-- 15. Men's Executive 5-in-1 Gift Set -> mens-executive-5in1-gift-set.jpeg -->
                     <div data-category="gifts" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border-2 border-accent-500/40 overflow-hidden group flex flex-col">
                         <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
                             <span class="absolute top-3 left-3 z-10 bg-accent-500 text-brand-900 text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase shadow-sm"><i class="fas fa-gift mr-1"></i>Gift Items</span>
-                            <img src="image5.jpeg" alt="Deluxe Event & VIP Souvenir Gift Item VI" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="handleGiftImageError(this, 'image5.jpeg')">
-                            <div class="hidden flex-col items-center justify-center text-center p-6 bg-gradient-to-br from-brand-50 to-amber-50/50 rounded-xl w-full h-full">
-                                <div class="w-16 h-16 rounded-2xl bg-brand-900 text-accent-500 flex items-center justify-center text-3xl mb-3 shadow-md">
-                                    <i class="fas fa-star"></i>
+                            <img src="mens-executive-5in1-gift-set.jpeg" alt="Men's Executive 5-in-1 Watch, Wallet and Cufflinks Gift Set" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="handleGiftImageError(this, 'mens-executive-5in1-gift-set.jpeg', 'image4.jpeg')">
+                            <div class="hidden flex-col items-center justify-center text-center p-6 bg-gradient-to-br from-slate-900 via-brand-900 to-black rounded-xl w-full h-full text-white border border-accent-400/50">
+                                <span class="text-[10px] font-bold tracking-widest uppercase text-accent-300 mb-3">MEN'S 5-IN-1</span>
+                                <div class="w-16 h-16 rounded-2xl bg-accent-400/20 border border-accent-300 text-accent-300 flex items-center justify-center text-3xl mb-3 shadow-lg">
+                                    <i class="fas fa-user-tie"></i>
                                 </div>
-                                <span class="text-xs font-extrabold text-brand-900 uppercase tracking-wider">Gift Collection VI</span>
-                                <span class="text-[10px] text-slate-500 mt-1">image5.jpeg</span>
+                                <span class="text-xs font-extrabold text-white uppercase tracking-wider">Executive Men's Box</span>
+                                <span class="text-[10px] text-amber-100 mt-1.5 bg-white/10 px-2.5 py-0.5 rounded-full">mens-executive-5in1-gift-set.jpeg</span>
                             </div>
                         </div>
                         <div class="p-6 flex-grow flex flex-col">
                             <span class="text-[11px] font-bold text-accent-600 uppercase tracking-wider">OMOTHEK &bull; Gift Items</span>
-                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">Deluxe Event &amp; VIP Souvenir Gift Item VI</h3>
-                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Premium souvenir and gift selection available in single retail units or bulk wholesale quantities for events.</p>
-                            <button onclick="inquireProduct('Deluxe Event & VIP Souvenir Gift Item VI (image5.jpeg)')" class="w-full bg-brand-900 text-white hover:bg-emerald-600 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">Men's Executive 5-in-1 Watch &amp; Wallet Gift Set</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Distinguished corporate &amp; celebration gift box for men featuring a classic quartz wristwatch, textured black leather wallet, executive pen, cufflinks, and keychain.</p>
+                            <button onclick="inquireProduct('Men\'s Executive 5-in-1 Watch & Wallet Gift Set')" class="w-full bg-brand-900 text-white hover:bg-emerald-600 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
                                 <i class="fab fa-whatsapp text-base"></i>
                                 <span>Inquire More</span>
                             </button>
                         </div>
                     </div>
 
-                    <!-- 17. Gift Item VII (image6.jpeg) -->
+                    <!-- 16. D96 Plus Ultra Smartwatch, Earbuds & Mini Fan Set -> d96-plus-smartwatch-earbuds-fan-set.jpg -->
                     <div data-category="gifts" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border-2 border-accent-500/40 overflow-hidden group flex flex-col">
                         <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
                             <span class="absolute top-3 left-3 z-10 bg-accent-500 text-brand-900 text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase shadow-sm"><i class="fas fa-gift mr-1"></i>Gift Items</span>
-                            <img src="image6.jpeg" alt="Exclusive Omothek Special Gift Item VII" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="handleGiftImageError(this, 'image6.jpeg')">
-                            <div class="hidden flex-col items-center justify-center text-center p-6 bg-gradient-to-br from-brand-50 to-amber-50/50 rounded-xl w-full h-full">
-                                <div class="w-16 h-16 rounded-2xl bg-brand-900 text-accent-500 flex items-center justify-center text-3xl mb-3 shadow-md">
+                            <img src="d96-plus-smartwatch-earbuds-fan-set.jpg" alt="D96 Plus Ultra Smartwatch, Wireless Earbuds and Mini Fan Gift Set" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="handleGiftImageError(this, 'd96-plus-smartwatch-earbuds-fan-set.jpg', 'image5.jpg')">
+                            <div class="hidden flex-col items-center justify-center text-center p-6 bg-gradient-to-br from-purple-900 via-pink-900 to-brand-950 rounded-xl w-full h-full text-white border border-purple-400/40">
+                                <span class="text-[10px] font-bold tracking-widest uppercase text-purple-200 mb-3">D96 PLUS SET</span>
+                                <div class="w-16 h-16 rounded-2xl bg-purple-400/20 border border-purple-300 text-purple-200 flex items-center justify-center text-3xl mb-3 shadow-lg">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <span class="text-xs font-extrabold text-white uppercase tracking-wider">D96 Plus Tech Box</span>
+                                <span class="text-[10px] text-purple-100 mt-1.5 bg-white/10 px-2.5 py-0.5 rounded-full">d96-plus-smartwatch-earbuds-fan-set.jpg</span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <span class="text-[11px] font-bold text-accent-600 uppercase tracking-wider">OMOTHEK &bull; Gift Items</span>
+                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">D96 Plus Ultra Smartwatch, Earbuds &amp; Fan Set</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Complete lifestyle tech gift set featuring an Ultra smartwatch with 4 stylish straps, LED-display transparent wireless earbuds, pink handheld mini fan with stand, and charger.</p>
+                            <button onclick="inquireProduct('D96 Plus Ultra Smartwatch, Earbuds & Mini Fan Gift Set')" class="w-full bg-brand-900 text-white hover:bg-emerald-600 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                                <i class="fab fa-whatsapp text-base"></i>
+                                <span>Inquire More</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 17. Okpu Ok-5 7-in-1 Smart Watch Ultra Gift Set -> okpu-ok5-7in1-smartwatch-ultra-set.jpeg -->
+                    <div data-category="gifts" class="product-card bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border-2 border-accent-500/40 overflow-hidden group flex flex-col">
+                        <div class="relative overflow-hidden aspect-square bg-white flex items-center justify-center p-4 border-b border-slate-100">
+                            <span class="absolute top-3 left-3 z-10 bg-accent-500 text-brand-900 text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase shadow-sm"><i class="fas fa-gift mr-1"></i>Gift Items</span>
+                            <img src="okpu-ok5-7in1-smartwatch-ultra-set.jpeg" alt="Okpu Ok-5 7-in-1 Smart Watch Ultra Gift Set" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="handleGiftImageError(this, 'okpu-ok5-7in1-smartwatch-ultra-set.jpeg', 'image6.jpeg')">
+                            <div class="hidden flex-col items-center justify-center text-center p-6 bg-gradient-to-br from-amber-800 via-yellow-900 to-brand-950 rounded-xl w-full h-full text-white border border-accent-300/50">
+                                <span class="text-[10px] font-bold tracking-widest uppercase text-accent-300 mb-3">OKPU OK-5 7-IN-1</span>
+                                <div class="w-16 h-16 rounded-2xl bg-accent-400/20 border border-accent-300 text-accent-300 flex items-center justify-center text-3xl mb-3 shadow-lg">
                                     <i class="fas fa-crown"></i>
                                 </div>
-                                <span class="text-xs font-extrabold text-brand-900 uppercase tracking-wider">Gift Collection VII</span>
-                                <span class="text-[10px] text-slate-500 mt-1">image6.jpeg</span>
+                                <span class="text-xs font-extrabold text-white uppercase tracking-wider">7-in-1 Watch Ultra</span>
+                                <span class="text-[10px] text-amber-100 mt-1.5 bg-white/10 px-2.5 py-0.5 rounded-full">okpu-ok5-7in1-smartwatch-ultra-set.jpeg</span>
                             </div>
                         </div>
                         <div class="p-6 flex-grow flex flex-col">
-                            <span class="text-[11px] font-bold text-accent-600 uppercase tracking-wider">OMOTHEK &bull; Gift Items</span>
-                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">Exclusive Omothek Special Gift Item VII</h3>
-                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Signature curated gift item offering lasting quality, practical household value, and refined presentation.</p>
-                            <button onclick="inquireProduct('Exclusive Omothek Special Gift Item VII (image6.jpeg)')" class="w-full bg-brand-900 text-white hover:bg-emerald-600 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                            <span class="text-[11px] font-bold text-accent-600 uppercase tracking-wider">OKPU &bull; Gift Items</span>
+                            <h3 class="text-base font-bold text-brand-900 mt-1 mb-2">Okpu Ok-5 7-in-1 Smart Watch Ultra Gift Set</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed mb-6 flex-grow">Super-fast wireless charging Smart Watch Ultra bundle with 7 interchangeable straps—including sport silicone, ocean loop, and stainless steel link bands.</p>
+                            <button onclick="inquireProduct('Okpu Ok-5 7-in-1 Smart Watch Ultra Gift Set')" class="w-full bg-brand-900 text-white hover:bg-emerald-600 font-bold py-3 rounded-xl transition-colors duration-300 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
                                 <i class="fab fa-whatsapp text-base"></i>
                                 <span>Inquire More</span>
                             </button>
